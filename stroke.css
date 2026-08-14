@@ -1,0 +1,285 @@
+/* ==========================================================================
+   STROKE WRITER & PRACTICE CANVAS STYLES (3-6x REPETISI & AUDIO EFFECTS)
+   ========================================================================== */
+
+.stroke-practice-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--dino-border);
+}
+
+.vocab-selector-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.vocab-tab-btn {
+  background: #f8fafc;
+  border: 2px solid var(--dino-border);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.vocab-tab-btn:hover {
+  border-color: var(--dino-mint);
+  background: #f1f5f9;
+}
+
+.vocab-tab-btn.active {
+  background: var(--dino-pale-moss);
+  border-color: var(--dino-forest-mid);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.15);
+}
+
+.vocab-tab-btn .v-hanzi {
+  font-family: var(--font-chinese);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dino-forest-dark);
+}
+
+.vocab-tab-btn .v-pinyin {
+  font-size: 0.82rem;
+  color: var(--dino-amber);
+  font-weight: 700;
+}
+
+.stroke-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* KIRI: INFO METADATA GURATAN & TARGET REPETISI */
+.stroke-meta-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.vocab-character-hero {
+  background: linear-gradient(135deg, #fbfbfb, var(--dino-sand));
+  border: 2px solid var(--dino-gold);
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-hanzi {
+  font-family: var(--font-chinese);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--dino-forest-deep);
+  line-height: 1;
+  background: white;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--dino-border);
+}
+
+.hero-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-pinyin {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dino-amber);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meaning {
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.hero-strokes {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.stroke-order-roadmap {
+  background: #f8fafc;
+  border: 1px solid var(--dino-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+
+.roadmap-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--dino-forest-dark);
+  margin-bottom: 6px;
+}
+
+.roadmap-tags {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dino-forest-mid);
+}
+
+/* TARGET REPETISI 3-6 KALI */
+.target-repeater-box {
+  background: #f0fdf4;
+  border: 2px dashed var(--dino-leaf-light);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.target-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  color: var(--dino-forest-dark);
+}
+
+.target-btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+.target-btn {
+  background: white;
+  border: 1.5px solid var(--dino-leaf-light);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.target-btn.active {
+  background: var(--dino-forest-mid);
+  color: white;
+  border-color: var(--dino-forest-dark);
+}
+
+.eggs-row {
+  display: flex;
+  gap: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.repeat-egg {
+  transition: transform 0.3s;
+}
+
+.repeat-egg.hatched {
+  animation: bounce 1.5s infinite;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.stroke-demo-indicator {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: #1e40af;
+}
+
+/* KANAN: KANVAS MI ZI GE */
+.stroke-canvas-wrapper {
+  background: #fffdf7;
+  border: 3px solid var(--dino-amber);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#stroke-canvas {
+  width: 100%;
+  max-width: 330px;
+  height: 330px;
+  background: transparent;
+  cursor: crosshair;
+  touch-action: none;
+  border-radius: var(--radius-sm);
+}
+
+.canvas-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.canvas-btn {
+  background: #f1f5f9;
+  border: 1px solid var(--dino-border);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.canvas-btn:hover {
+  background: #e2e8f0;
+}
+
+.canvas-btn.primary-action {
+  background: var(--dino-forest-mid);
+  color: white;
+  border-color: var(--dino-forest-dark);
+}
+
+.canvas-btn.danger-action {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* MODAL SELEBRASI TEPUK TANGAN & RAUNGAN */
+.applause-hands {
+  font-size: 4rem;
+  animation: bounce 1.5s infinite;
+}
+
+.roar-dino-icon {
+  font-size: 4.5rem;
+  animation: shake 0.6s infinite;
+}
+
+@media (max-width: 860px) {
+  .stroke-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
