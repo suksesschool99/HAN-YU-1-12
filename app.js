@@ -155,7 +155,7 @@ function renderStoryTab(unit) {
               <div class="sentence-pinyin">${s.pinyin}</div>
               <div class="sentence-indonesian">${s.indonesian}</div>
             </div>
-            <button class="sentence-audio-btn" onclick="playSingleSentence('${s.hanzi.replace(/'/g, "\\'")}', ${idx})" title="Dengarkan kalimat ini">
+            <button class="sentence-audio-btn" onclick="playSentenceByIndex(${idx})" title="Dengarkan kalimat ini">
               🔊
             </button>
           </div>
@@ -168,17 +168,22 @@ function renderStoryTab(unit) {
 // Putar Cerita Penuh dengan Tempo Pelan
 function playFullStorySlow() {
   const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-  if (!unit || !unit.story) return;
+  if (!unit || !unit.story || !unit.story.sentences) return;
 
-  const fullText = unit.story.sentences.map(s => s.hanzi).join(' ');
+  const fullText = unit.story.sentences.map(s => s.hanzi).join('，');
   if (window.dinoAudio) {
     dinoAudio.getAudioContext();
     dinoAudio.speakMandarin(fullText, { rate: dinoAudio.speechRate });
   }
 }
 
-// Putar Satu Kalimat
-function playSingleSentence(hanziText, index) {
+// Putar Satu Kalimat Berdasarkan Indeks
+function playSentenceByIndex(index) {
+  const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
+  if (!unit || !unit.story || !unit.story.sentences[index]) return;
+
+  const s = unit.story.sentences[index];
+
   // Highlight baris
   document.querySelectorAll('.sentence-row-card').forEach(el => el.classList.remove('speaking-highlight'));
   const row = document.getElementById(`sentence-card-${index}`);
@@ -186,7 +191,7 @@ function playSingleSentence(hanziText, index) {
 
   if (window.dinoAudio) {
     dinoAudio.getAudioContext();
-    dinoAudio.speakMandarin(hanziText, {
+    dinoAudio.speakMandarin(s.hanzi, {
       rate: dinoAudio.speechRate,
       onEnd: () => {
         if (row) row.classList.remove('speaking-highlight');
