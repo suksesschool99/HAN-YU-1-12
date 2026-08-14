@@ -332,7 +332,7 @@ const HAN_YU_RAW_CURRICULUM_DATA = {
       { id: 10, title: "第10课 奶奶做饭", pinyin: "Nǎinai zuò fàn", meaning: "Nenek Sedang Memasak", vocab: [{ hanzi: "奶奶", pinyin: "nǎinai", meaning: "nenek", strokes: 5, strokeOrder: ["撇点", "撇", "提", "横折折折钩", "撇"], radical: "女" }, { hanzi: "做饭", pinyin: "zuò fàn", meaning: "memasak nasi", strokes: 11, strokeOrder: ["撇", "竖", "撇", "横", "竖", "横折", "横", "竖", "横", "撇", "捺"], radical: "亻" }, { hanzi: "好吃", pinyin: "hǎochī", meaning: "lezat / enak", strokes: 6, strokeOrder: ["撇点", "撇", "提", "横撇", "弯钩", "横"], radical: "女" }] },
       { id: 11, title: "第11课 小鸟在天上飞", pinyin: "Xiǎoniǎo zài tiān shang fēi", meaning: "Burung Terbang di Angkasa", vocab: [{ hanzi: "天空", pinyin: "tiānkōng", meaning: "langit angkasa", strokes: 8, strokeOrder: ["点", "点", "横撇", "撇", "点", "横", "竖", "横"], radical: "穴" }, { hanzi: "飞翔", pinyin: "fēixiáng", meaning: "terbang tinggi", strokes: 3, strokeOrder: ["横折弯钩", "撇", "点"], radical: "飞" }, { hanzi: "自由", pinyin: "zìyóu", meaning: "bebas lepas", strokes: 6, strokeOrder: ["撇", "竖", "横折", "横", "横", "横"], radical: "自" }] },
       { id: 12, title: "第12课 森林里的动物", pinyin: "Sēnlín lǐ de dòngwù", meaning: "Satwa Rimba Belantara", vocab: [{ hanzi: "森林", pinyin: "sēnlín", meaning: "hutan rimba", strokes: 12, strokeOrder: ["横", "竖", "撇", "捺", "横", "竖", "撇", "捺", "横", "竖", "撇", "捺"], radical: "木" }, { hanzi: "保护", pinyin: "bǎohù", meaning: "melindungi", strokes: 9, strokeOrder: ["撇", "竖", "点", "点", "横撇", "横", "撇", "竖提", "撇"], radical: "亻" }, { hanzi: "美丽", pinyin: "měilì", meaning: "indah jelita", strokes: 9, strokeOrder: ["点", "撇", "横", "横", "竖", "横", "横", "撇", "捺"], radical: "羊" }] },
-      { id: 13, title: "第13课 听音乐", pinyin: "Tīng yīnyuè", meaning: "Mendengarkan Alunan Musik", vocab: [{ hanzi: "音乐", pinyin: "yīnyuè", meaning: "musik", strokes: 9, strokeOrder: ["点", "横", "点", "撇", "竖", "横折", "横", "横", "横"], radical: "音" }, { hanzi: "钢琴", pinyin: "gāngqín", meaning: "piano", strokes: 12, strokeOrder: ["横", "竖", "横", "横", "竖", "提", "点", "撇", "横", "竖", "横折", "横"], radical: "钅" }, { hanzi: "好听", pinyin: "hǎotīng", meaning: "merdu di telinga", strokes: 6, strokeOrder: ["撇点", "撇", "提", "横撇", "弯钩", "横"], radical: "女" }] },
+      { id: 13, title: "第13课 听音乐", pinyin: "Tīng yīnyuè", meaning: "Mendengarkan Alunan Musik", vocab: [{ hanzi: "音乐", pinyin: "yīnyuè", meaning: "musik", strokes: 9, strokeOrder: ["点", "点", "撇", "竖", "横折", "横", "横", "横"], radical: "音" }, { hanzi: "钢琴", pinyin: "gāngqín", meaning: "piano", strokes: 12, strokeOrder: ["横", "竖", "横", "横", "竖", "提", "点", "撇", "横", "竖", "横折", "横"], radical: "钅" }, { hanzi: "好听", pinyin: "hǎotīng", meaning: "merdu di telinga", strokes: 6, strokeOrder: ["撇点", "撇", "提", "横撇", "弯钩", "横"], radical: "女" }] },
       { id: 14, title: "第14课 帮助别人", pinyin: "Bāngzhù biérén", meaning: "Membantu Sesama Teman", vocab: [{ hanzi: "帮助", pinyin: "bāngzhù", meaning: "membantu", strokes: 9, strokeOrder: ["横", "横", "竖", "横", "撇", "点", "竖", "横折钩", "竖"], radical: "巾" }, { hanzi: "别人", pinyin: "biérén", meaning: "orang lain", strokes: 7, strokeOrder: ["竖", "横折", "横", "竖", "横折钩", "撇", "竖钩"], radical: "刂" }, { hanzi: "夸奖", pinyin: "kuājiǎng", meaning: "memuji", strokes: 6, strokeOrder: ["横", "撇", "捺", "横", "横折", "竖折折钩"], radical: "大" }] },
       { id: 15, title: "第15课 参观博物馆", pinyin: "Cānguān bówùguǎn", meaning: "Berkunjung ke Museum Fosil", vocab: [{ hanzi: "博物馆", pinyin: "bówùguǎn", meaning: "museum", strokes: 12, strokeOrder: ["横", "竖", "横", "竖", "横折", "横", "横", "竖", "横折钩", "点", "撇", "横"], radical: "十" }, { hanzi: "化石", pinyin: "huàshí", meaning: "fosil purba", strokes: 4, strokeOrder: ["撇", "竖弯钩", "横", "撇"], radical: "匕" }, { hanzi: "奇妙", pinyin: "qímiào", meaning: "ajaib & mengagumkan", strokes: 8, strokeOrder: ["横", "撇", "捺", "横", "竖", "横折", "横", "竖钩"], radical: "大" }] }
     ]
@@ -543,10 +543,10 @@ function buildFullCurriculumDatabase() {
     let bookMeta = null;
     let unitsList = [];
 
-    if (b <= 3) {
-      bookMeta = HAN_YU_RAW_CURRICULUM_DATA[b];
+    if (b === 1) {
+      bookMeta = HAN_YU_RAW_CURRICULUM_DATA[1];
       unitsList = bookMeta.units.map(u => {
-        const primaryVocab = u.vocab[0];
+        const sentences = u.sentences || generateDefaultSentences(b, u.id, u.title, u.pinyin, u.meaning, u.vocab[0]);
         return {
           id: u.id,
           unitNumber: u.id,
@@ -556,10 +556,40 @@ function buildFullCurriculumDatabase() {
           lessons: [u.title],
           story: {
             title: `Cerita Han Yu ${b} Unit ${u.id}: ${u.title}`,
-            hanzi: u.sentences.map(s => s.hanzi).join(' '),
-            pinyin: u.sentences.map(s => s.pinyin).join(' '),
-            indonesian: u.sentences.map(s => s.indonesian).join(' '),
-            sentences: u.sentences
+            hanzi: sentences.map(s => s.hanzi).join(' '),
+            pinyin: sentences.map(s => s.pinyin).join(' '),
+            indonesian: sentences.map(s => s.indonesian).join(' '),
+            sentences: sentences
+          },
+          vocab: u.vocab,
+          matchingPairs: u.vocab.map((v, vIdx) => ({
+            id: `m_${b}_${u.id}_${vIdx}`,
+            hanzi: v.hanzi,
+            pinyin: v.pinyin,
+            meaning: v.meaning,
+            icon: ["🌟", "📚", "🎨", "⚽", "🍎", "🏡", "🦖", "🌿"][vIdx % 8],
+            category: "kosakata"
+          })),
+          quizQuestions: generateUnitQuestions(b, u.id, u.title, u.pinyin, u.meaning, u.vocab)
+        };
+      });
+    } else if (b === 2 || b === 3) {
+      bookMeta = HAN_YU_RAW_CURRICULUM_DATA[b];
+      unitsList = bookMeta.units.map(u => {
+        const sentences = u.sentences || generateDefaultSentences(b, u.id, u.title, u.pinyin, u.meaning, u.vocab[0]);
+        return {
+          id: u.id,
+          unitNumber: u.id,
+          title: `Unit ${u.id}: ${u.title}`,
+          pinyin: u.pinyin,
+          meaning: u.meaning,
+          lessons: [u.title],
+          story: {
+            title: `Cerita Han Yu ${b} Unit ${u.id}: ${u.title}`,
+            hanzi: sentences.map(s => s.hanzi).join(' '),
+            pinyin: sentences.map(s => s.pinyin).join(' '),
+            indonesian: sentences.map(s => s.indonesian).join(' '),
+            sentences: sentences
           },
           vocab: u.vocab,
           matchingPairs: u.vocab.map((v, vIdx) => ({
@@ -591,33 +621,7 @@ function buildFullCurriculumDatabase() {
           { hanzi: "进步", pinyin: "jìnbù", meaning: "kemajuan pesat", strokes: 7, strokeOrder: ["横", "横", "竖", "点", "横折折撇", "捺", "撇"], radical: "辶" }
         ];
 
-        const sentences = [
-          {
-            hanzi: `今天，恐龙伙伴们一起在课堂上学习《汉语第${b}册》第${uNum}课：“${uTitle}”。`,
-            pinyin: `Jīntiān, kǒnglóng huǒbàn men yìqǐ zài kètáng shang xuéxí 《Hànyǔ Dì ${b} Cè》 dì ${uNum} kè: “${uPinyin}”.`,
-            indonesian: `Hari ini, anak-anak dinosaurus belajar bersama materi buku Han Yu ${b} Unit ${uNum}: '${uTitle}' (${uMeaning}).`
-          },
-          {
-            hanzi: `老师用生动有趣的故事和图画，耐心地带领大家慢速朗读课文中的生词“${vHanzi}”。`,
-            pinyin: `Lǎoshī yòng shēngdòng yǒuqù de gùshì hé túhuà, nàixīn de dàilǐng dàjiā mànsù lǎngdú kèwén zhōng de shēngcí “${vPinyin}”.`,
-            indonesian: `Guru menggunakan cerita bergambar, dengan sabar membimbing murid membaca lafal kosakata '${vHanzi}' secara lambat dan jelas.`
-          },
-          {
-            hanzi: `小恐龙们聚精会神地听讲，一笔一画在田字格里认真书写本课的重点生词。`,
-            pinyin: `Xiǎo kǒnglóng men jùjīng huìshén de tīngjiǎng, yì bǐ yí huà zài tiánzìgé lǐ rènzhēn shūxiě běn kè de zhòngdiǎn shēngcí.`,
-            indonesian: `Dinosaurus-dinosaurus cilik mendengarkan dengan seksama, menuliskan kosakata pokok di kotak Tian Zi Ge dengan tekun.`
-          },
-          {
-            hanzi: `大家在趣味互动中深入理解了中文的句式结构，提高了口语表达和阅读理解能力。`,
-            pinyin: `Dàjiā zài qùwèi hùdòng zhōng shēnrù lǐjiě le Zhōngwén de jùshì jiégòu, tígāo le kǒuyǔ biǎodá hé yuèdú lǐjiě nénglì.`,
-            indonesian: `Melalui interaksi menyenangkan, mereka memahami struktur kalimat Mandarin serta meningkatkan kemampuan membaca.`
-          },
-          {
-            hanzi: `老师夸奖大家是最棒的中文小学员，大家开开心心期待着下一节精彩的中文探险课！`,
-            pinyin: `Lǎoshī kuājiǎng dàjiā shì zuì bàng de Zhōngwén xiǎo xuéyuán, dàjiā kāikāixīnxīn qīdài zhe xià yì jié jīngcǎi de Zhōngwén tànxiǎn kè!`,
-            indonesian: `Guru memuji semua murid sebagai pembelajar teladan, semua bersemangat menyambut petualangan pelajaran berikutnya!`
-          }
-        ];
+        const sentences = generateDefaultSentences(b, uNum, uTitle, uPinyin, uMeaning, vocabList[0]);
 
         return {
           id: uNum,
@@ -659,10 +663,43 @@ function buildFullCurriculumDatabase() {
   return { books };
 }
 
-// 3. GENERATOR 5 TIPE SOAL KUIS PILIHAN BERGANDA PER UNIT
+// 3. GENERATOR CERITA EDUKASI RAMAH ANAK SD (5 KALIMAT LENGKAP)
+function generateDefaultSentences(bookId, unitId, unitTitle, unitPinyin, unitMeaning, primaryVocab) {
+  const vHanzi = primaryVocab ? primaryVocab.hanzi : "学习";
+  const vPinyin = primaryVocab ? primaryVocab.pinyin : "xuéxí";
+
+  return [
+    {
+      hanzi: `今天，恐龙伙伴们一起在课堂上学习《汉语第${bookId}册》第${unitId}课：“${unitTitle}”。`,
+      pinyin: `Jīntiān, kǒnglóng huǒbàn men yìqǐ zài kètáng shang xuéxí 《Hànyǔ Dì ${bookId} Cè》 dì ${unitId} kè: “${unitPinyin}”.`,
+      indonesian: `Hari ini, anak-anak dinosaurus belajar bersama materi buku Han Yu ${bookId} Unit ${unitId}: '${unitTitle}' (${unitMeaning}).`
+    },
+    {
+      hanzi: `陈老师用生动有趣的恐龙故事，耐心地带领大家慢速朗读课文中的生词“${vHanzi}”。`,
+      pinyin: `Chén lǎoshī yòng shēngdòng yǒuqù de kǒnglóng gùshì, nàixīn de dàilǐng dàjiā mànsù lǎngdú kèwén zhōng de shēngcí “${vPinyin}”.`,
+      indonesian: `Guru Chen menggunakan cerita dinosaurus yang menarik, dengan sabar membimbing murid membaca lafal kosakata '${vHanzi}' secara lambat dan jelas.`
+    },
+    {
+      hanzi: `小恐龙们聚精会神地听讲，一笔一画在田字格里认真练习本课的汉字笔画。`,
+      pinyin: `Xiǎo kǒnglóng men jùjīng huìshén de tīngjiǎng, yì bǐ yí huà zài tiánzìgé lǐ rènzhēn liànxí běn kè de hànzì bǐhuà.`,
+      indonesian: `Dinosaurus-dinosaurus cilik mendengarkan dengan seksama, menuliskan kosakata di kotak Tian Zi Ge guratan demi guratan dengan tekun.`
+    },
+    {
+      hanzi: `大家在趣味互动中深入理解了中文的句式结构，提高了口语表达和阅读理解能力。`,
+      pinyin: `Dàjiā zài qùwèi hùdòng zhōng shēnrù lǐjiě le Zhōngwén de jùshì jiégòu, tígāo le kǒuyǔ biǎodá hé yuèdú lǐjiě nénglì.`,
+      indonesian: `Melalui interaksi menyenangkan, mereka memahami struktur kalimat Mandarin serta meningkatkan kemampuan membaca.`
+    },
+    {
+      hanzi: `老师夸奖大家是最棒的中文小学员，大家开开心心期待着下一节精彩的中文探险课！`,
+      pinyin: `Lǎoshī kuājiǎng dàjiā shì zuì bàng de Zhōngwén xiǎo xuéyuán, dàjiā kāikāixīnxīn qīdài zhe xià yì jié jīngcǎi de Zhōngwén tànxiǎn kè!`,
+      indonesian: `Guru memuji semua murid sebagai pembelajar teladan, semua bersemangat menyambut petualangan pelajaran berikutnya!`
+    }
+  ];
+}
+
+// 4. GENERATOR 5 TIPE SOAL KUIS PILIHAN BERGANDA PER UNIT
 function generateUnitQuestions(bookId, unitId, unitTitle, unitPinyin, unitMeaning, vocabList) {
-  const v1 = vocabList[0];
-  const v2 = vocabList[1] || vocabList[0];
+  const v1 = (vocabList && vocabList[0]) ? vocabList[0] : { hanzi: "你好", pinyin: "nǐ hǎo", meaning: "halo", strokes: 7 };
 
   return [
     // TIPE 1: MENGARTIKAN

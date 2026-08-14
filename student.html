@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Platform Pembelajaran Mandarin Han Yu 1 - 12 (180 Unit Lengkap Tema Dinosaurus)</title>
-  <meta name="description" content="Platform Pembelajaran Mandarin Terpadu Han Yu 1 sampai Han Yu 12 (180 Unit Lengkap) dengan Cerita Audio Pelan Anak SD, Latihan Menulis Guratan 3-6x, Mencocokkan Gambar, dan Kuis KKM 70 bertema Dinosaurus.">
+  <title>Halaman Murid - Petualangan Mandarin Dinosaurus</title>
+  <meta name="description" content="Halaman Belajar Mandiri Khusus Murid SD: Cerita Audio Lamban, Latihan Menulis Guratan 3-6x, Mencocokkan Gambar, dan Kuis KKM 70.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
 
-  <!-- Embedded All-In-One CSS Stylesheet (100% Reliable Loading) -->
   <style>
     /* ==========================================================================
-       THEME STYLING: PETUALANGAN MANDARIN DINOSAURUS (JURASSIC VIBRANT AESTHETICS)
+       THEME STYLING: PETUALANGAN MANDARIN DINOSAURUS (HALAMAN MURID SD)
        ========================================================================== */
 
     :root {
@@ -32,7 +31,7 @@
       --dino-sand: #fefae0;
       
       --dino-sky: #264653;
-      --dino-bg-warm: #fcfbf7;
+      --dino-bg-warm: #f7faf7;
       --dino-card-bg: #ffffff;
       --dino-border: #e2e8f0;
       
@@ -61,13 +60,12 @@
       color: var(--text-main);
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(82, 183, 136, 0.12) 0%, transparent 25%),
-        radial-gradient(circle at 90% 80%, rgba(244, 162, 97, 0.12) 0%, transparent 30%);
+        radial-gradient(circle at 5% 15%, rgba(82, 183, 136, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 95% 85%, rgba(244, 162, 97, 0.15) 0%, transparent 35%);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAVBAR */
     .dino-navbar {
       background: linear-gradient(135deg, var(--dino-forest-deep), var(--dino-forest-mid));
       color: white;
@@ -99,7 +97,6 @@
       font-size: 1.45rem;
       font-weight: 800;
       letter-spacing: 0.5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .brand-titles p {
@@ -134,7 +131,6 @@
       cursor: pointer;
     }
 
-    /* BUTTONS */
     .dino-btn {
       display: inline-flex;
       align-items: center;
@@ -157,19 +153,9 @@
       color: white;
     }
 
-    .dino-btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(231, 111, 81, 0.4);
-    }
-
     .dino-btn.secondary {
       background: #e9ecef;
       color: var(--text-main);
-    }
-
-    .dino-btn.secondary:hover {
-      background: #dee2e6;
-      transform: translateY(-2px);
     }
 
     .dino-btn.small {
@@ -177,195 +163,57 @@
       font-size: 0.85rem;
     }
 
-    .dino-btn.pulse {
-      animation: pulse-glow 2s infinite;
-    }
-
-    /* MAIN CONTAINER LAYOUT */
-    .app-layout {
-      max-width: 1380px;
+    .student-container {
+      max-width: 1150px;
       margin: 24px auto;
-      padding: 0 20px;
+      padding: 0 16px;
     }
 
-    /* BOOK SELECTOR GRID */
-    .book-selection-section {
-      margin-bottom: 24px;
-    }
-
-    .section-label {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px;
-    }
-
-    .book-card-btn {
-      background: white;
-      border: 2px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .book-card-btn:hover {
-      transform: translateY(-3px);
-      border-color: var(--dino-leaf-light);
-      box-shadow: var(--shadow-md);
-    }
-
-    .book-card-btn.active {
-      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-      border-color: var(--dino-forest-mid);
-      border-width: 2.5px;
-      box-shadow: 0 6px 16px rgba(45, 106, 79, 0.2);
-    }
-
-    .book-dino-avatar {
-      font-size: 2rem;
-    }
-
-    .book-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .book-title {
-      font-weight: 800;
-      font-size: 0.95rem;
-      color: var(--dino-forest-dark);
-    }
-
-    .book-level {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* GUIDE HERO BANNER */
-    .unit-hero-banner {
+    .student-hero-bar {
       background: linear-gradient(135deg, white, var(--dino-sand));
-      border: 2px solid var(--dino-gold);
+      border: 3px solid var(--dino-gold);
       border-radius: var(--radius-lg);
       padding: 20px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       box-shadow: var(--shadow-md);
       flex-wrap: wrap;
       gap: 16px;
     }
 
-    .banner-left {
+    .student-badge-info {
       display: flex;
       align-items: center;
       gap: 18px;
     }
 
-    .guide-avatar-large {
+    .student-dino-avatar {
       font-size: 3.5rem;
       background: var(--dino-pale-moss);
-      width: 75px;
-      height: 75px;
+      width: 76px;
+      height: 76px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: var(--radius-full);
       border: 3px solid var(--dino-leaf-light);
+      animation: bounce 2s infinite ease-in-out;
     }
 
-    .banner-titles h2 {
-      font-size: 1.5rem;
+    .student-titles h1 {
+      font-size: 1.6rem;
       font-weight: 900;
       color: var(--dino-forest-dark);
     }
 
-    .pinyin-subtitle {
+    .student-titles p {
       font-size: 1.1rem;
-      font-weight: 700;
       color: var(--dino-amber);
-    }
-
-    .meaning-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .banner-right-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    /* UNIT SELECTOR CAROUSEL (15 UNITS) */
-    .unit-carousel-container {
-      background: white;
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--dino-border);
-    }
-
-    .unit-pills-scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: thin;
-    }
-
-    .unit-pill-btn {
-      background: #f8fafc;
-      border: 1.5px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 8px 16px;
-      white-space: nowrap;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: all 0.2s;
-    }
-
-    .unit-pill-btn:hover {
-      background: #f1f5f9;
-      border-color: var(--dino-mint);
-    }
-
-    .unit-pill-btn.active {
-      background: var(--dino-forest-mid);
-      color: white;
-      border-color: var(--dino-forest-dark);
-    }
-
-    .unit-pill-btn .u-num {
-      font-size: 0.75rem;
       font-weight: 800;
-      opacity: 0.85;
     }
 
-    .unit-pill-btn .u-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    /* ACTIVITY TABS */
     .dino-tabs-nav {
       display: flex;
       gap: 12px;
@@ -413,7 +261,6 @@
       border-radius: var(--radius-full);
     }
 
-    /* ACTIVITY PANELS */
     .activity-panel {
       display: none;
     }
@@ -423,7 +270,7 @@
       animation: fadeIn 0.3s ease;
     }
 
-    /* 1. STORY TAB */
+    /* STORY TAB */
     .story-hero-card {
       background: white;
       border-radius: var(--radius-lg);
@@ -539,7 +386,7 @@
       transform: scale(1.1);
     }
 
-    /* 2. STROKE PRACTICE TAB */
+    /* STROKE CANVAS */
     .stroke-practice-container {
       background: white;
       border-radius: var(--radius-lg);
@@ -802,7 +649,7 @@
       color: #991b1b;
     }
 
-    /* 3. MATCHING GAME */
+    /* MATCHING GAME */
     .matching-header {
       display: flex;
       justify-content: space-between;
@@ -914,7 +761,7 @@
       color: var(--text-main);
     }
 
-    /* 4. QUIZ ENGINE */
+    /* QUIZ ENGINE */
     .quiz-box-card {
       background: white;
       border-radius: var(--radius-lg);
@@ -1123,7 +970,7 @@
       border-color: var(--dino-amber);
     }
 
-    /* MODAL SELEBRASI */
+    /* MODAL */
     .win-modal {
       position: fixed;
       top: 0;
@@ -1203,69 +1050,6 @@
       flex-wrap: wrap;
     }
 
-    /* MODAL SHARE KE MURID */
-    .share-modal-box {
-      max-width: 600px;
-    }
-
-    .share-options-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 18px 0;
-      text-align: left;
-    }
-
-    .share-option-field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .share-option-field label {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-    }
-
-    .share-option-field select {
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      border: 1.5px solid var(--dino-border);
-      font-weight: 700;
-    }
-
-    .share-link-preview-box {
-      background: #f8fafc;
-      border: 1px solid var(--dino-border);
-      padding: 14px;
-      border-radius: var(--radius-md);
-      margin: 16px 0;
-      text-align: left;
-    }
-
-    .link-input-group {
-      display: flex;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .link-input-group input {
-      flex-grow: 1;
-      padding: 8px 12px;
-      border: 1.5px solid var(--dino-border);
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-    }
-
-    .copy-status {
-      font-size: 0.85rem;
-      color: #16a34a;
-      font-weight: 700;
-      display: block;
-      margin-top: 4px;
-    }
-
     /* ANIMATIONS */
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -1305,39 +1089,24 @@
       .matching-board {
         grid-template-columns: 1fr;
       }
-      .share-options-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .dino-navbar {
-        padding: 12px 16px;
-      }
-      .unit-hero-banner {
-        padding: 16px;
-      }
-      .books-grid {
-        grid-template-columns: 1fr 1fr;
-      }
     }
   </style>
 </head>
-<body>
+<body class="student-body">
 
-  <!-- TOP NAVBAR -->
+  <!-- NAVBAR MURID -->
   <header class="dino-navbar">
-    <a href="index.html" class="dino-brand">
-      <div class="brand-icon">🦖</div>
+    <div class="dino-brand">
+      <div class="brand-icon">🦕</div>
       <div class="brand-titles">
-        <h1>Petualangan Mandarin Dinosaurus</h1>
-        <p>Kurikulum Han Yu 1 - 12 (180 Unit Lengkap & Audio Pelan SD)</p>
+        <h1>Petualangan Mandarin Murid</h1>
+        <p id="student-book-unit-badge">Memuat materi pembelajaran...</p>
       </div>
-    </a>
+    </div>
 
     <div class="navbar-right">
       <div class="speed-control-box">
-        <span>🐢 Kecepatan Suara:</span>
+        <span>🐢 Suara Pelan:</span>
         <select id="tts-speed-selector">
           <option value="0.5">Sangat Pelan (0.5x)</option>
           <option value="0.7" selected>Pelan (0.7x) - SD</option>
@@ -1346,99 +1115,70 @@
         </select>
       </div>
 
-      <button class="dino-btn primary small" onclick="openShareModalForCurrent()">
-        🔗 Bagikan ke Murid
-      </button>
-
-      <button class="dino-btn secondary small" onclick="dinoAudio.toggleMute()" id="mute-toggle-btn" title="Aktifkan/Matikan Suara">
-        🔊 Suara
-      </button>
+      <a href="index.html" class="dino-btn secondary small">
+        🏠 Kembali ke Portal Utama
+      </a>
     </div>
   </header>
 
-  <!-- MAIN APP WRAPPER -->
-  <main class="app-layout">
+  <!-- CONTAINER UTAMA MURID -->
+  <main class="student-container">
 
-    <!-- 1. PILIHAN BUKU HAN YU 1 SAMPAI 12 -->
-    <section class="book-selection-section">
-      <div class="section-label">
-        <span>📚 Pilih Buku Han Yu (1 - 12):</span>
-      </div>
-      <div class="books-grid" id="book-selector-grid">
-        <!-- Generated via app.js -->
-      </div>
-    </section>
-
-    <!-- 2. HERO BANNER MASKOT DINOSAURUS & UNIT SAAT INI -->
-    <section class="unit-hero-banner">
-      <div class="banner-left">
-        <div class="guide-avatar-large" id="guide-avatar">🦖</div>
-        <div class="banner-titles">
-          <h2 id="current-unit-title">Han Yu 1 - 第1课 你好</h2>
-          <div class="pinyin-subtitle" id="current-unit-pinyin">Nǐ hǎo</div>
-          <div class="meaning-subtitle" id="current-unit-meaning">Arti: Halo / Salam Jumpa</div>
-          <p style="font-size: 0.85rem; color: #166534; margin-top: 4px;" id="guide-desc">Mari pelajari dasar kosakata dan sapaan Mandarin bersama Rexy!</p>
+    <!-- HERO BANNER UNIT MURID -->
+    <section class="student-hero-bar">
+      <div class="student-badge-info">
+        <div class="student-dino-avatar" id="guide-avatar">🦖</div>
+        <div class="student-titles">
+          <h1 id="current-unit-title">Han Yu 1 - 第1课 你好</h1>
+          <p id="current-unit-pinyin">Nǐ hǎo</p>
+          <span style="font-size: 0.95rem; color: #4b5563; font-weight: 700;" id="current-unit-meaning">Arti: Halo / Salam Jumpa</span>
         </div>
       </div>
 
-      <div class="banner-right-actions">
-        <button class="dino-btn primary small" onclick="openShareModalForCurrent()">
-          📤 Buka Halaman Murid
-        </button>
+      <!-- Quick Selector jika murid ingin ganti unit -->
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <select id="student-quick-book" style="padding: 8px 12px; border-radius: var(--radius-sm); border: 2px solid var(--dino-gold); font-weight: 800; cursor: pointer;">
+          <!-- Diisi via student script -->
+        </select>
+        <select id="student-quick-unit" style="padding: 8px 12px; border-radius: var(--radius-sm); border: 2px solid var(--dino-mint); font-weight: 800; cursor: pointer;">
+          <!-- Diisi via student script -->
+        </select>
       </div>
     </section>
 
-    <!-- 3. UNIT SELECTOR CAROUSEL (15 UNIT LENGKAP) -->
-    <section class="unit-carousel-container">
-      <div class="section-label" style="font-size: 0.95rem; margin-bottom: 8px;">
-        <span>🎯 Pilih Unit Pembelajaran (15 Unit per Buku):</span>
-      </div>
-      <div class="unit-pills-scroll" id="unit-selector-list">
-        <!-- Generated via app.js -->
-      </div>
-    </section>
-
-    <!-- 4. TAB AKTIVITAS PEMBELAJARAN INTERAKTIF -->
+    <!-- TAB AKTIVITAS KHUSUS MURID -->
     <nav class="dino-tabs-nav">
       <button class="dino-tab-item active" data-tab="story">
         📖 1. Cerita & Audio Pelan
       </button>
       <button class="dino-tab-item" data-tab="strokes">
-        ✍️ 2. Latihan Guratan (3-6x)
+        ✍️ 2. Menulis Guratan (3-6x)
       </button>
       <button class="dino-tab-item" data-tab="matching">
-        🧩 3. Mencocokkan Gambar
+        🧩 3. Game Cocok Gambar
       </button>
       <button class="dino-tab-item" data-tab="quiz">
-        📝 4. Kuis Pilihan Berganda (KKM 70)
+        📝 4. Kuis Latihan (KKM 70)
       </button>
     </nav>
 
-    <!-- 5. PANEL AKTIVITAS -->
-    <!-- TAB 1: CERITA & AUDIO PELAN ANAK SD -->
+    <!-- PANEL AKTIVITAS -->
+    <!-- 1. CERITA LENGKAP -->
     <section class="activity-panel active" id="tab-panel-story">
-      <div id="story-content-container">
-        <!-- Generated via app.js -->
-      </div>
+      <div id="story-content-container"></div>
     </section>
 
-    <!-- TAB 2: LATIHAN PENULISAN GURATAN (3-6X REPETISI DENGAN AUDIO OTOMATIS) -->
+    <!-- 2. GURATAN 3-6X DENGAN AUDIO OTOMATIS -->
     <section class="activity-panel" id="tab-panel-strokes">
       <div class="stroke-practice-container">
         <div class="section-label">
-          <span>✍️ Pilih Kosakata untuk Latihan Guratan:</span>
+          <span>✍️ Pilih Kosakata untuk Ditulis:</span>
         </div>
-        <div class="vocab-selector-tabs" id="vocab-stroke-selector">
-          <!-- Generated via app.js -->
-        </div>
+        <div class="vocab-selector-tabs" id="vocab-stroke-selector"></div>
 
         <div class="stroke-workspace-grid">
-          <!-- Kolom Kiri: Metadata & Target Repetisi -->
-          <div class="stroke-meta-panel" id="stroke-meta-display">
-            <!-- Generated via stroke-writer.js -->
-          </div>
+          <div class="stroke-meta-panel" id="stroke-meta-display"></div>
 
-          <!-- Kolom Kanan: Kanvas Mi Zi Ge -->
           <div class="stroke-canvas-wrapper">
             <div id="stroke-demo-indicator" class="stroke-demo-indicator" style="margin-bottom: 10px; text-align: center; width: 100%;">
               💡 Tulis karakter di kotak Mi Zi Ge di bawah ini:
@@ -1466,22 +1206,17 @@
         </div>
       </div>
 
-      <!-- Modal Selebrasi Guratan (Tepuk Tangan & Raungan Dinosaurus) -->
       <div id="stroke-celebration-modal" class="win-modal hidden"></div>
     </section>
 
-    <!-- TAB 3: GAME MENCOCOKKAN GAMBAR & KOSAKATA -->
+    <!-- 3. MENCOCOKKAN GAMBAR -->
     <section class="activity-panel" id="tab-panel-matching">
-      <div id="matching-container">
-        <!-- Generated via matching-game.js -->
-      </div>
+      <div id="matching-container"></div>
     </section>
 
-    <!-- TAB 4: KUIS PILIHAN BERGANDA 5 TIPE (KKM 70) -->
+    <!-- 4. KUIS PILIHAN BERGANDA DENGAN AUDIO SOAL (KKM 70) -->
     <section class="activity-panel" id="tab-panel-quiz">
-      <div id="quiz-container">
-        <!-- Generated via quiz-engine.js -->
-      </div>
+      <div id="quiz-container"></div>
     </section>
 
   </main>
@@ -1494,5 +1229,56 @@
   <script src="js/quiz-engine.js"></script>
   <script src="js/student-portal.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- SCRIPT INISIALISASI HALAMAN MURID BERDASARKAN URL QUERY -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Baca parameter URL
+      const params = dinoStudentPortal.getQueryParams();
+      currentBookId = params.book || 1;
+      currentUnitId = params.unit || 1;
+      currentActiveTab = params.tab || 'story';
+
+      // 2. Setup Quick Selectors
+      const bookSel = document.getElementById('student-quick-book');
+      const unitSel = document.getElementById('student-quick-unit');
+
+      if (bookSel && unitSel) {
+        bookSel.innerHTML = HAN_YU_CURRICULUM.books.map(b => `
+          <option value="${b.id}" ${b.id === currentBookId ? 'selected' : ''}>${b.title}</option>
+        `).join('');
+
+        const updateUnitOptions = (bId) => {
+          const book = getBookById(bId);
+          unitSel.innerHTML = book.units.map(u => `
+            <option value="${u.id}" ${u.id === currentUnitId ? 'selected' : ''}>${u.title}</option>
+          `).join('');
+        };
+
+        updateUnitOptions(currentBookId);
+
+        bookSel.addEventListener('change', (e) => {
+          selectBook(parseInt(e.target.value));
+          updateUnitOptions(currentBookId);
+        });
+
+        unitSel.addEventListener('change', (e) => {
+          selectUnit(parseInt(e.target.value));
+        });
+      }
+
+      // 3. Load Data Sesuai Parameter
+      loadBookAndUnit(currentBookId, currentUnitId);
+
+      // 4. Buka Tab Sesuai Parameter
+      switchTab(currentActiveTab);
+
+      // 5. Update Badge
+      const badge = document.getElementById('student-book-unit-badge');
+      if (badge) {
+        badge.textContent = `Buku Han Yu ${currentBookId} • Unit ${currentUnitId}`;
+      }
+    });
+  </script>
 </body>
 </html>
