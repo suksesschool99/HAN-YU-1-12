@@ -1,280 +1,796 @@
-// =========================================================================
-// MAIN CONTROLLER & APPLICATION BOOTSTRAP (PORTAL UTAMA GURU & SISWA)
-// =========================================================================
+/**
+ * DINO HAN YU - MAIN APPLICATION CONTROLLER
+ * Integrates:
+ * 1. Book Level Selector (Han Yu 1 - 12)
+ * 2. Unit Navigation
+ * 3. Module Tabs: Reading, Stroke Writing, Image Matching Game, Fossil Museum
+ * 4. Egg Hatching & Gamification Progress
+ */
 
-let currentBookId = 1;
-let currentUnitId = 1;
-let currentVocabIndex = 0;
-let currentActiveTab = 'story';
+class DinoHanYuApp {
+  constructor() {
+    this.currentBookId = 1;
+    this.currentUnitNumber = 1;
+    this.activeTab = 'reading'; // 'reading' | 'writing' | 'matching' | 'museum'
+    this.pinyinVisible = true;
+    this.selectedVocabIndex = 0;
+    this.selectedCharIndex = 0;
+    this.isPlayingStory = false;
+    this.storyTimer = null;
 
-let dinoWriter = null;
-let dinoMatchGame = null;
-let dinoQuiz = null;
+    // Load progress from localStorage
+    this.userProgress = this.loadProgress();
 
-// Inisialisasi Saat Dokumen Siap
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Inisialisasi Sub-Engines
-  dinoWriter = new DinoStrokeWriter('stroke-canvas', 'stroke-container');
-  dinoMatchGame = new DinoMatchingGame('matching-container');
-  dinoQuiz = new DinoQuizEngine('quiz-container');
+    this.initElements();
+    this.initEventListeners();
+    this.render();
+  }
 
-  window.dinoWriter = dinoWriter;
-  window.dinoMatchGame = dinoMatchGame;
-  window.dinoQuiz = dinoQuiz;
+  loadProgress() {
+    const saved = localStorage.getItem('dino_hanyu_progress');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return {
+      completedUnits: {}, // e.g. "1_1": { stars: 3, score: 100 }
+      totalStars: 0,
+      hatchedEggs: [],
+      badges: []
+    };
+  }
 
-  // 2. Render Pilihan Buku (Grid Han Yu 1 - 12)
-  renderBookSelector();
+  saveProgress() {
+    localStorage.setItem('dino_hanyu_progress', JSON.stringify(this.userProgress));
+    this.updateHeaderBadges();
+  }
 
-  // 3. Load Default Book & Unit
-  loadBookAndUnit(1, 1);
+  initElements() {
+    this.bookSelect = document.getElementById('bookSelect');
+    this.unitTabsContainer = document.getElementById('unitTabsContainer');
+    this.contentArea = document.getElementById('mainContentArea');
+    this.totalStarsEl = document.getElementById('totalStarsCount');
+    this.hatchedCountEl = document.getElementById('hatchedEggsCount');
+  }
 
-  // 4. Inisialisasi Tab Navigation
-  initTabNavigation();
+  initEventListeners() {
+    // Navigation Tabs
+    const navButtons = document.querySelectorAll('.main-nav-btn');
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.activeTab = btn.dataset.tab;
+        this.stopStoryPlayback();
+        window.dinoAudio.playSfx('click');
+        this.renderActiveTab();
+      });
+    });
 
-  // 5. Inisialisasi Audio Controls (Speed Slider & Mute)
-  initAudioControls();
+    // Tone Guide Modal Trigger
+    const toneBtn = document.getElementById('toneGuideBtn');
+    if (toneBtn) {
+      toneBtn.addEventListener('click', () => this.showToneModal());
+    }
+  }
 
-  // 6. Handle Window Resize untuk Kanvas
-  window.addEventListener('resize', () => {
-    if (dinoWriter) dinoWriter.resizeCanvas();
-  });
-});
+  selectBook(bookId) {
+    this.stopStoryPlayback();
+    this.currentBookId = Number(bookId);
+    this.currentUnitNumber = 1;
+    this.selectedVocabIndex = 0;
+    this.selectedCharIndex = 0;
+    window.dinoAudio.playSfx('click');
+    this.render();
+  }
 
-// Render Daftar Buku Han Yu 1 - 12
-function renderBookSelector() {
-  const container = document.getElementById('book-selector-grid');
-  if (!container) return;
+  selectUnit(unitNum) {
+    this.stopStoryPlayback();
+    this.currentUnitNumber = Number(unitNum);
+    this.selectedVocabIndex = 0;
+    this.selectedCharIndex = 0;
+    window.dinoAudio.playSfx('click');
+    this.renderUnitTabs();
+    this.renderActiveTab();
+  }
 
-  container.innerHTML = HAN_YU_CURRICULUM.books.map(b => `
-    <button class="book-card-btn ${b.id === currentBookId ? 'active' : ''}" onclick="selectBook(${b.id})">
-      <span class="book-dino-avatar">${b.dinoGuide.avatar}</span>
-      <div class="book-info">
-        <span class="book-title">${b.title}</span>
-        <span class="book-level">${b.dinoGuide.name}</span>
+  render() {
+    this.renderBookSelector();
+    this.renderUnitTabs();
+    this.renderActiveTab();
+    this.updateHeaderBadges();
+  }
+
+  updateHeaderBadges() {
+    if (this.totalStarsEl) this.totalStarsEl.textContent = this.userProgress.totalStars;
+    if (this.hatchedCountEl) this.hatchedCountEl.textContent = this.userProgress.hatchedEggs.length;
+  }
+
+  renderBookSelector() {
+    const bookBar = document.getElementById('bookListGrid');
+    if (!bookBar) return;
+
+    bookBar.innerHTML = HANYU_DATA.books.map(book => {
+      const isSelected = book.id === this.currentBookId;
+      const isCompleted = this.isBookCompleted(book.id);
+      return `
+        <button class="book-chip-btn ${isSelected ? 'active' : ''} ${isCompleted ? 'completed' : ''}" 
+                onclick="window.dinoApp.selectBook(${book.id})">
+          <span class="chip-num">#${book.id}</span>
+          <span class="chip-title">Han Yu ${book.id}</span>
+          ${isCompleted ? '⭐' : ''}
+        </button>
+      `;
+    }).join('');
+  }
+
+  renderUnitTabs() {
+    if (!this.unitTabsContainer) return;
+    const book = getBookById(this.currentBookId);
+
+    this.unitTabsContainer.innerHTML = `
+      <div class="unit-selector-title-bar">
+        <span class="unit-selector-title">🎯 Pilih Unit Pembelajaran (15 Unit per Buku):</span>
       </div>
-    </button>
-  `).join('');
-}
+      <div class="unit-tabs-scroll-row">
+        ${book.units.map(unit => {
+          const isSelected = unit.unitNumber === this.currentUnitNumber;
+          const key = `${this.currentBookId}_${unit.unitNumber}`;
+          const progress = this.userProgress.completedUnits[key];
+          const lessonName = unit.storyTitle || `第${unit.unitNumber}课`;
 
-// Pilih Buku Han Yu
-function selectBook(bookId) {
-  currentBookId = bookId;
-  currentUnitId = 1;
-  currentVocabIndex = 0;
-  
-  if (window.dinoAudio) dinoAudio.playEggCrackSound();
-  renderBookSelector();
-  loadBookAndUnit(currentBookId, currentUnitId);
-}
-
-// Render Unit Carousel / Grid (15 Unit per Buku)
-function renderUnitList(book) {
-  const container = document.getElementById('unit-selector-list');
-  if (!container) return;
-
-  container.innerHTML = book.units.map(u => `
-    <button class="unit-pill-btn ${u.id === currentUnitId ? 'active' : ''}" onclick="selectUnit(${u.id})">
-      <span class="u-num">Unit ${u.id}</span>
-      <span class="u-title">${u.title.replace(`Unit ${u.id}: `, '')}</span>
-    </button>
-  `).join('');
-}
-
-// Pilih Unit Tertentu
-function selectUnit(unitId) {
-  currentUnitId = unitId;
-  currentVocabIndex = 0;
-  if (window.dinoAudio) dinoAudio.playEggCrackSound();
-  loadBookAndUnit(currentBookId, currentUnitId);
-}
-
-// Load Data Buku dan Unit ke Semua Tab
-function loadBookAndUnit(bookId, unitId) {
-  const book = getBookById(bookId);
-  const unit = getUnitByBookAndUnitId(bookId, unitId);
-
-  // Update Header Banner Maskot Dinosaurus
-  const mascotAvatar = document.getElementById('guide-avatar');
-  const mascotName = document.getElementById('guide-name');
-  const mascotDesc = document.getElementById('guide-desc');
-  const unitHeaderTitle = document.getElementById('current-unit-title');
-  const unitHeaderPinyin = document.getElementById('current-unit-pinyin');
-  const unitHeaderMeaning = document.getElementById('current-unit-meaning');
-
-  if (mascotAvatar) mascotAvatar.textContent = book.dinoGuide.avatar;
-  if (mascotName) mascotName.textContent = book.dinoGuide.name;
-  if (mascotDesc) mascotDesc.textContent = book.dinoGuide.desc;
-  if (unitHeaderTitle) unitHeaderTitle.textContent = `${book.title} - ${unit.title}`;
-  if (unitHeaderPinyin) unitHeaderPinyin.textContent = unit.pinyin;
-  if (unitHeaderMeaning) unitHeaderMeaning.textContent = `Arti: ${unit.meaning}`;
-
-  renderUnitList(book);
-
-  // 1. Render Tab Cerita (Narasi Pelan Anak SD)
-  renderStoryTab(unit);
-
-  // 2. Render Tab Guratan (Canvas 3-6x)
-  renderStrokeTab(unit);
-
-  // 3. Load Matching Game
-  if (dinoMatchGame) dinoMatchGame.loadUnit(unit);
-
-  // 4. Load Quiz Engine
-  if (dinoQuiz) dinoQuiz.loadUnit(unit);
-}
-
-// Render Tab Cerita Lengkap
-function renderStoryTab(unit) {
-  const storyContainer = document.getElementById('story-content-container');
-  if (!storyContainer || !unit.story) return;
-
-  const sentences = unit.story.sentences || [];
-
-  storyContainer.innerHTML = `
-    <div class="story-hero-card">
-      <div class="story-top-actions">
-        <div class="speed-indicator-badge">
-          🐢 Kecepatan: <strong id="speed-display-label">Pelan (0.7x) - Ramah Anak SD</strong>
-        </div>
-        <div class="story-audio-btn-group">
-          <button class="dino-btn primary pulse" onclick="playFullStorySlow()">
-            🔊 Putar Seluruh Cerita (Audio Pelan)
-          </button>
-          <button class="dino-btn secondary small" onclick="dinoAudio.stopSpeaking()">
-            ⏹️ Berhenti
-          </button>
-        </div>
+          return `
+            <button class="unit-card-tab ${isSelected ? 'active' : ''}" 
+                    onclick="window.dinoApp.selectUnit(${unit.unitNumber})">
+              <span class="unit-tab-top">Unit ${unit.unitNumber}</span>
+              <span class="unit-tab-bottom">${lessonName}</span>
+            </button>
+          `;
+        }).join('')}
       </div>
+    `;
+  }
 
-      <div class="story-sentences-list">
-        ${sentences.map((s, idx) => `
-          <div class="sentence-row-card" id="sentence-card-${idx}">
-            <div class="sentence-num-badge">${idx + 1}</div>
-            <div class="sentence-text-group">
-              <div class="sentence-hanzi">${s.hanzi}</div>
-              <div class="sentence-pinyin">${s.pinyin}</div>
-              <div class="sentence-indonesian">${s.indonesian}</div>
+  renderActiveTab() {
+    if (!this.contentArea) return;
+
+    switch (this.activeTab) {
+      case 'reading':
+        this.renderReadingModule();
+        break;
+      case 'writing':
+        this.renderWritingModule();
+        break;
+      case 'matching':
+        this.renderMatchingModule();
+        break;
+      case 'museum':
+        this.renderMuseumModule();
+        break;
+    }
+  }
+
+  /* =========================================================
+     1. CARA MEMBACA (READING MODULE)
+  ========================================================= */
+  renderReadingModule() {
+    const book = getBookById(this.currentBookId);
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    const sentences = unit.storySentences || [
+      {
+        index: 1,
+        hanzi: unit.readingPassage,
+        pinyin: unit.readingPinyin,
+        indonesian: unit.readingTranslation
+      }
+    ];
+
+    this.contentArea.innerHTML = `
+      <div class="module-view reading-module animate-fade-in">
+        <!-- 1. BAGIAN CERITA UTAMA DENGAN NARASI AUDIO PELAN -->
+        <div class="story-narrator-section">
+          <div class="story-top-actions-bar">
+            <div class="speed-pill">
+              🐢 Kecepatan: <strong>Pelan (0.7x) - Ramah Anak SD</strong>
             </div>
-            <button class="sentence-audio-btn" onclick="playSentenceByIndex(${idx})" title="Dengarkan kalimat ini">
-              🔊
+            <div class="story-btn-group">
+              <button class="btn-play-story" id="btnPlayAllStory" onclick="window.dinoApp.playFullStorySequential()">
+                📢 Putar Seluruh Cerita (Audio Pelan)
+              </button>
+              <button class="btn-stop-story" id="btnStopAllStory" onclick="window.dinoApp.stopStoryPlayback()">
+                ⏹️ Berhenti
+              </button>
+            </div>
+          </div>
+
+          <div class="story-container-card">
+            <div class="story-card-top-row">
+              <h4 class="story-main-heading">Cerita Han Yu ${this.currentBookId} Unit ${unit.unitNumber}: ${unit.storyTitle || unit.title}</h4>
+              <button class="pinyin-toggle-btn" onclick="window.dinoApp.togglePinyin()">
+                ${this.pinyinVisible ? '👁️ Sembunyikan Pinyin' : '👁️ Tampilkan Pinyin'}
+              </button>
+            </div>
+
+            <div class="story-sentences-list" id="storySentencesList">
+              ${sentences.map((s, idx) => `
+                <div class="story-sentence-card" id="storySentenceCard_${idx}" onclick="window.dinoApp.speakStorySentence(${idx})">
+                  <div class="sentence-num-badge">${s.index || idx + 1}</div>
+                  <div class="sentence-text-wrap">
+                    <div class="sent-pinyin ${this.pinyinVisible ? '' : 'hide-pinyin'}">${s.pinyin}</div>
+                    <div class="sent-hanzi">${s.hanzi}</div>
+                    <div class="sent-indo"><em>${s.indonesian}</em></div>
+                  </div>
+                  <button class="sent-speak-btn" onclick="event.stopPropagation(); window.dinoApp.speakStorySentence(${idx})" title="Dengarkan kalimat ini">
+                    🔊
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="reading-columns-grid">
+          <!-- Kosakata Kartu Interaktif -->
+          <div class="vocab-showcase-panel">
+            <h3 class="section-heading">🗂️ Kosakata Inti Unit (生词表)</h3>
+            <p class="section-sub">Klik tombol speaker 🔊 untuk mendengarkan pelafalan asli Mandarin.</p>
+            
+            <div class="vocab-cards-grid">
+              ${unit.vocab.map((v, idx) => `
+                <div class="vocab-card ${this.selectedVocabIndex === idx ? 'selected' : ''}" 
+                     onclick="window.dinoApp.selectVocabCard(${idx})">
+                  <div class="vocab-card-header">
+                    <span class="v-hanzi">${v.hanzi}</span>
+                    <button class="v-speak-btn" onclick="event.stopPropagation(); window.dinoAudio.speak('${v.hanzi}')">
+                      🔊
+                    </button>
+                  </div>
+                  <div class="v-pinyin ${this.pinyinVisible ? '' : 'hide-pinyin'}">${v.pinyin}</div>
+                  <div class="v-meaning-id">${v.meaningId}</div>
+                  <div class="v-meaning-en">${v.meaningEn}</div>
+                  <div class="v-meta-row">
+                    <span class="v-tag">Goresan: ${v.strokes}画</span>
+                    <span class="v-tag">Radikal: ${v.radical}</span>
+                  </div>
+                  <div class="v-example-box" onclick="event.stopPropagation(); window.dinoAudio.speak('${v.exampleHanzi}')">
+                    <div class="ex-hz">💬 ${v.exampleHanzi}</div>
+                    <div class="ex-py ${this.pinyinVisible ? '' : 'hide-pinyin'}">${v.examplePinyin}</div>
+                    <div class="ex-id">${v.exampleTranslation}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Teks Percakapan & Dialog Unit -->
+          <div class="reading-text-panel">
+            <h3 class="section-heading">📖 Dialog Percakapan (课文问答)</h3>
+            
+            <div class="dialogue-box">
+              <div class="dialogue-header">
+                <h4>🗣️ Dialog Percakapan Unit</h4>
+                <button class="dialog-play-btn" onclick="window.dinoApp.readFullDialogue()">
+                  ▶️ Putar Semua Dialog
+                </button>
+              </div>
+              <div class="dialogue-lines">
+                ${Object.entries(unit.dialogue).map(([key, text]) => `
+                  <div class="dialog-line" onclick="window.dinoAudio.speak('${text.split('(')[0]}')">
+                    <span class="speaker-icon">🦖</span>
+                    <span class="dialog-content">${text}</span>
+                    <button class="line-speaker-btn">🔊</button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  togglePinyin() {
+    this.pinyinVisible = !this.pinyinVisible;
+    window.dinoAudio.playSfx('click');
+    this.renderActiveTab();
+  }
+
+  setActiveSpeed(btn) {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    window.dinoAudio.playSfx('click');
+  }
+
+  selectVocabCard(idx) {
+    this.selectedVocabIndex = idx;
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    const vocab = unit.vocab[idx];
+    if (vocab) {
+      window.dinoAudio.speak(vocab.hanzi);
+    }
+    this.renderActiveTab();
+  }
+
+  speakStorySentence(idx) {
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    const sentences = unit.storySentences || [];
+    const s = sentences[idx];
+    if (!s) return;
+
+    this.stopStoryPlayback();
+    const card = document.getElementById(`storySentenceCard_${idx}`);
+    if (card) {
+      document.querySelectorAll('.story-sentence-card').forEach(el => el.classList.remove('active-playing'));
+      card.classList.add('active-playing');
+    }
+
+    window.dinoAudio.speak(
+      s.hanzi,
+      () => {},
+      () => {
+        if (card) card.classList.remove('active-playing');
+      },
+      0.65 // Pelan & lamban untuk anak SD
+    );
+  }
+
+  playFullStorySequential() {
+    this.stopStoryPlayback();
+    this.isPlayingStory = true;
+
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    const sentences = unit.storySentences || [];
+    if (sentences.length === 0) return;
+
+    const playBtn = document.getElementById('btnPlayAllStory');
+    if (playBtn) {
+      playBtn.textContent = '⏸️ Sedang Memutar... (Pelan 0.65x)';
+      playBtn.classList.add('playing');
+    }
+
+    let currentIdx = 0;
+    const playNext = () => {
+      if (!this.isPlayingStory || currentIdx >= sentences.length) {
+        this.stopStoryPlayback();
+        return;
+      }
+
+      // Highlight active sentence card
+      document.querySelectorAll('.story-sentence-card').forEach((el, idx) => {
+        el.classList.toggle('active-playing', idx === currentIdx);
+      });
+
+      const s = sentences[currentIdx];
+      window.dinoAudio.speak(
+        s.hanzi,
+        () => {},
+        () => {
+          currentIdx++;
+          if (this.isPlayingStory) {
+            this.storyTimer = setTimeout(playNext, 700); // jeda lembut antar kalimat
+          }
+        },
+        0.65 // Kecepatan pelan 0.65x
+      );
+    };
+
+    playNext();
+  }
+
+  stopStoryPlayback() {
+    this.isPlayingStory = false;
+    if (this.storyTimer) {
+      clearTimeout(this.storyTimer);
+      this.storyTimer = null;
+    }
+    window.dinoAudio.stop();
+
+    const playBtn = document.getElementById('btnPlayAllStory');
+    if (playBtn) {
+      playBtn.textContent = '▶️ Putar Seluruh Cerita (Pelan 0.65x)';
+      playBtn.classList.remove('playing');
+    }
+
+    document.querySelectorAll('.story-sentence-card').forEach(el => el.classList.remove('active-playing'));
+  }
+
+  readFullDialogue() {
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    const lines = Object.values(unit.dialogue).map(line => line.split('(')[0].replace(/^[AB]:\s*/, ''));
+    const fullText = lines.join('。 ');
+    window.dinoAudio.speak(fullText, null, null, 0.75);
+  }
+
+  /* =========================================================
+     2. CARA MENULIS GORESAN (STROKE WRITING MODULE)
+  ========================================================= */
+  renderWritingModule() {
+    const unit = getUnit(this.currentBookId, this.currentUnitNumber);
+    
+    // Extract all distinct characters across the unit's vocabulary list
+    const charList = [];
+    const seenChars = new Set();
+
+    unit.vocab.forEach((v, vIdx) => {
+      const chars = Array.from(v.hanzi);
+      chars.forEach((c, cIdx) => {
+        if (/[\u4e00-\u9fa5]/.test(c) && !seenChars.has(c)) {
+          seenChars.add(c);
+          charList.push({
+            char: c,
+            vocabHanzi: v.hanzi,
+            pinyin: v.pinyin,
+            vocab: v,
+            vocabIndex: vIdx
+          });
+        }
+      });
+    });
+
+    if (charList.length === 0 && unit.vocab.length > 0) {
+      charList.push({
+        char: unit.vocab[0].hanzi.charAt(0),
+        vocabHanzi: unit.vocab[0].hanzi,
+        pinyin: unit.vocab[0].pinyin,
+        vocab: unit.vocab[0],
+        vocabIndex: 0
+      });
+    }
+
+    // Default target character
+    const selectedItem = charList[this.selectedCharIndex] || charList[0];
+    const targetChar = selectedItem ? selectedItem.char : "你";
+    const currentVocab = selectedItem ? selectedItem.vocab : unit.vocab[0];
+
+    this.contentArea.innerHTML = `
+      <div class="module-view writing-module animate-fade-in">
+        <div class="writing-top-bar">
+          <div class="char-picker-group">
+            <span class="picker-label">✍️ Pilih Karakter Kosakata Unit untuk Ditulis (${charList.length} Karakter Tersedia):</span>
+            <div class="char-buttons-list">
+              ${charList.map((item, i) => `
+                <button class="char-chip-btn ${this.selectedCharIndex === i ? 'active' : ''}" 
+                        onclick="window.dinoApp.changeWritingChar(${i})">
+                  <span class="chip-hz">${item.char}</span>
+                  <span class="chip-py">${item.pinyin}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="writing-workstation-grid">
+          <!-- Kolom Kiri: Animasi Urutan Goresan -->
+          <div class="stroke-anim-card">
+            <div class="card-top-title">
+              <h3>🎬 Animasi Langkah Goresan: 「${targetChar}」</h3>
+              <span class="char-stat-badge">Karakter dari: <strong>${currentVocab.hanzi}</strong> (${currentVocab.strokes}画)</span>
+            </div>
+            
+            <div class="canvas-center-wrap">
+              <canvas id="animCanvas" width="320" height="320" class="tianzige-canvas"></canvas>
+            </div>
+
+            <div class="anim-controls-toolbar">
+              <button class="tool-btn" onclick="window.strokeEngine.stepBackward()" title="Langkah Sebelumnya">⏮️ Mundur</button>
+              <button class="tool-btn primary" id="playAnimBtn" onclick="window.dinoApp.playStrokeAnimation()">▶️ Putar Animasi</button>
+              <button class="tool-btn" onclick="window.strokeEngine.stepForward()" title="Langkah Berikutnya">⏭️ Maju</button>
+            </div>
+
+            <div class="stroke-names-list-box">
+              <h4>📋 Kaidah Urutan Goresan Karakter 「${targetChar}」:</h4>
+              <ol class="stroke-steps-ol">
+                ${(currentVocab.strokeNames || []).map((name, idx) => `
+                  <li>
+                    <span class="step-num">${idx + 1}</span>
+                    <span class="step-name">${name}</span>
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Kanvas Latihan Interaktif -->
+          <div class="stroke-practice-card">
+            <div class="card-top-title">
+              <h3>✍️ Kanvas Latihan Menulis Mandiri</h3>
+              <span class="char-stat-badge">Kuas Kaligrafi Dinosaurus</span>
+            </div>
+
+            <div class="canvas-center-wrap">
+              <canvas id="drawCanvas" width="320" height="320" class="tianzige-canvas practice"></canvas>
+            </div>
+
+            <div class="brush-tools-toolbar">
+              <div class="color-palette">
+                <span class="color-dot active" style="background:#15803d" onclick="window.strokeEngine.setBrushColor('#15803d')" title="Hijau Jurassic"></span>
+                <span class="color-dot" style="background:#dc2626" onclick="window.strokeEngine.setBrushColor('#dc2626')" title="Merah T-Rex"></span>
+                <span class="color-dot" style="background:#1e293b" onclick="window.strokeEngine.setBrushColor('#1e293b')" title="Tinta Hitam"></span>
+                <span class="color-dot" style="background:#2563eb" onclick="window.strokeEngine.setBrushColor('#2563eb')" title="Biru Dino"></span>
+              </div>
+              <div class="action-buttons">
+                <button class="tool-btn" onclick="window.strokeEngine.undoStroke()">↩️ Undo</button>
+                <button class="tool-btn" onclick="window.strokeEngine.clearDrawing()">🗑️ Hapus</button>
+                <button class="tool-btn grade-btn" onclick="window.dinoApp.gradeStrokePractice()">🌟 Nilai Goresan</button>
+              </div>
+            </div>
+
+            <!-- Feedback Nilai Goresan -->
+            <div class="evaluation-result-box" id="evalResultBox" style="display:none;">
+              <div class="eval-stars" id="evalStars">⭐⭐⭐</div>
+              <p class="eval-msg" id="evalMsg">Luar biasa!</p>
+            </div>
+
+            <div class="stroke-tips-note">
+              💡 <strong>Tips Menulis Karakter Mandarin:</strong>
+              <ul>
+                <li>Atas ke Bawah (从上到下)</li>
+                <li>Kiri ke Kanan (从左到右)</li>
+                <li>Garis Horizontal dulu baru Vertikal (先横后竖)</li>
+                <li>Luar ke Dalam, lalu Tutup (先外后内再封口)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Initialize Stroke Engine for this character
+    setTimeout(() => {
+      window.strokeEngine = new DinoStrokeEngine('animCanvas', 'drawCanvas');
+      window.strokeEngine.loadCharacter(targetChar);
+    }, 50);
+  }
+
+  changeWritingChar(index) {
+    this.selectedCharIndex = index;
+    window.dinoAudio.playSfx('click');
+    this.renderWritingModule();
+  }
+
+  playStrokeAnimation() {
+    const playBtn = document.getElementById('playAnimBtn');
+    if (playBtn) playBtn.textContent = '⏸️ Memutar...';
+    window.strokeEngine.playAnimation(null, () => {
+      if (playBtn) playBtn.textContent = '▶️ Putar Animasi';
+    });
+  }
+
+  gradeStrokePractice() {
+    const res = window.strokeEngine.evaluateWriting();
+    const box = document.getElementById('evalResultBox');
+    const starsEl = document.getElementById('evalStars');
+    const msgEl = document.getElementById('evalMsg');
+
+    if (box && starsEl && msgEl) {
+      box.style.display = 'block';
+      starsEl.textContent = res.stars > 0 ? '⭐'.repeat(res.stars) : '🥚';
+      msgEl.textContent = res.message;
+
+      // Add stars to user progress
+      if (res.stars > 0) {
+        this.addStars(res.stars);
+      }
+    }
+  }
+
+  /* =========================================================
+     3. MENCOCOKKAN KATA DENGAN GAMBAR (MATCHING GAME)
+  ========================================================= */
+  renderMatchingModule() {
+    this.contentArea.innerHTML = `
+      <div class="module-view matching-module animate-fade-in">
+        <div id="matchingGameContainer" class="game-full-container"></div>
+      </div>
+    `;
+
+    setTimeout(() => {
+      window.matchingGame = new DinoMatchingGame('matchingGameContainer');
+      window.matchingGame.init(this.currentBookId, this.currentUnitNumber, 'drag_match');
+    }, 50);
+  }
+
+  /* =========================================================
+     4. MUSEUM FOSIL & LENCANA (COLLECTION MUSEUM)
+  ========================================================= */
+  renderMuseumModule() {
+    this.contentArea.innerHTML = `
+      <div class="module-view museum-module animate-fade-in">
+        <div class="museum-hero">
+          <img src="assets/dino/rexy.jpg" alt="Rexy Paleontolog" class="rexy-museum-avatar">
+          <div class="museum-header-text">
+            <h2>🏛️ Museum Fosil Dino & Koleksi Lencana Han Yu</h2>
+            <p>Selesaikan latihan membaca, menulis goresan, dan game mencocokkan gambar di setiap buku (Han Yu 1 s/d 12) untuk menetaskan telur dino langka!</p>
+          </div>
+        </div>
+
+        <div class="books-showcase-grid">
+          ${HANYU_DATA.books.map(book => {
+            const isCompleted = this.isBookCompleted(book.id);
+            const isHatched = this.userProgress.hatchedEggs.includes(book.id);
+            return `
+              <div class="museum-book-card ${isCompleted ? 'completed' : ''}">
+                <div class="book-card-header">
+                  <span class="dino-rank-tag">${book.dinoRank}</span>
+                  <span class="book-badge-icon">${isCompleted ? '🏆' : '🔒'}</span>
+                </div>
+                <div class="book-egg-visual">
+                  <img src="${isHatched ? 'assets/dino/egg.jpg' : 'assets/dino/rexy.jpg'}" 
+                       alt="${book.title}" 
+                       class="book-museum-thumb ${isHatched ? 'hatched-glow' : ''}">
+                </div>
+                <h4 class="book-museum-title">${book.title}</h4>
+                <div class="book-museum-badge">${book.badge}</div>
+                <p class="book-museum-desc">${book.description}</p>
+                <div class="book-units-progress-bar">
+                  <div class="prog-fill" style="width: ${this.getBookProgressPercent(book.id)}%"></div>
+                </div>
+                <button class="jump-book-btn" onclick="window.dinoApp.selectBook(${book.id}); window.dinoApp.setActiveNavTab('reading');">
+                  🚀 Buka Pembelajaran
+                </button>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  setActiveNavTab(tabName) {
+    const navButtons = document.querySelectorAll('.main-nav-btn');
+    navButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
+    this.activeTab = tabName;
+    this.renderActiveTab();
+  }
+
+  isBookCompleted(bookId) {
+    const book = getBookById(bookId);
+    return book.units.every(u => {
+      const key = `${bookId}_${u.unitNumber}`;
+      return !!this.userProgress.completedUnits[key];
+    });
+  }
+
+  getBookProgressPercent(bookId) {
+    const book = getBookById(bookId);
+    let done = 0;
+    book.units.forEach(u => {
+      if (this.userProgress.completedUnits[`${bookId}_${u.unitNumber}`]) done++;
+    });
+    return Math.round((done / book.units.length) * 100);
+  }
+
+  addStars(count) {
+    this.userProgress.totalStars += count;
+    this.saveProgress();
+  }
+
+  onUnitGameComplete(bookId, unitNumber, score) {
+    const key = `${bookId}_${unitNumber}`;
+    const stars = score >= 80 ? 3 : (score >= 50 ? 2 : 1);
+    
+    if (!this.userProgress.completedUnits[key]) {
+      this.userProgress.totalStars += stars;
+    }
+    this.userProgress.completedUnits[key] = { stars: stars, score: score };
+
+    if (!this.userProgress.hatchedEggs.includes(bookId)) {
+      this.userProgress.hatchedEggs.push(bookId);
+    }
+    this.saveProgress();
+
+    this.showEggHatchCelebrationModal(bookId, unitNumber, stars);
+  }
+
+  showEggHatchCelebrationModal(bookId, unitNumber, stars) {
+    const modal = document.getElementById('eggModal');
+    const book = getBookById(bookId);
+    const starStr = '⭐'.repeat(stars);
+
+    if (modal) {
+      modal.innerHTML = `
+        <div class="modal-backdrop" onclick="window.dinoApp.closeModal()"></div>
+        <div class="modal-content egg-modal-card animate-bounce-in">
+          <button class="modal-close-btn" onclick="window.dinoApp.closeModal()">✖</button>
+          <div class="modal-stars-header">${starStr}</div>
+          <h2>🎉 Telur Dino Berhasil Menetas!</h2>
+          <div class="hatched-dino-image-wrap">
+            <img src="assets/dino/egg.jpg" alt="Baby Dino" class="hatched-dino-img">
+          </div>
+          <p class="modal-praise">Selamat! Kamu berhasil menuntaskan game unit <strong>Han Yu ${bookId}</strong>!</p>
+          <div class="modal-badge-unlocked">
+            ✨ Lencana Diperoleh: <strong>${book.badge}</strong>
+          </div>
+          <div class="modal-action-buttons">
+            <button class="modal-btn primary" onclick="window.dinoApp.closeModal(); window.dinoApp.render();">
+              🦖 Lanjut Belajar
+            </button>
+            <button class="modal-btn" onclick="window.dinoApp.closeModal(); window.dinoApp.setActiveNavTab('museum');">
+              🏛️ Lihat Koleksi Museum
             </button>
           </div>
-        `).join('')}
+        </div>
+      `;
+      modal.style.display = 'flex';
+      window.dinoAudio.playSfx('egg_crack');
+    }
+  }
+
+  showToneModal() {
+    const modal = document.getElementById('eggModal');
+    if (!modal) return;
+
+    modal.innerHTML = `
+      <div class="modal-backdrop" onclick="window.dinoApp.closeModal()"></div>
+      <div class="modal-content tone-modal-card animate-bounce-in">
+        <button class="modal-close-btn" onclick="window.dinoApp.closeModal()">✖</button>
+        <h2>🎵 Panduan 4 Nada Bahasa Mandarin (声调)</h2>
+        <p class="tone-subtitle">Karakter yang sama dengan nada berbeda memiliki arti yang berbeda!</p>
+        
+        <div class="tones-grid-visual">
+          <div class="tone-card tone-1" onclick="window.dinoAudio.speak('mā')">
+            <div class="tone-shape">ˉ</div>
+            <div class="tone-title">Nada 1: Datar Tinggi (阴平)</div>
+            <div class="tone-sample">mā (妈 - Ibu)</div>
+            <div class="tone-pitch-desc">Tinggi, datar & stabil (5-5)</div>
+            <button class="tone-play-btn">🔊 Dengarkan</button>
+          </div>
+
+          <div class="tone-card tone-2" onclick="window.dinoAudio.speak('má')">
+            <div class="tone-shape">ˊ</div>
+            <div class="tone-title">Nada 2: Naik / Bertanya (阳平)</div>
+            <div class="tone-sample">má (麻 - Rami)</div>
+            <div class="tone-pitch-desc">Naik dari sedang ke tinggi (3-5)</div>
+            <button class="tone-play-btn">🔊 Dengarkan</button>
+          </div>
+
+          <div class="tone-card tone-3" onclick="window.dinoAudio.speak('mǎ')">
+            <div class="tone-shape">ˇ</div>
+            <div class="tone-title">Nada 3: Turun-Naik (上声)</div>
+            <div class="tone-sample">mǎ (马 - Kuda)</div>
+            <div class="tone-pitch-desc">Turun rendah lalu melengkung naik (2-1-4)</div>
+            <button class="tone-play-btn">🔊 Dengarkan</button>
+          </div>
+
+          <div class="tone-card tone-4" onclick="window.dinoAudio.speak('mà')">
+            <div class="tone-shape">ˋ</div>
+            <div class="tone-title">Nada 4: Hentak Turun (去声)</div>
+            <div class="tone-sample">mà (骂 - Memarahi)</div>
+            <div class="tone-pitch-desc">Cepat dan tegas turun ke bawah (5-1)</div>
+            <button class="tone-play-btn">🔊 Dengarkan</button>
+          </div>
+        </div>
+
+        <div class="tone-tip-box">
+          💡 Klik masing-masing kartu di atas untuk mendengarkan perbandingan intonasi suara!
+        </div>
       </div>
-    </div>
-  `;
-}
+    `;
+    modal.style.display = 'flex';
+  }
 
-// Putar Cerita Penuh dengan Tempo Pelan
-function playFullStorySlow() {
-  const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-  if (!unit || !unit.story || !unit.story.sentences) return;
-
-  const fullText = unit.story.sentences.map(s => s.hanzi).join('，');
-  if (window.dinoAudio) {
-    dinoAudio.getAudioContext();
-    dinoAudio.speakMandarin(fullText, { rate: dinoAudio.speechRate });
+  closeModal() {
+    const modal = document.getElementById('eggModal');
+    if (modal) modal.style.display = 'none';
   }
 }
 
-// Putar Satu Kalimat Berdasarkan Indeks
-function playSentenceByIndex(index) {
-  const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-  if (!unit || !unit.story || !unit.story.sentences[index]) return;
-
-  const s = unit.story.sentences[index];
-
-  // Highlight baris
-  document.querySelectorAll('.sentence-row-card').forEach(el => el.classList.remove('speaking-highlight'));
-  const row = document.getElementById(`sentence-card-${index}`);
-  if (row) row.classList.add('speaking-highlight');
-
-  if (window.dinoAudio) {
-    dinoAudio.getAudioContext();
-    dinoAudio.speakMandarin(s.hanzi, {
-      rate: dinoAudio.speechRate,
-      onEnd: () => {
-        if (row) row.classList.remove('speaking-highlight');
-      }
-    });
+// Safe Initialization of DinoHanYuApp
+function initDinoApp() {
+  if (!window.dinoApp) {
+    try {
+      window.dinoApp = new DinoHanYuApp();
+    } catch (e) {
+      console.error("Failed to initialize DinoHanYuApp:", e);
+    }
   }
 }
 
-// Render Tab Guratan Kosakata
-function renderStrokeTab(unit) {
-  const vocabSelector = document.getElementById('vocab-stroke-selector');
-  if (!vocabSelector || !unit.vocab || unit.vocab.length === 0) return;
-
-  vocabSelector.innerHTML = unit.vocab.map((v, idx) => `
-    <button class="vocab-tab-btn ${idx === currentVocabIndex ? 'active' : ''}" onclick="selectStrokeVocab(${idx})">
-      <span class="v-hanzi">${v.hanzi}</span>
-      <span class="v-pinyin">${v.pinyin}</span>
-    </button>
-  `).join('');
-
-  const vocabItem = unit.vocab[currentVocabIndex] || unit.vocab[0];
-  if (dinoWriter) {
-    dinoWriter.loadVocab(vocabItem, dinoWriter.targetRepeats || 3);
-  }
-}
-
-// Pilih Kosakata yang Mau Ditulis Guratannya
-function selectStrokeVocab(idx) {
-  currentVocabIndex = idx;
-  const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-  renderStrokeTab(unit);
-  if (window.dinoAudio) dinoAudio.playEggCrackSound();
-}
-
-// Inisialisasi Tab Navigasi Aktivitas
-function initTabNavigation() {
-  const tabButtons = document.querySelectorAll('.dino-tab-item');
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetTab = btn.getAttribute('data-tab');
-      switchTab(targetTab);
-    });
-  });
-}
-
-function switchTab(tabName) {
-  currentActiveTab = tabName;
-  document.querySelectorAll('.dino-tab-item').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-tab') === tabName);
-  });
-
-  document.querySelectorAll('.activity-panel').forEach(panel => {
-    panel.classList.toggle('active', panel.id === `tab-panel-${tabName}`);
-  });
-
-  if (window.dinoAudio) dinoAudio.playEggCrackSound();
-
-  if (tabName === 'strokes' && dinoWriter) {
-    setTimeout(() => dinoWriter.resizeCanvas(), 50);
-  }
-}
-
-// Pengaturan Kontrol Audio & Kecepatan TTS
-function initAudioControls() {
-  const speedSelect = document.getElementById('tts-speed-selector');
-  if (speedSelect) {
-    speedSelect.addEventListener('change', (e) => {
-      const rate = parseFloat(e.target.value);
-      if (window.dinoAudio) dinoAudio.setSpeechRate(rate);
-      const label = document.getElementById('speed-display-label');
-      if (label) {
-        if (rate <= 0.5) label.textContent = "Sangat Pelan (0.5x) - Pemula SD";
-        else if (rate <= 0.7) label.textContent = "Pelan (0.7x) - Ramah Anak SD";
-        else if (rate <= 0.9) label.textContent = "Sedang (0.9x)";
-        else label.textContent = "Normal (1.0x)";
-      }
-    });
-  }
-}
-
-// Bagikan Link ke Halaman Murid
-function openShareModalForCurrent() {
-  if (window.dinoStudentPortal) {
-    dinoStudentPortal.openShareModal(currentBookId, currentUnitId, currentActiveTab);
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDinoApp);
+  } else {
+    initDinoApp();
   }
 }

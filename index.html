@@ -3,2037 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petualangan Mandarin Dinosaurus - Han Yu 1 sampai 12 (180 Unit Cerita Otentik Lengkap)</title>
-  <meta name="description" content="Platform Belajar Mandarin Han Yu 1 - 12 (180 Unit Lengkap) dengan Teks Cerita Narasi Otentik Audio Lambat Anak SD, Latihan Menulis Guratan 3-6x, Game Cocok Gambar, dan 10 Soal Kuis Per Unit KKM 70.">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
-
+  <title>Dino Han Yu - Belajar Bahasa Mandarin Han Yu 1 - 12</title>
+  <meta name="description" content="Website pembelajaran interaktif Bahasa Mandarin Han Yu 1 sampai Han Yu 12 bertema petualangan Dinosaurus. Dilengkapi panduan cara membaca cerita dengan audio pelan 0.65x, cara menulis goresan Hanzi, dan game mencocokkan kata dengan gambar.">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="./assets/dino/rexy.jpg" type="image/jpeg">
   <style>
+    /* Immediate Fallback Styling for 100% Reliable Render */
     :root {
-      --dino-forest-dark: #143628;
-      --dino-forest-deep: #1b4332;
-      --dino-forest-mid: #2d6a4f;
-      --dino-jungle-green: #40916c;
-      --dino-leaf-light: #52b788;
-      --dino-mint: #74c69d;
-      --dino-pale-moss: #d8f3dc;
-      --dino-amber: #e76f51;
-      --dino-terracotta: #f4a261;
-      --dino-gold: #e9c46a;
-      --dino-sand: #fefae0;
-      --dino-sky: #264653;
-      --dino-bg-warm: #fcfbf7;
-      --dino-card-bg: #ffffff;
-      --dino-border: #e2e8f0;
-      --text-main: #1f2937;
-      --text-muted: #4b5563;
-      --text-light: #9ca3af;
-      --radius-sm: 10px;
-      --radius-md: 18px;
-      --radius-lg: 26px;
-      --radius-full: 9999px;
-      --shadow-sm: 0 4px 12px rgba(20, 54, 40, 0.08);
-      --shadow-md: 0 10px 28px rgba(20, 54, 40, 0.12);
-      --shadow-lg: 0 18px 40px rgba(20, 54, 40, 0.16);
-      --font-family: 'Fredoka', 'Nunito', 'Quicksand', system-ui, sans-serif;
-      --font-chinese: 'Noto Serif SC', 'KaiTi', 'STKaiti', 'Microsoft YaHei', serif;
+      --primary-green: #10B981;
+      --primary-dark: #065F46;
+      --bg-cream: #F8FAF7;
+      --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    * { box-sizing: border-box; }
     body {
-      font-family: var(--font-family);
-      background-color: var(--dino-bg-warm);
-      color: var(--text-main);
-      line-height: 1.6;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(82, 183, 136, 0.12) 0%, transparent 25%),
-        radial-gradient(circle at 90% 80%, rgba(244, 162, 97, 0.12) 0%, transparent 30%);
+      font-family: var(--font-ui);
+      background-color: var(--bg-cream);
+      margin: 0;
+      padding: 0;
+      color: #1E293B;
       min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
     }
-
-    /* NAVBAR */
-    .dino-navbar {
-      background: linear-gradient(135deg, var(--dino-forest-deep), var(--dino-forest-mid));
+    .site-header {
+      background: linear-gradient(135deg, #065F46 0%, #10B981 100%);
       color: white;
-      padding: 16px 32px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: white;
+    }
+    .brand-logo-wrap img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+    .brand-title-group h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .brand-title-group p {
+      margin: 0;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    .header-stats-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+    }
+    .tone-guide-btn {
+      background: #F59E0B;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .book-selector-section {
+      background: #E6F4EA;
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid #D1E7DD;
+    }
+    .book-selector-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+    .selector-label {
+      font-weight: 700;
+      color: #065F46;
+      white-space: nowrap;
+      font-size: 0.95rem;
+    }
+    .book-scroll-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.25rem 0;
+    }
+    .book-chip-btn {
+      background: white;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .book-chip-btn.active {
+      background: #10B981;
+      color: white;
+      border-color: #059669;
+    }
+    .main-nav-bar {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-md);
-      border-bottom: 3px solid var(--dino-gold);
+      z-index: 50;
     }
-
-    .dino-brand {
+    .nav-tabs-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: white;
-    }
-
-    .brand-icon {
-      font-size: 2.6rem;
-      animation: bounce 2s infinite ease-in-out;
-    }
-
-    .brand-titles h1 {
-      font-size: 1.45rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .brand-titles p {
-      font-size: 0.88rem;
-      color: var(--dino-pale-moss);
-    }
-
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .speed-control-box {
-      background: rgba(255,255,255,0.18);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .speed-control-box select {
-      background: white;
-      border: none;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      color: var(--dino-forest-dark);
-      cursor: pointer;
-    }
-
-    /* BUTTONS */
-    .dino-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: var(--font-family);
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: var(--shadow-sm);
-      text-decoration: none;
-    }
-
-    .dino-btn.primary {
-      background: linear-gradient(135deg, var(--dino-amber), #d9532f);
-      color: white;
-    }
-
-    .dino-btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(231, 111, 81, 0.4);
-    }
-
-    .dino-btn.secondary {
-      background: #e9ecef;
-      color: var(--text-main);
-    }
-
-    .dino-btn.secondary:hover {
-      background: #dee2e6;
-      transform: translateY(-2px);
-    }
-
-    .dino-btn.small {
-      padding: 6px 14px;
-      font-size: 0.85rem;
-    }
-
-    .dino-btn.pulse {
-      animation: pulse-glow 2s infinite;
-    }
-
-    /* MAIN CONTAINER LAYOUT */
-    .app-layout {
-      max-width: 1380px;
-      margin: 24px auto;
-      padding: 0 20px;
-    }
-
-    /* BOOK SELECTOR GRID */
-    .book-selection-section {
-      margin-bottom: 24px;
-    }
-
-    .section-label {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 12px;
-    }
-
-    .book-card-btn {
-      background: white;
-      border: 2px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .book-card-btn:hover {
-      transform: translateY(-3px);
-      border-color: var(--dino-leaf-light);
-      box-shadow: var(--shadow-md);
-    }
-
-    .book-card-btn.active {
-      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-      border-color: var(--dino-forest-mid);
-      border-width: 2.5px;
-      box-shadow: 0 6px 16px rgba(45, 106, 79, 0.2);
-    }
-
-    .book-dino-avatar {
-      font-size: 2rem;
-    }
-
-    .book-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .book-title {
-      font-weight: 800;
-      font-size: 0.95rem;
-      color: var(--dino-forest-dark);
-    }
-
-    .book-level {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* GUIDE HERO BANNER */
-    .unit-hero-banner {
-      background: linear-gradient(135deg, white, var(--dino-sand));
-      border: 2px solid var(--dino-gold);
-      border-radius: var(--radius-lg);
-      padding: 20px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-md);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .banner-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .guide-avatar-large {
-      font-size: 3.5rem;
-      background: var(--dino-pale-moss);
-      width: 75px;
-      height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-full);
-      border: 3px solid var(--dino-leaf-light);
-    }
-
-    .banner-titles h2 {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--dino-forest-dark);
-    }
-
-    .pinyin-subtitle {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--dino-amber);
-    }
-
-    .meaning-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .banner-right-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    /* UNIT SELECTOR CAROUSEL (15 UNITS) */
-    .unit-carousel-container {
-      background: white;
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--dino-border);
-    }
-
-    .unit-pills-scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: thin;
-    }
-
-    .unit-pill-btn {
-      background: #f8fafc;
-      border: 1.5px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 8px 16px;
-      white-space: nowrap;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: all 0.2s;
-    }
-
-    .unit-pill-btn:hover {
-      background: #f1f5f9;
-      border-color: var(--dino-mint);
-    }
-
-    .unit-pill-btn.active {
-      background: var(--dino-forest-mid);
-      color: white;
-      border-color: var(--dino-forest-dark);
-    }
-
-    .unit-pill-btn .u-num {
-      font-size: 0.75rem;
-      font-weight: 800;
-      opacity: 0.85;
-    }
-
-    .unit-pill-btn .u-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    /* ACTIVITY TABS */
-    .dino-tabs-nav {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #e2e8f0;
-      padding-bottom: 4px;
       overflow-x: auto;
     }
-
-    .dino-tab-item {
-      background: none;
-      border: none;
-      padding: 12px 24px;
-      font-family: var(--font-family);
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      position: relative;
-    }
-
-    .dino-tab-item:hover {
-      color: var(--dino-forest-mid);
-    }
-
-    .dino-tab-item.active {
-      color: var(--dino-forest-deep);
-      background: white;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-    }
-
-    .dino-tab-item.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--dino-amber);
-      border-radius: var(--radius-full);
-    }
-
-    /* ACTIVITY PANELS */
-    .activity-panel {
-      display: none;
-    }
-
-    .activity-panel.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    /* 1. STORY TAB */
-    .story-hero-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--dino-border);
-    }
-
-    .story-top-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      border-bottom: 2px dashed var(--dino-pale-moss);
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .speed-indicator-badge {
-      background: #f0fdf4;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      font-size: 0.88rem;
-    }
-
-    .story-sentences-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .sentence-row-card {
-      background: #fbfbfb;
-      border: 2px solid #f1f5f9;
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      transition: all 0.25s ease;
-    }
-
-    .sentence-row-card:hover {
-      background: #f8fafc;
-      border-color: var(--dino-mint);
-      transform: translateX(4px);
-    }
-
-    .sentence-row-card.speaking-highlight {
-      background: #fef3c7;
-      border-color: var(--dino-amber);
-      box-shadow: 0 4px 16px rgba(231, 111, 81, 0.2);
-    }
-
-    .sentence-num-badge {
-      width: 36px;
-      height: 36px;
-      background: var(--dino-forest-mid);
-      color: white;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.95rem;
-      flex-shrink: 0;
-    }
-
-    .sentence-text-group {
-      flex-grow: 1;
-    }
-
-    .sentence-hanzi {
-      font-family: var(--font-chinese);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.5;
-    }
-
-    .sentence-pinyin {
-      font-size: 1rem;
-      color: var(--dino-amber);
-      font-weight: 600;
-    }
-
-    .sentence-indonesian {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .sentence-audio-btn {
-      background: var(--dino-pale-moss);
-      border: 2px solid var(--dino-mint);
-      color: var(--dino-forest-deep);
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .sentence-audio-btn:hover {
-      background: var(--dino-leaf-light);
-      color: white;
-      transform: scale(1.1);
-    }
-
-    /* 2. STROKE PRACTICE TAB (PERBANYAK KOSAKATA & GURATAN) */
-    .stroke-practice-container {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--dino-border);
-    }
-
-    .vocab-selector-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 24px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-    }
-
-    .vocab-tab-btn {
-      background: #f8fafc;
-      border: 2px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 8px 16px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: all 0.2s;
-      min-width: 80px;
-    }
-
-    .vocab-tab-btn:hover {
-      border-color: var(--dino-mint);
-      background: #f1f5f9;
-    }
-
-    .vocab-tab-btn.active {
-      background: var(--dino-pale-moss);
-      border-color: var(--dino-forest-mid);
-      box-shadow: 0 4px 12px rgba(45, 106, 79, 0.15);
-    }
-
-    .vocab-tab-btn .v-hanzi {
-      font-family: var(--font-chinese);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-    }
-
-    .vocab-tab-btn .v-pinyin {
-      font-size: 0.82rem;
-      color: var(--dino-amber);
-      font-weight: 700;
-    }
-
-    .stroke-workspace-grid {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 28px;
-      align-items: start;
-    }
-
-    .stroke-meta-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .vocab-character-hero {
-      background: linear-gradient(135deg, #fbfbfb, var(--dino-sand));
-      border: 2px solid var(--dino-gold);
-      border-radius: var(--radius-md);
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .hero-hanzi {
-      font-family: var(--font-chinese);
-      font-size: 4.5rem;
-      font-weight: 900;
-      color: var(--dino-forest-deep);
-      line-height: 1;
-      background: white;
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      border: 2px solid var(--dino-border);
-    }
-
-    .hero-details {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-pinyin {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--dino-amber);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-meaning {
-      font-size: 1.05rem;
-      color: var(--text-main);
-    }
-
-    .hero-strokes {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .stroke-order-roadmap {
-      background: #f8fafc;
-      border: 1px solid var(--dino-border);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-    }
-
-    .roadmap-title {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-      margin-bottom: 6px;
-    }
-
-    .roadmap-tags {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--dino-forest-mid);
-    }
-
-    .target-repeater-box {
-      background: #f0fdf4;
-      border: 2px dashed var(--dino-leaf-light);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .target-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-    }
-
-    .target-btn-group {
-      display: flex;
-      gap: 6px;
-    }
-
-    .target-btn {
-      background: white;
-      border: 1.5px solid var(--dino-leaf-light);
-      border-radius: var(--radius-sm);
-      padding: 4px 12px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .target-btn.active {
-      background: var(--dino-forest-mid);
-      color: white;
-      border-color: var(--dino-forest-dark);
-    }
-
-    .eggs-row {
-      display: flex;
-      gap: 8px;
-      font-size: 1.8rem;
-      margin-bottom: 4px;
-    }
-
-    .repeat-egg {
-      transition: transform 0.3s;
-    }
-
-    .repeat-egg.hatched {
-      animation: bounce 1.5s infinite;
-    }
-
-    .progress-text {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .stroke-demo-indicator {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      padding: 10px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      color: #1e40af;
-    }
-
-    .stroke-canvas-wrapper {
-      background: #fffdf7;
-      border: 3px solid var(--dino-amber);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #stroke-canvas {
-      width: 100%;
-      max-width: 330px;
-      height: 330px;
+    .main-nav-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.85rem 1rem;
       background: transparent;
-      cursor: crosshair;
-      touch-action: none;
-      border-radius: var(--radius-sm);
-    }
-
-    .canvas-toolbar {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .canvas-btn {
-      background: #f1f5f9;
-      border: 1px solid var(--dino-border);
-      border-radius: var(--radius-full);
-      padding: 6px 14px;
-      font-size: 0.85rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 0.95rem;
       font-weight: 700;
+      color: #64748B;
       cursor: pointer;
+      text-align: center;
       transition: all 0.2s;
     }
-
-    .canvas-btn:hover {
-      background: #e2e8f0;
+    .main-nav-btn.active {
+      color: #10B981;
+      border-bottom-color: #10B981;
+      background: #F0FDF4;
     }
-
-    .canvas-btn.primary-action {
-      background: var(--dino-forest-mid);
-      color: white;
-      border-color: var(--dino-forest-dark);
+    .unit-nav-bar {
+      background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 0.5rem 1.5rem;
     }
-
-    .canvas-btn.danger-action {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    /* 3. MATCHING GAME */
-    .matching-header {
+    .unit-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+      gap: 0.4rem;
+      overflow-x: auto;
+    }
+    .unit-tab-btn {
       background: white;
-      padding: 14px 20px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .matching-stats {
-      display: flex;
-      gap: 16px;
-    }
-
-    .stat-badge {
-      background: #f1f5f9;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      font-size: 0.9rem;
-    }
-
-    .matching-board {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .match-column {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .col-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-      margin-bottom: 16px;
-      border-bottom: 2px solid var(--dino-pale-moss);
-      padding-bottom: 8px;
-    }
-
-    .cards-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .match-card {
-      background: #fbfbfb;
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .match-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--dino-mint);
-    }
-
-    .match-card.selected {
-      background: #fffbeb;
-      border-color: var(--dino-amber);
-      box-shadow: 0 4px 14px rgba(231, 111, 81, 0.25);
-    }
-
-    .match-card.matched {
-      background: #f0fdf4;
-      border-color: var(--dino-leaf-light);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .match-card.wrong {
-      background: #fef2f2;
-      border-color: #ef4444;
-      animation: shake 0.4s ease;
-    }
-
-    .card-hanzi {
-      font-family: var(--font-chinese);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-    }
-
-    .card-pinyin {
-      font-size: 1rem;
-      color: var(--dino-amber);
-      font-weight: 700;
-    }
-
-    .card-icon {
-      font-size: 2rem;
-    }
-
-    .card-label {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    /* 4. QUIZ ENGINE (10 SOAL PER UNIT) */
-    .quiz-box-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 30px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--dino-border);
-    }
-
-    .quiz-top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .quiz-badge-group {
-      display: flex;
-      gap: 10px;
-    }
-
-    .dino-pill {
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
+      border: 1px solid #CBD5E1;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
       font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .type-pill {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-    }
-
-    .kkm-pill {
-      background: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
-    }
-
-    .quiz-counter {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .question-header {
-      background: #f8fafc;
-      border-left: 5px solid var(--dino-amber);
-      padding: 16px 20px;
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .question-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--dino-forest-dark);
-      flex-grow: 1;
-    }
-
-    .dino-audio-bubble-btn {
-      background: linear-gradient(135deg, var(--dino-mint), var(--dino-jungle-green));
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      font-weight: 800;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
+      white-space: nowrap;
     }
-
-    .dino-audio-bubble-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .quiz-options-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .quiz-option-item {
-      background: #fdfdfd;
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .quiz-option-item:hover {
-      border-color: var(--dino-mint);
-      background: #f8fafc;
-    }
-
-    .quiz-option-item.selected {
-      background: #eff6ff;
-      border-color: #3b82f6;
-    }
-
-    .quiz-option-item.correct {
-      background: #ecfdf5;
-      border-color: #10b981;
-    }
-
-    .quiz-option-item.incorrect {
-      background: #fef2f2;
-      border-color: #ef4444;
-    }
-
-    .opt-indicator {
-      width: 32px;
-      height: 32px;
-      background: #e2e8f0;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: var(--text-main);
-      flex-shrink: 0;
-    }
-
-    .quiz-option-item.selected .opt-indicator {
-      background: #3b82f6;
+    .unit-tab-btn.active {
+      background: #0D9488;
       color: white;
+      border-color: #0F766E;
     }
-
-    .quiz-option-item.correct .opt-indicator {
-      background: #10b981;
-      color: white;
+    .app-main-layout {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
     }
-
-    .opt-text {
-      font-size: 1.05rem;
-      font-weight: 700;
-      flex-grow: 1;
-    }
-
-    .opt-sound-btn {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      opacity: 0.6;
-    }
-
-    .opt-sound-btn:hover {
-      opacity: 1;
-    }
-
-    .quiz-footer-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .trophy-action-btn {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: white;
-      font-size: 1.05rem;
-      padding: 12px 28px;
-    }
-
-    .quiz-dot-nav {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .quiz-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      border: 1.5px solid var(--dino-border);
-      background: white;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .quiz-dot.active {
-      background: var(--dino-forest-mid);
-      color: white;
-    }
-
-    .quiz-dot.answered {
-      border-color: var(--dino-amber);
-    }
-
-    /* MODAL SELEBRASI */
-    .win-modal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-
-    .win-modal.hidden { display: none !important; }
-    .win-modal.show { display: flex !important; }
-
-    .win-modal-box {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      max-width: 520px;
-      width: 100%;
+    .site-footer {
       text-align: center;
-      box-shadow: var(--shadow-lg);
-      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .trophy-icon { font-size: 4.5rem; animation: float 2s infinite ease-in-out; }
-    .roar-dino-icon { font-size: 4.5rem; animation: shake 0.6s infinite; }
-
-    .kkm-passed-badge {
-      background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;
-      padding: 6px 16px; border-radius: var(--radius-full); font-weight: 800;
-      display: inline-block; margin: 12px 0;
-    }
-
-    .kkm-failed-badge {
-      background: #fef2f2; color: #991b1b; border: 1px solid #fecaca;
-      padding: 6px 16px; border-radius: var(--radius-full); font-weight: 800;
-      display: inline-block; margin: 12px 0;
-    }
-
-    .action-buttons {
-      display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap;
-    }
-
-    /* MODAL SHARE */
-    .share-modal-box { max-width: 600px; }
-    .share-link-preview-box { background: #f8fafc; border: 1px solid var(--dino-border); padding: 14px; border-radius: var(--radius-md); margin: 16px 0; text-align: left; }
-    .link-input-group { display: flex; gap: 8px; margin-top: 6px; }
-    .link-input-group input { flex-grow: 1; padding: 8px 12px; border: 1.5px solid var(--dino-border); border-radius: var(--radius-sm); font-size: 0.88rem; }
-
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    @keyframes pulse-glow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-    @media (max-width: 860px) {
-      .stroke-workspace-grid, .matching-board { grid-template-columns: 1fr; }
+      padding: 2rem 1rem;
+      background: #1E293B;
+      color: #94A3B8;
+      font-size: 0.85rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
-  <header class="dino-navbar">
-    <a href="index.html" class="dino-brand">
-      <div class="brand-icon">🦖</div>
-      <div class="brand-titles">
-        <h1>Petualangan Mandarin Dinosaurus</h1>
-        <p>Kurikulum Han Yu 1 - 12 (180 Unit Cerita Otentik Lengkap & Audio Pelan)</p>
+  <!-- HEADER SITUS -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo-wrap" onclick="if(window.dinoApp) window.dinoApp.setActiveNavTab('reading'); return false;">
+        <img src="./assets/dino/rexy.jpg" alt="Dino Paleontolog Rexy" onerror="this.style.display='none'">
+        <div class="brand-title-group">
+          <h1>🦖 Dino Han Yu <span>(汉语)</span></h1>
+          <p>Petualangan Belajar Mandarin Buku 1 - 12</p>
+        </div>
+      </a>
+
+      <div class="header-stats-group">
+        <button class="tone-guide-btn" id="toneGuideBtn" title="Panduan 4 Nada Suara Mandarin">
+          🎵 Panduan 4 Nada (声调)
+        </button>
+        <div class="stat-pill" title="Total Bintang yang Diraih">
+          <span>⭐</span>
+          <span id="totalStarsCount">0</span>
+        </div>
+        <div class="stat-pill egg-pill" title="Telur Dino yang Telah Menetas">
+          <span>🥚</span>
+          <span id="hatchedEggsCount">0</span> Menetas
+        </div>
       </div>
-    </a>
-
-    <div class="navbar-right">
-      <div class="speed-control-box">
-        <span>🐢 Kecepatan Suara:</span>
-        <select id="tts-speed-selector">
-          <option value="0.5">Sangat Pelan (0.5x)</option>
-          <option value="0.7" selected>Pelan (0.7x) - SD</option>
-          <option value="0.9">Sedang (0.9x)</option>
-          <option value="1.0">Normal (1.0x)</option>
-        </select>
-      </div>
-
-      <button class="dino-btn primary small" onclick="openShareModalForCurrent()">
-        🔗 Bagikan ke Murid
-      </button>
-
-      <button class="dino-btn secondary small" onclick="dinoAudio.toggleMute()" id="mute-toggle-btn" title="Aktifkan/Matikan Suara">
-        🔊 Suara
-      </button>
     </div>
   </header>
 
-  <!-- MAIN APP WRAPPER -->
-  <main class="app-layout">
-
-    <!-- 1. PILIHAN BUKU HAN YU 1 SAMPAI 12 -->
-    <section class="book-selection-section">
-      <div class="section-label">
-        <span>📚 Pilih Buku Han Yu (1 - 12):</span>
+  <!-- PEMILIH BUKU LEVEL HAN YU 1 - 12 -->
+  <section class="book-selector-section" aria-label="Pemilih Buku Han Yu">
+    <div class="book-selector-container">
+      <span class="selector-label">📚 Pilih Level Buku:</span>
+      <div class="book-scroll-wrapper" id="bookListGrid">
+        <!-- Dirender dinamis oleh js/app.js (Han Yu 1 sampai 12) -->
       </div>
-      <div class="books-grid" id="book-selector-grid"></div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 2. HERO BANNER MASKOT DINOSAURUS & UNIT SAAT INI -->
-    <section class="unit-hero-banner">
-      <div class="banner-left">
-        <div class="guide-avatar-large" id="guide-avatar">🦖</div>
-        <div class="banner-titles">
-          <h2 id="current-unit-title">Han Yu 1 - 第1课 你好</h2>
-          <div class="pinyin-subtitle" id="current-unit-pinyin">Nǐ hǎo</div>
-          <div class="meaning-subtitle" id="current-unit-meaning">Arti: Halo / Salam Jumpa</div>
-          <p style="font-size: 0.85rem; color: #166534; margin-top: 4px;" id="guide-desc">Mari pelajari dasar kosakata dan sapaan Mandarin bersama Rexy!</p>
-        </div>
-      </div>
-
-      <div class="banner-right-actions">
-        <button class="dino-btn primary small" onclick="openShareModalForCurrent()">
-          📤 Buka Halaman Murid
-        </button>
-      </div>
-    </section>
-
-    <!-- 3. UNIT SELECTOR CAROUSEL (15 UNIT LENGKAP) -->
-    <section class="unit-carousel-container">
-      <div class="section-label" style="font-size: 0.95rem; margin-bottom: 8px;">
-        <span>🎯 Pilih Unit Pembelajaran (15 Unit per Buku):</span>
-      </div>
-      <div class="unit-pills-scroll" id="unit-selector-list"></div>
-    </section>
-
-    <!-- 4. TAB AKTIVITAS PEMBELAJARAN INTERAKTIF -->
-    <nav class="dino-tabs-nav">
-      <button class="dino-tab-item active" data-tab="story">
-        📖 1. Cerita & Audio Pelan
+  <!-- TAB NAVIGASI UTAMA (4 FITUR UTAMA) -->
+  <nav class="main-nav-bar" aria-label="Navigasi Fitur Utama">
+    <div class="nav-tabs-container">
+      <button class="main-nav-btn active" data-tab="reading">
+        <span>📖</span> 1. Cerita & Audio Pelan
       </button>
-      <button class="dino-tab-item" data-tab="strokes">
-        ✍️ 2. Latihan Guratan (3-6x)
+      <button class="main-nav-btn" data-tab="writing">
+        <span>✍️</span> 2. Latihan Guratan (3-6x)
       </button>
-      <button class="dino-tab-item" data-tab="matching">
-        🧩 3. Mencocokkan Gambar
+      <button class="main-nav-btn" data-tab="matching">
+        <span>🧩</span> 3. Mencocokkan Gambar
       </button>
-      <button class="dino-tab-item" data-tab="quiz">
-        📝 4. Kuis Latihan 10 Soal (KKM 70)
+      <button class="main-nav-btn" data-tab="museum">
+        <span>📝</span> 4. Kuis Latihan 10 Soal (KKM 70)
       </button>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- 5. PANEL AKTIVITAS -->
-    <!-- TAB 1: CERITA & AUDIO PELAN ANAK SD -->
-    <section class="activity-panel active" id="tab-panel-story">
-      <div id="story-content-container"></div>
-    </section>
+  <!-- SUB-BAR NAVIGASI UNIT PEMBELAJARAN (15 UNIT PER BUKU) -->
+  <section class="unit-nav-bar" aria-label="Pemilih Unit Pembelajaran">
+    <div class="unit-nav-container" id="unitTabsContainer">
+      <!-- Dirender dinamis oleh js/app.js (15 Unit per Buku) -->
+    </div>
+  </section>
 
-    <!-- TAB 2: LATIHAN GURATAN DIPERBANYAK (3-6X REPETISI DENGAN SUARA TEPUK TANGAN / RAUNGAN) -->
-    <section class="activity-panel" id="tab-panel-strokes">
-      <div class="stroke-practice-container">
-        <div class="section-label">
-          <span>✍️ Pilih Kosakata Guratan (Diperbanyak per Unit):</span>
-        </div>
-        <div class="vocab-selector-tabs" id="vocab-stroke-selector"></div>
-
-        <div class="stroke-workspace-grid">
-          <div class="stroke-meta-panel" id="stroke-meta-display"></div>
-
-          <div class="stroke-canvas-wrapper">
-            <div id="stroke-demo-indicator" class="stroke-demo-indicator" style="margin-bottom: 10px; text-align: center; width: 100%;">
-              💡 Tulis karakter di kotak Mi Zi Ge di bawah ini:
-            </div>
-            <canvas id="stroke-canvas"></canvas>
-
-            <div class="canvas-toolbar">
-              <button class="canvas-btn primary-action" onclick="dinoWriter.checkPractice(false)">
-                Periksa Tulisan 🦖
-              </button>
-              <button class="canvas-btn" onclick="dinoWriter.playDemoAnimation()">
-                Contoh Guratan 🎬
-              </button>
-              <button class="canvas-btn" onclick="dinoWriter.undoStroke()">
-                Batal ↺
-              </button>
-              <button class="canvas-btn danger-action" onclick="dinoWriter.clearCanvas()">
-                Hapus 🧹
-              </button>
-              <button class="canvas-btn" onclick="dinoWriter.toggleOutline()">
-                Panduan 👁️
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="stroke-celebration-modal" class="win-modal hidden"></div>
-    </section>
-
-    <!-- TAB 3: GAME MENCOCOKKAN GAMBAR -->
-    <section class="activity-panel" id="tab-panel-matching">
-      <div id="matching-container"></div>
-    </section>
-
-    <!-- TAB 4: KUIS LATIHAN DIPERBANYAK (10 SOAL PER UNIT & KKM 70) -->
-    <section class="activity-panel" id="tab-panel-quiz">
-      <div id="quiz-container"></div>
-    </section>
-
+  <!-- AREA KONTEN UTAMA APLIKASI -->
+  <main class="app-main-layout">
+    <div id="mainContentArea">
+      <!-- Konten dinamis dimuat oleh js/app.js -->
+    </div>
   </main>
 
-  <!-- ==============================================================================
-       EMBEDDED ALL-IN-ONE LOGIC & DATASET (180 UNITS & EXPANDED PRACTICE)
-       ============================================================================== -->
+  <!-- MODAL PENETASAN TELUR DINO & PANDUAN NADA -->
+  <div id="eggModal" class="modal-overlay" style="display: none;"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>🦕 <strong>Dino Han Yu Explorer</strong> &copy; 2026. Berdasarkan Kurikulum Standar Buku Teks <em>《汉语》 1 - 12</em>.</p>
+  </footer>
+
+  <!-- SCRIPT LOGIKA APLIKASI -->
+  <script src="./js/curriculum-data.js" charset="UTF-8"></script>
+  <script src="./js/audio-speech.js" charset="UTF-8"></script>
+  <script src="./js/stroke-engine.js" charset="UTF-8"></script>
+  <script src="./js/matching-game.js" charset="UTF-8"></script>
+  <script src="./js/app.js" charset="UTF-8"></script>
   <script>
-    const HAN_YU_STORIES_DATABASE = {
-      1: [
-        { unit: 1, title: "第1课 你好", pinyin: "Nǐ hǎo", meaning: "Halo / Salam Jumpa", sentences: [ { hanzi: "你好！我是大龙。", pinyin: "Nǐ hǎo! Wǒ shì Dàlóng.", indonesian: "Halo! Saya adalah Dalong." }, { hanzi: "你好！我是小月。", pinyin: "Nǐ hǎo! Wǒ shì Xiǎoyuè.", indonesian: "Halo! Saya adalah Xiaoyue." }, { hanzi: "老师好！同学们好！", pinyin: "Lǎoshī hǎo! Tóngxuémen hǎo!", indonesian: "Halo Guru! Halo teman-teman sekalian!" }, { hanzi: "我们一起开心地学习中文。", pinyin: "Wǒmen yìqǐ kāixīn de xuéxí Zhōngwén.", indonesian: "Kita bersama-sama dengan gembira belajar bahasa Mandarin." }, { hanzi: "大家都是好朋友！", pinyin: "Dàjiā dōushì hǎo péngyou!", indonesian: "Semuanya adalah sahabat baik!" } ], vocab: [ { hanzi: "你", pinyin: "nǐ", meaning: "kamu / anda", strokes: 7, strokeOrder: ["撇", "竖", "撇", "横撇", "点", "横", "竖"], radical: "亻" }, { hanzi: "好", pinyin: "hǎo", meaning: "baik / bagus", strokes: 6, strokeOrder: ["撇点", "撇", "提", "横折", "横", "横"], radical: "女" }, { hanzi: "我", pinyin: "wǒ", meaning: "saya / aku", strokes: 7, strokeOrder: ["撇", "横", "竖钩", "提", "斜钩", "撇", "点"], radical: "戈" }, { hanzi: "他", pinyin: "tā", meaning: "dia (laki-laki)", strokes: 5, strokeOrder: ["撇", "竖", "横折钩", "竖", "竖弯钩"], radical: "亻" }, { hanzi: "她", pinyin: "tā", meaning: "dia (perempuan)", strokes: 6, strokeOrder: ["撇点", "撇", "提", "横折钩", "竖", "竖弯钩"], radical: "女" }, { hanzi: "们", pinyin: "men", meaning: "para / jamak", strokes: 5, strokeOrder: ["撇", "竖", "点", "竖折", "竖"], radical: "亻" }, { hanzi: "老师", pinyin: "lǎoshī", meaning: "guru / pengajar", strokes: 6, strokeOrder: ["横", "竖", "横", "撇", "竖", "横折折折钩"], radical: "耂" }, { hanzi: "同学", pinyin: "tóngxué", meaning: "teman sekelas", strokes: 6, strokeOrder: ["竖", "横折钩", "横", "横", "竖", "横折"], radical: "口" } ] },
-        { unit: 2, title: "第2课 谢谢你", pinyin: "Xièxie nǐ", meaning: "Terima Kasih", sentences: [ { hanzi: "谢谢你帮我拿书。", pinyin: "Xièxie nǐ bāng wǒ ná shū.", indonesian: "Terima kasih kamu telah membantuku membawakan buku." }, { hanzi: "不客气，这是我应该做的。", pinyin: "Bú kèqi, zhè shì wǒ yīnggāi zuò de.", indonesian: "Sama-sama, ini sudah seharusnya aku lakukan." }, { hanzi: "放学了，我们对老师说再见。", pinyin: "Fàngxué le, wǒmen duì lǎoshī shuō zàijiàn.", indonesian: "Waktu pulang sekolah tiba, kami mengucapkan selamat tinggal kepada guru." }, { hanzi: "明天学校见！", pinyin: "Míngtiān xuéxiào jiàn!", indonesian: "Sampai jumpa besok di sekolah!" }, { hanzi: "大家有礼貌真懂事。", pinyin: "Dàjiā yǒu lǐmào zhēn dǒngshì.", indonesian: "Semua murid sopan dan berbudi pekerti baik." } ], vocab: [ { hanzi: "谢", pinyin: "xiè", meaning: "terima kasih", strokes: 12, strokeOrder: ["点", "横折提", "撇", "竖", "横折", "横", "横", "横", "竖", "横", "撇", "点"], radical: "讠" }, { hanzi: "不", pinyin: "bù", meaning: "tidak / bukan", strokes: 4, strokeOrder: ["横", "撇", "竖", "点"], radical: "一" }, { hanzi: "客气", pinyin: "kèqi", meaning: "sungkan / ramah", strokes: 9, strokeOrder: ["点", "点", "横钩", "撇", "横撇", "横", "竖", "撇", "捺"], radical: "宀" }, { hanzi: "再见", pinyin: "zàijiàn", meaning: "sampai jumpa", strokes: 6, strokeOrder: ["横", "竖", "横折钩", "竖", "横", "横"], radical: "冂" }, { hanzi: "请", pinyin: "qǐng", meaning: "silakan / tolong", strokes: 10, strokeOrder: ["点", "横折提", "横", "横", "竖", "提", "横折钩", "横", "横"], radical: "讠" }, { hanzi: "对不起", pinyin: "duìbuqǐ", meaning: "maaf", strokes: 5, strokeOrder: ["横撇", "点", "横", "竖钩", "点"], radical: "寸" }, { hanzi: "没关系", pinyin: "méi guānxi", meaning: "tidak apa-apa", strokes: 7, strokeOrder: ["点", "点", "提", "撇", "横折折撇", "捺"], radical: "氵" }, { hanzi: "礼貌", pinyin: "lǐmào", meaning: "sopan santun", strokes: 5, strokeOrder: ["点", "横撇", "竖", "撇", "点"], radical: "礻" } ] },
-        { unit: 3, title: "第3课 你叫什么名字", pinyin: "Nǐ jiào shénme míngzi", meaning: "Siapa Namamu", sentences: [ { hanzi: "请问你叫什么名字？", pinyin: "Qǐngwèn nǐ jiào shénme míngzi?", indonesian: "Bolehkah saya bertanya siapa namamu?" }, { hanzi: "我叫明明，今年上一年级。", pinyin: "Wǒ jiào Míngming, jīnnián shàng yī niánjí.", indonesian: "Nama saya Mingming, tahun ini masuk kelas satu." }, { hanzi: "他叫大生，是我的同桌。", pinyin: "Tā jiào Dàshēng, shì wǒ de tóngzhuō.", indonesian: "Dia bernama Dasheng, dia adalah teman sebangkuku." }, { hanzi: "很高兴认识你们大家。", pinyin: "Hěn gāoxìng rènshi nǐmen dàjiā.", indonesian: "Sangat senang dapat berkenalan dengan kalian semua." }, { hanzi: "我们手拉手一起做游戏。", pinyin: "Wǒmen shǒulāshǒu yìqǐ zuò yóuxì.", indonesian: "Kami bergandengan tangan bersama-sama bermain game." } ], vocab: [ { hanzi: "叫", pinyin: "jiào", meaning: "dipanggil / bernama", strokes: 5, strokeOrder: ["竖", "横折", "横", "竖折撇", "竖"], radical: "口" }, { hanzi: "什么", pinyin: "shénme", meaning: "apa", strokes: 4, strokeOrder: ["撇", "竖", "横", "竖"], radical: "亻" }, { hanzi: "名字", pinyin: "míngzi", meaning: "nama lengkap", strokes: 6, strokeOrder: ["撇", "横撇", "点", "竖", "横折", "横"], radical: "夕" }, { hanzi: "认识", pinyin: "rènshi", meaning: "mengenal / kenal", strokes: 4, strokeOrder: ["点", "横折提", "撇", "捺"], radical: "讠" }, { hanzi: "高兴", pinyin: "gāoxìng", meaning: "senang / gembira", strokes: 10, strokeOrder: ["点", "横", "竖", "横折", "横", "点", "撇", "横", "竖钩", "点"], radical: "高" }, { hanzi: "也", pinyin: "yě", meaning: "juga", strokes: 3, strokeOrder: ["横折钩", "竖", "竖弯钩"], radical: "乙" }, { hanzi: "年级", pinyin: "niánjí", meaning: "tingkat kelas", strokes: 6, strokeOrder: ["撇", "横", "横", "竖", "横", "竖"], radical: "干" }, { hanzi: "朋友", pinyin: "péngyou", meaning: "sahabat teman", strokes: 4, strokeOrder: ["撇", "横折钩", "横", "横"], radical: "月" } ] },
-        { unit: 4, title: "第4课 你几岁", pinyin: "Nǐ jǐ suì", meaning: "Berapa Usiamu", sentences: [ { hanzi: "小弟弟，你今年几岁了？", pinyin: "Xiǎo dìdi, nǐ jīnnián jǐ suì le?", indonesian: "Adik kecil, berapakah usiamu tahun ini?" }, { hanzi: "我今年七岁了。", pinyin: "Wǒ jīnnián qī suì le.", indonesian: "Saya tahun ini berusia tujuh tahun." }, { hanzi: "哥哥今年十岁，个子长得高。", pinyin: "Gēge jīnnián shí suì, gèzi zhǎng de gāo.", indonesian: "Kakak laki-laki berusia sepuluh tahun, badannya tinggi." }, { hanzi: "妹妹三岁，喜欢吃苹果。", pinyin: "Mèimei sān suì, xǐhuan chī píngguǒ.", indonesian: "Adik perempuan berusia tiga tahun, suka makan buah apel." }, { hanzi: "我们天天健康成长。", pinyin: "Wǒmen tiāntiān jiànkāng chéngzhǎng.", indonesian: "Kami setiap hari bertumbuh kembang dengan sehat." } ], vocab: [ { hanzi: "几", pinyin: "jǐ", meaning: "berapa", strokes: 2, strokeOrder: ["撇", "横折弯钩"], radical: "几" }, { hanzi: "岁", pinyin: "suì", meaning: "tahun (usia)", strokes: 6, strokeOrder: ["竖", "竖折", "竖", "撇", "横折钩", "横"], radical: "山" }, { hanzi: "一", pinyin: "yī", meaning: "satu", strokes: 1, strokeOrder: ["横"], radical: "一" }, { hanzi: "二", pinyin: "èr", meaning: "dua", strokes: 2, strokeOrder: ["横", "横"], radical: "二" }, { hanzi: "三", pinyin: "sān", meaning: "tiga", strokes: 3, strokeOrder: ["横", "横", "横"], radical: "一" }, { hanzi: "四", pinyin: "sì", meaning: "empat", strokes: 5, strokeOrder: ["竖", "横折", "撇", "竖弯", "横"], radical: "囗" }, { hanzi: "五", pinyin: "wǔ", meaning: "lima", strokes: 4, strokeOrder: ["横", "竖", "横折", "横"], radical: "二" }, { hanzi: "十", pinyin: "shí", meaning: "sepuluh", strokes: 2, strokeOrder: ["横", "竖"], radical: "十" } ] },
-        { unit: 5, title: "第5课 这是我的书", pinyin: "Zhè shì wǒ de shū", meaning: "Ini Buku Saya", sentences: [ { hanzi: "这是我的中文课本。", pinyin: "Zhè shì wǒ de Zhōngwén kèběn.", indonesian: "Ini adalah buku pelajaran bahasa Mandarin saya." }, { hanzi: "那是老师的书包。", pinyin: "Nà shì lǎoshī de shūbāo.", indonesian: "Itu adalah tas sekolah milik guru." }, { hanzi: "课本里面有漂亮的图画。", pinyin: "Kèběn lǐmiàn yǒu piàoliang de túhuà.", indonesian: "Di dalam buku pelajaran terdapat gambar-gambar yang indah." }, { hanzi: "我每天认真阅读中文书。", pinyin: "Wǒ měitiān rènzhēn yuèdú Zhōngwén shū.", indonesian: "Saya setiap hari membaca buku Mandarin dengan tekun." }, { hanzi: "读书让我学到了许多知识。", pinyin: "Dúshū ràng wǒ xuédào le xǔduō zhīshi.", indonesian: "Membaca buku membuatku mempelajari banyak ilmu pengetahuan." } ], vocab: [ { hanzi: "这", pinyin: "zhè", meaning: "ini", strokes: 7, strokeOrder: ["点", "横", "撇", "点", "点", "横折折撇", "捺"], radical: "辶" }, { hanzi: "是", pinyin: "shì", meaning: "adalah", strokes: 9, strokeOrder: ["竖", "横折", "横", "横", "横", "竖", "横", "撇", "捺"], radical: "日" }, { hanzi: "那", pinyin: "nà", meaning: "itu", strokes: 6, strokeOrder: ["横折钩", "横", "横", "撇", "横折折折钩", "竖"], radical: "阝" }, { hanzi: "书", pinyin: "shū", meaning: "buku", strokes: 4, strokeOrder: ["横折", "横折钩", "竖", "点"], radical: "乙" }, { hanzi: "的", pinyin: "de", meaning: "milik / kepemilikan", strokes: 8, strokeOrder: ["撇", "竖", "横折", "横", "横", "撇", "横折弯钩", "点"], radical: "白" }, { hanzi: "本", pinyin: "běn", meaning: "jilid / buku", strokes: 5, strokeOrder: ["横", "竖", "撇", "捺", "横"], radical: "木" }, { hanzi: "看", pinyin: "kàn", meaning: "melihat / membaca", strokes: 9, strokeOrder: ["撇", "横", "横", "撇", "竖", "横折", "横", "横", "横"], radical: "目" }, { hanzi: "读", pinyin: "dú", meaning: "membaca teks", strokes: 10, strokeOrder: ["点", "横折提", "横", "竖", "横", "横撇", "点", "点", "横撇", "捺"], radical: "讠" } ] },
-        { unit: 6, title: "第6课 这是谁的铅笔", pinyin: "Zhè shì shéi de qiānbǐ", meaning: "Ini Pensil Siapa", sentences: [ { hanzi: "这是谁的铅笔？", pinyin: "Zhè shì shéi de qiānbǐ?", indonesian: "Ini pensil milik siapa?" }, { hanzi: "这是小华的铅笔。", pinyin: "Zhè shì Xiǎohuá de qiānbǐ.", indonesian: "Ini adalah pensil milik Xiaohua." }, { hanzi: "桌子上还有一块橡皮和一把尺子。", pinyin: "Zhuōzi shàng hái yǒu yí kuài xiàngpí hé yì bǎ chǐzi.", indonesian: "Di atas meja masih ada sebuah penghapus dan sebuah penggaris." }, { hanzi: "用完文具要放进笔盒里。", pinyin: "Yòng wán wénjù yào fàng jìn bǐhé lǐ.", indonesian: "Setelah memakai alat tulis harus dimasukkan ke dalam kotak pensil." }, { hanzi: "好习惯从小养成。", pinyin: "Hǎo xíguàn cóng xiǎo yǎngchéng.", indonesian: "Kebiasaan yang baik dibina sejak usia dini." } ], vocab: [ { hanzi: "谁", pinyin: "shéi", meaning: "siapa", strokes: 10, strokeOrder: ["点", "横折提", "撇", "竖", "点", "横", "横", "横", "竖", "横"], radical: "讠" }, { hanzi: "铅笔", pinyin: "qiānbǐ", meaning: "pensil", strokes: 10, strokeOrder: ["撇", "横", "横", "横", "竖提", "撇", "横撇", "横", "竖", "横"], radical: "钅" }, { hanzi: "尺子", pinyin: "chǐzi", meaning: "penggaris", strokes: 4, strokeOrder: ["横折", "横", "撇", "点"], radical: "尸" }, { hanzi: "橡皮", pinyin: "xiàngpí", meaning: "penghapus karet", strokes: 15, strokeOrder: ["横", "竖", "撇", "点", "撇", "竖", "横折", "横", "横", "横", "撇", "竖提", "撇", "捺"], radical: "木" }, { hanzi: "桌子", pinyin: "zhuōzi", meaning: "meja tulis", strokes: 10, strokeOrder: ["竖", "横折", "横", "横", "横", "竖", "横折", "横", "撇", "捺"], radical: "木" }, { hanzi: "椅子", pinyin: "yǐzi", meaning: "kursi duduk", strokes: 9, strokeOrder: ["横", "竖", "撇", "点", "撇", "横折钩", "横", "竖弯钩", "横"], radical: "木" }, { hanzi: "书包", pinyin: "shūbāo", meaning: "tas sekolah", strokes: 5, strokeOrder: ["撇", "横折钩", "横折", "横", "竖弯钩"], radical: "勹" }, { hanzi: "有", pinyin: "yǒu", meaning: "ada / mempunyai", strokes: 6, strokeOrder: ["横", "撇", "竖", "横折钩", "横", "横"], radical: "月" } ] }
-      ]
-    };
-
-    const BOOK_THEME_INFO = {
-      1: { guide: { name: "Rexy (T-Rex Ceria)", avatar: "🦖", desc: "Rexy memandu dasar sapaan, keluarga, angka, dan warna untuk pemula SD!" }, level: "Tingkat 1 - Pemula SD (Kelas 1)" },
-      2: { guide: { name: "Trishi (Triceratops Ramah)", avatar: "🦏", desc: "Trishi memandu perbandingan kata, posisi benda, cuaca, dan bagian tubuh!" }, level: "Tingkat 2 - Dasar SD (Kelas 2)" },
-      3: { guide: { name: "Ptero (Pterodactyl Cerdas)", avatar: "🦅", desc: "Ptero memandu aktivitas sekolah, olahraga, seni musik, dan persahabatan!" }, level: "Tingkat 3 - Terampil SD (Kelas 3)" },
-      4: { guide: { name: "Ankylo (Ankylosaurus Tangguh)", avatar: "🛡️", desc: "Ankylo memandu perbandingan, perjalanan, museum, Tembok Besar, dan musim!" }, level: "Tingkat 4 - Cakap SD (Kelas 4)" },
-      5: { guide: { name: "Bronto (Brontosaurus Bijak)", avatar: "🦕", desc: "Bronto memandu dongeng fabel klasik Tiongkok dan peribahasa bijak!" }, level: "Tingkat 5 - Mahir SD (Kelas 5)" },
-      6: { guide: { name: "Veloci (Velociraptor Gesit)", avatar: "🦎", desc: "Veloci memandu seni kaligrafi, opera Beijing, teh tradisional, dan wushu!" }, level: "Tingkat 6 - Mandiri SD (Kelas 6)" },
-      7: { guide: { name: "Spino (Spinosaurus Gagah)", avatar: "🐊", desc: "Spino memandu teknologi modern, kereta cepat, AI cerdas, dan sains!" }, level: "Tingkat 7 - Terapan (SMP Kelas 7)" },
-      8: { guide: { name: "Pachy (Pachycephalosaurus)", avatar: "🦬", desc: "Pachy memandu budi pekerti, gotong royong, integritas, dan disiplin waktu!" }, level: "Tingkat 8 - Lanjutan (SMP Kelas 8)" },
-      9: { guide: { name: "Titan Master (Titanosaurus)", avatar: "🐉", desc: "Titan memandu pidato, apresiasi sastra, teks narasi, dan debat kritis!" }, level: "Tingkat 9 - Mahir Terpadu (SMP Kelas 9)" },
-      10: { guide: { name: "Chrono Dino (Kronosaurus)", avatar: "⏳", desc: "Chrono memandu ekonomi global, e-commerce, dan negosiasi bisnis!" }, level: "Tingkat 10 - Pra-Lanjutan (SMA Kelas 10)" },
-      11: { guide: { name: "Aero Dragon (Quetzalcoatlus)", avatar: "🦅", desc: "Aero memandu ekologi hijau, perubahan iklim, konservasi alam, dan riset ilmiah!" }, level: "Tingkat 11 - Mahir Lingkungan (SMA Kelas 11)" },
-      12: { guide: { name: "Apex Emperor (Giganotosaurus)", avatar: "👑", desc: "Apex memandu filsafat, diplomasi dunia, evolusi aksara, dan penguasaan global!" }, level: "Tingkat 12 - Tingkat Tertinggi (SMA Kelas 12)" }
-    };
-
-    const CURRICULUM_UNITS_REGISTRY = {
-      2: [ ["西瓜大 苹果小", "Xīguā dà, píngguǒ xiǎo", "Semangka Besar, Apel Kecil", "大", "dà", "besar", 3], ["哥哥高 弟弟矮", "Gēge gāo, dìdi ǎi", "Kakak Tinggi, Adik Pendek", "高", "gāo", "tinggi", 10], ["我的书包在哪里", "Wǒ de shūbāo zài nǎlǐ", "Di Mana Tas Sekolahku", "在", "zài", "berada di", 6], ["教室里有什么", "Jiàoshì lǐ yǒu shénme", "Ada Apa di Dalam Kelas", "教室", "jiàoshì", "ruang kelas", 9], ["我会说汉语", "Wǒ huì shuō Hànyǔ", "Saya Bisa Berbicara Mandarin", "说", "shuō", "berbicara", 9], ["妈妈在厨房做饭", "Māma zài chúfáng zuòfàn", "Ibu Memasak di Dapur", "做饭", "zuòfàn", "memasak", 11], ["爸爸去上班", "Bàba qù shàngbān", "Ayah Pergi Bekerja", "上班", "shàngbān", "bekerja kantor", 4], ["天气怎么样", "Tiānqì zěnmeyàng", "Bagaimana Cuacanya", "天气", "tiānqì", "cuaca", 4], ["我要喝果汁", "Wǒ yào hē guǒzhī", "Saya Mau Minum Jus Buah", "喝", "hē", "minum", 12], ["鸟儿在树上唱歌", "Niǎor zài shù shàng chànggē", "Burung Bernyanyi di Atas Pohon", "唱", "chàng", "bernyanyi", 11], ["我的衣服真好看", "Wǒ de yīfu zhēn hǎokàn", "Bajuku Sangat Bagus", "衣服", "yīfu", "pakaian baju", 6], ["我们一起去动物园", "Wǒmen yìqǐ qù dòngwùyuán", "Kita Bersama ke Kebun Binatang", "动物", "dòngwù", "hewan binatang", 9], ["今天是我的生日", "Jīntiān shì wǒ de shēngrì", "Hari Ini Ulang Tahunku", "生日", "shēngrì", "hari ulang tahun", 5], ["身体各部位", "Shēntǐ gè bùwèi", "Bagian-Bagian Tubuh", "身体", "shēntǐ", "tubuh jasmani", 7], ["快乐的周末", "Kuàilè de zhōumò", "Akhir Pekan yang Bahagia", "周末", "zhōumò", "akhir pekan", 8] ],
-      3: [ ["新学期开始了", "Xīn xuéqī kāishǐ le", "Semester Baru Dimulai", "开学", "kāixué", "mulai sekolah", 4], ["我们的校园", "Wǒmen de xiàoyuán", "Kampus/Sekolah Kami", "校园", "xiàoyuán", "halaman sekolah", 10], ["图书馆借书", "Túshūguǎn jiè shū", "Meminjam Buku di Perpustakaan", "借", "jiè", "meminjam", 10], ["体育课跑步", "Tǐyùkè pǎobù", "Lari di Pelajaran Olahraga", "跑", "pǎo", "berlari cepat", 12], ["音乐课唱歌", "Yīnyuèkè chànggē", "Bernyanyi di Pelajaran Musik", "歌", "gē", "lagu nyanyian", 14], ["美术课画画", "Měishùkè huàhuà", "Menggambar di Pelajaran Seni", "画", "huà", "melukis gambar", 8], ["我的好朋友", "Wǒ de hǎo péngyou", "Sahabat Baikku", "朋友", "péngyou", "sahabat teman", 4], ["课间休息十分钟", "Kèjiān xiūxi shí fēnzhōng", "Istirahat Sepuluh Menit", "休息", "xiūxi", "beristirahat", 6], ["帮助同学", "Bāngzhù tóngxué", "Membantu Teman Sekelas", "帮", "bāng", "menolong bantu", 9], ["学习新汉字", "Xuéxí xīn hànzì", "Mempelajari Hanzi Baru", "汉字", "hànzì", "aksara Hanzi", 5], ["打扫教室", "Dǎsǎo jiàoshì", "Membersihkan Ruang Kelas", "扫", "sǎo", "menyapu bersih", 6], ["老师辛苦了", "Lǎoshī xīnkǔ le", "Terima Kasih Ibu Guru yang Berjasa", "辛苦", "xīnkǔ", "berjerih payah", 7], ["朗读课文", "Lǎngdú kèwén", "Membaca Teks dengan Nyaring", "读", "dú", "membaca bersuara", 10], ["讲故事比赛", "Jiǎng gùshi bǐsài", "Lomba Bercerita Mandarin", "故事", "gùshi", "cerita kisah", 6], ["学期总复习", "Xuéqī zǒng fùxí", "Review Ujian Akhir Semester", "复习", "fùxí", "mengulang materi", 9] ],
-      4: [ ["我比你高", "Wǒ bǐ nǐ gāo", "Saya Lebih Tinggi dari Kamu", "比", "bǐ", "dibandingkan", 4], ["坐飞机去旅行", "Zuò fēijī qù lǚxíng", "Naik Pesawat Terbang Liburan", "飞机", "fēijī", "pesawat terbang", 3], ["参观博物馆", "Cānguān bówùguǎn", "Kunjungan Edukasi Museum", "参观", "cānguān", "mengunjungi pameran", 8], ["游览长城", "Yóulǎn Chángchéng", "Wisata Sejarah Tembok Besar", "长城", "Chángchéng", "Tembok Raksasa", 4], ["四季的变化", "Sìjì de biànhuà", "Keindahan Empat Musim", "季节", "jìjié", "musim cuaca", 8], ["农场里的小动物", "Nóngchǎng lǐ de xiǎo dòngwù", "Hewan Lucu di Peternakan", "农场", "nóngchǎng", "peternakan asri", 6], ["传统节日春节", "Chuántǒng jiérì Chūnjié", "Perayaan Tahun Baru Imlek", "春节", "Chūnjié", "Festival Musim Semi", 5], ["中秋节吃月饼", "Zhōngqiūjié chī yuèbǐng", "Festival Musim Gugur & Kue Bulan", "月饼", "yuèbǐng", "kue bulan lezat", 4], ["端午节赛龙舟", "Duānwǔjié sài lóngzhōu", "Festival Perahu Naga", "龙舟", "lóngzhōu", "perahu naga", 5], ["去超市购物", "Qù chāoshì gòuwù", "Berbelanja di Supermarket", "超市", "chāoshì", "pasar swalayan", 12], ["看病与健康", "Kànbìng yǔ jiànkāng", "Konsultasi Dokter & Kesehatan", "健康", "jiànkāng", "kebugaran sehat", 11], ["骑自行车去郊游", "Qí zìxíngchē qù jiāoyóu", "Bersepeda ke Luar Kota", "骑车", "qí chē", "mengayuh sepeda", 11], ["保护大自然", "Bǎohù dàzìrán", "Kelestarian Lingkungan Hidup", "保护", "bǎohù", "merawat menjaga", 9], ["制作手工模型", "Zhìzuò shǒugōng móxíng", "Kreativitas Prakarya", "制作", "zhìzuò", "membuat merakit", 8], ["快乐的假期", "Kuàilè de jiàqī", "Liburan Ceria", "假期", "jiàqī", "masa liburan", 10] ],
-      5: [ ["古代寓言故事", "Gǔdài yùyán gùshi", "Fabel Klasik Kuno Penuh Hikmah", "寓言", "yùyán", "cerita fabel", 12], ["聪明的小猴子", "Cōngming de xiǎo hóuzi", "Monyet Cerdik dan Cerdas", "聪明", "cōngming", "pintar cerdik", 12], ["司马光砸缸", "Sīmǎ Guāng zá gāng", "Kecerdasan Sima Guang", "勇敢", "yǒnggǎn", "pemberani tangguh", 9], ["愚公移山", "Yúgōng yí shān", "Ketekunan Kakek Yu Gong Memindahkan Gunung", "坚持", "jiānchí", "pantang menyerah", 9], ["守株待兔", "Shǒu zhū dài tù", "Menjaga Pohon Menunggu Kelinci", "等待", "děngdài", "menanti usaha", 12], ["掩耳盗铃", "Yǎn ěr dào líng", "Menutup Telinga Mencuri Lonceng", "欺骗", "qīpiàn", "menipu diri", 12], ["画龙点睛", "Huà lóng diǎn jīng", "Sentuhan Terakhir Menghidupkan Naga", "精彩", "jīngcǎi", "sangat memukau", 14], ["刻舟求剑", "Kè zhōu qiú jiàn", "Memahat Perahu Mencari Pedang", "变化", "biànhuà", "berubah dinamis", 4], ["盲人摸象", "Mángrén mō xiàng", "Kisah Orang Buta Meraba Gajah", "全面", "quánmiàn", "menyeluruh utuh", 6], ["揠苗助长", "Yà miáo zhù zhǎng", "Menarik Bibit Membantu Tumbuh", "规律", "guīlǜ", "hukum alam", 10], ["狐假虎威", "Hú jiǎ hǔ wēi", "Rubah Meminjam Wibawa Harimau", "借用", "jièyòng", "memanfaatkan daya", 10], ["亡羊补牢", "Wáng yáng bǔ láo", "Memperbaiki Kandang Setelah Domba Hilang", "改正", "gǎizhèng", "segera membenahi", 7], ["塞翁失马", "Sài wēng shī mǎ", "Hikmah di Balik Musibah Kakek Sai Weng", "福祸", "fúhuò", "rezeki dan hikmah", 13], ["自相矛盾", "Zì xiāng máodùn", "Kontradiksi Tombak dan Perisai", "矛盾", "máodùn", "kontradiksi silang", 5], ["井底之蛙", "Jǐng dǐ zhī wā", "Katak di Dasar Sumur", "眼界", "yǎnjiè", "cakrawala pandang", 11] ],
-      6: [ ["中国的传统艺术", "Zhōngguó de chuántǒng yìshù", "Seni Tradisional Tiongkok", "艺术", "yìshù", "karya seni", 6], ["京剧脸谱", "Jīngjù liǎnpǔ", "Topeng Karakter Opera Beijing", "戏曲", "xìqǔ", "seni drama pentas", 6], ["中国书法与文房四宝", "Zhōngguó shūfǎ yǔ wénfángsìbǎo", "Kaligrafi dan Empat Pusaka Tinta", "书法", "shūfǎ", "seni kaligrafi", 4], ["剪纸艺术", "Jiǎnzhǐ yìshù", "Seni Memotong Kertas Hias", "剪纸", "jiǎnzhǐ", "seni gunting kertas", 11], ["中国茶文化", "Zhōngguó chá wénhuà", "Upacara Minum Teh Tradisional", "茶道", "chádào", "seni seduh teh", 9], ["陶艺制作", "Táoyì zhìzuò", "Seni Gerabah Keramik Tanah Liat", "陶瓷", "táocí", "keramik porselen", 11], ["传统民乐演奏", "Chuántǒng mínyuè yǎnzòu", "Alat Musik Tradisional Guzheng & Erhu", "古筝", "gǔzhēng", "kecapi guzheng", 5], ["武术与太极拳", "Wǔshù yǔ tàijíquán", "Seni Bela Diri Wushu & Tai Chi", "太极", "tàijí", "senam tai chi", 4], ["传统建筑与故宫", "Chuántǒng jiànzhù yǔ Gùgōng", "Arsitektur Megah Kota Terlarang", "建筑", "jiànzhù", "struktur arsitektur", 9], ["丝绸之路传奇", "Sīchóu zhī lù chuánqí", "Jalur Sutra Kuno Penghubung Benua", "丝绸", "sīchóu", "kain sutra halus", 12], ["兵马俑的奇迹", "Bīngmǎyǒng de qíjì", "Keajaiban Patung Prajurit Terakota", "奇迹", "qíjì", "mukjizat karya", 8], ["传统节气文化", "Chuántǒng jiéqi wénhuà", "24 Musim Kalender Surya Kuno", "节气", "jiéqi", "titik musim surya", 5], ["十二生肖的故事", "Shí'èr shēngxiào de gùshi", "Legenda Urutan 12 Shio", "生肖", "shēngxiào", "zodiak shio", 5], ["传统美食与饺子", "Chuántǒng měishí yǔ jiǎozi", "Kuliner Tradisional Jiaozi / Pangsit", "美食", "měishí", "hidangan lezat", 9], ["文化交流的桥梁", "Wénhuà jiāoliú de qiáoliáng", "Jembatan Persahabatan Antar Bangsa", "交流", "jiāoliú", "berinteraksi akrab", 6] ],
-      7: [ ["现代科技与生活", "Xiàndài kējì yǔ shēnghuó", "Sains dan Teknologi Modern Sehari-hari", "科技", "kējì", "sains teknologi", 9], ["高铁与中国速度", "Gāotiě yǔ Zhōngguó sùdù", "Kereta Cepat Menembus Kota", "速度", "sùdù", "kecepatan tinggi", 10], ["智能手机的应用", "Zhìnéng shǒujī de yìngyòng", "Aplikasi Smartphone Pintar Serbaguna", "智能", "zhìnéng", "pintar cerdas", 12], ["人工智能探索", "Réngōng zhìnéng tànsuǒ", "Kecerdasan Buatan AI Masa Depan", "算法", "suànfǎ", "algoritma komputasi", 8], ["太空探索与航天", "Tàikōng tànsuǒ yǔ hángtiān", "Penjelajahan Antariksa dan Roket", "探索", "tànsuǒ", "menjelajah semesta", 8], ["太阳能与清洁能源", "Tàiyángnéng yǔ qīngjié néngyuán", "Energi Matahari Ramah Lingkungan", "能源", "néngyuán", "sumber energi", 10], ["机器人在生活中的应用", "Jīqìrén zài shēnghuó zhōng de yìngyòng", "Robotik Pembantu Aktivitas Manusia", "服务", "fúwù", "melayani sigap", 8], ["互联网与现代通信", "Hùliánwǎng yǔ xiàndài tōngxìn", "Jaringan Internet Global", "连接", "liánjiē", "menghubungkan dunia", 10], ["3D打印技术", "Sān-D dǎyìn jìshù", "Teknologi Cetak Dimensi Tiga 3D", "创新", "chuàngxīn", "kreasi terobosan", 6], ["生物科技与基因", "Shēngwù kējì yǔ jīyīn", "Bioteknologi dan Kode Genetik", "生命", "shēngmìng", "kehidupan bernilai", 5], ["虚拟现实VR体验", "Xūnǐ xiànshí VR tǐyàn", "Dunia Virtual Reality Memukau", "体验", "tǐyàn", "merasakan langsung", 7], ["自动驾驶汽车", "Zìdòng jiàshǐ qìchē", "Mobil Otonom Pintar Tanpa Sopir", "安全", "ānquán", "keselamatan terjamin", 6], ["智能家居系统", "Zhìnéng jiājū xìtǒng", "Sistem Rumah Pintar Terpadu", "舒适", "shūshì", "nyaman tentram", 8], ["大数据与云计算", "Dà shùjù yǔ yún jìsuàn", "Pengolahan Big Data & Cloud Computing", "分析", "fēnxī", "menganalisis akurat", 8], ["走向未来科技", "Zǒuxiàng wèilái kējì", "Menyambut Era Kemajuan Teknologi", "未来", "wèilái", "masa depan cerah", 4] ],
-      8: [ ["礼貌交往与尊重沟通", "Lǐmào jiāowǎng yǔ zūnzhòng gōutōng", "Sopan Santun dalam Pergaulan", "尊重", "zūnzhòng", "menghormati sesama", 12], ["团队合作创造辉煌", "Tuánduì hézuò chuàngzào huīhuáng", "Kekuatan Gotong Royong Kelompok", "合作", "hézuò", "kerjasama kompak", 6], ["诚实守信立身之本", "Chéngshí shǒuxìn lìshēn zhī běn", "Menjaga Kejujuran dan Integritas", "信用", "xìnyòng", "kepercayaan amanah", 9], ["坚持不懈战胜困难", "Jiānchí búxiè zhànshèng kùnnan", "Ketekunan Melompati Rintangan", "克服", "kèfú", "mengatasi rintangan", 7], ["热心志愿关爱社会", "Rèxīn zhìyuàn guān'ài shèhuì", "Aksi Relawan Membantu Sesama", "奉献", "fèngxiàn", "berdedikasi tulus", 8], ["百善孝为先感恩父母", "Bǎi shàn xiào wéi xiān gǎn'ēn fùmǔ", "Bakti Anak Menyayangi Orang Tua", "孝敬", "xiàojìng", "berbakti tulus", 7], ["勇敢面对生活挑战", "Yǒnggǎn miànduì shēnghuó tiǎozhàn", "Keberanian Menghadapi Ujian", "坚强", "jiānqiáng", "tangguh kuat", 11], ["学会包容与化解矛盾", "Xuéhuì bāoróng yǔ huàjiě máodùn", "Kelapangan Hati dan Memaafkan", "宽容", "kuānróng", "lapang dada bijak", 10], ["科学管理宝贵时间", "Kēxué guǎnlǐ bǎoguì shíjiān", "Menghargai Waktu dan Disiplin", "效率", "xiàolǜ", "efisiensi tinggi", 7], ["责任担当做合格公民", "Zérèn dāndāng zuò hégé gōngmín", "Rasa Tanggung Jawab Moral", "担当", "dāndāng", "berani memikul", 8], ["培养独立思辨能力", "Péiyǎng dúlì sībiàn nénglì", "Berpikir Kritis dan Mandiri", "思考", "sīkǎo", "menelaah kritis", 6], ["保持身心阳光健康", "Bǎochí shēnxīn yángguāng jiànkāng", "Kebugaran Jasmani dan Rohani", "健康", "jiànkāng", "sehat walafiat", 11], ["立下远大人生理想", "Lì xià yuǎndà rénshēng lǐxiǎng", "Menetapkan Visi Hidup Mulia", "追求", "zhuīqiú", "meraih impian", 9], ["包容互鉴多元文化", "Bāoróng hùjiàn duōyuán wénhuà", "Toleransi Antar Suku dan Budaya", "多元", "duōyuán", "keberagaman kaya", 6], ["全面发展做时代栋梁", "Quánmiàn fāzhǎn zuò shídài dòngliáng", "Menjadi Generasi Penerus Berprestasi", "优秀", "yōuxiù", "berbakat unggul", 6] ],
-      9: [ ["古代寓言的深层启示", "Gǔdài yùyán de shēncéng qǐshì", "Pesan Moral Fabel Klasik", "启示", "qǐshì", "petunjuk hikmah", 7], ["品读中外文学名著", "Pǐndú zhōngwài wénxué míngzhù", "Apresiasi Karya Sastra Dunia", "经典", "jīngdiǎn", "karya agung abadi", 8], ["唐诗宋词的优美韵律", "Tángshī Sòngcí de yōuměi yùnlǜ", "Keindahan Syair Puisi Klasik", "韵律", "yùnlǜ", "ritme rima indah", 9], ["记叙文的情感表达", "Jìxùwén de qínggǎn biǎodá", "Menulis Karangan Narasi Emosional", "叙述", "xùshù", "alur penceritaan", 9], ["说明文的条理与逻辑", "Shuōmíngwén de tiáolǐ yǔ luóji", "Struktur Teks Eksplanasi Sains", "逻辑", "luóji", "nalar teratur logis", 8], ["议论文的立论与论证", "Yìlùnwén de lìlùn yǔ lùnzhèng", "Menyusun Argumen Logis dan Bukti", "论点", "lùndiǎn", "pokok gagasan tesis", 6], ["公众演讲的语言艺术", "Gōngzhòng yǎnjiǎng de yǔyán yìshù", "Seni Berbicara di Depan Publik", "演讲", "yǎnjiǎng", "orasi pidato fasih", 14], ["校园辩论赛的思辨交锋", "Xiàoyuán biànlùnsài de sībiàn jiāofēng", "Teknik Debat dan Tanggapan Kritis", "辩驳", "biànbó", "membantah logis", 14], ["新闻采写的客观真实", "Xīnwén cǎixiě de kèguān zhēnshí", "Jurnalistik Berita Terpercaya", "报道", "bàodào", "liputan fakta akurat", 12], ["话剧表演与舞台台词", "Huàjù biǎoyǎn yǔ wǔtái táicí", "Seni Peran Drama dan Dialog Teater", "舞台", "wǔtái", "panggung sandiwara", 6], ["现代优美抒情散文", "Xiàndài yōuměi shūqíng sǎnwén", "Menikmati Prosa Penuh Makna", "散文", "sǎnwén", "prosa liris indah", 12], ["读书笔记与提炼总结", "Dúshū bǐjì yǔ tíliàn zǒngjié", "Merangkum Intisari Bacaan Buku", "总结", "zǒngjié", "kesimpulan utuh", 8], ["创意广告文案设计", "Chuàngyì guǎnggào wén'àn shèjì", "Kreativitas Slogan Promosi", "创意", "chuàngyì", "gagasan segar unik", 9], ["人物深度访谈技巧", "Rénwù shēndù fǎngtán jìqiǎo", "Wawancara Tokoh Inspiratif", "访谈", "fǎngtán", "bincang mendalam", 6], ["文学创作的灵感源泉", "Wénxué chuàngzuò de línggǎn yuánquán", "Menggali Inspirasi Menulis Cerita", "灵感", "línggǎn", "ilham kreatif cipta", 11] ],
-      10: [ ["经济全球化与合作共赢", "Jīngjì quánqiúhuà yǔ hézuò gòngyíng", "Globalisasi dan Perdagangan Bebas", "贸易", "màoyì", "perdagangan global", 12], ["国际商务沟通与谈判", "Guójì shāngwù gōutōng yǔ tánpàn", "Negosiasi Bisnis Multinasional", "谈判", "tánpàn", "perundingan kontrak", 10], ["高新科技与产业升级", "Gāoxīn kējì yǔ chǎnyè shēngjí", "Transformasi Industri Cerdas", "产业", "chǎnyè", "sektor industri maju", 8], ["青少年财商与储蓄规划", "Qīngshàonián cái shāng yǔ chǔxù guīhuà", "Literasi Keuangan dan Investasi", "储蓄", "chǔxù", "tabungan berencana", 12], ["知识产权保护与创新", "Zhīshi chǎnquán bǎohù yǔ chuàngxīn", "Hak Paten dan Perlindungan Karya", "专利", "zhuānlì", "hak paten inovasi", 4], ["电子商务与数字支付", "Diànzǐ shāngwù yǔ shùzì zhìfù", "Belanja Online dan Transaksi Digital", "支付", "zhìfù", "pembayaran non-tunai", 4], ["青年创业与社会价值", "Qīngnián chuàngyè yǔ shèhuì jiàzhí", "Kewirausahaan dan Kepedulian Sosial", "创业", "chuàngyè", "merintis usaha baru", 9], ["企业社会责任与担当", "Qǐyè shèhuì zérèn yǔ dāndāng", "Tanggung Jawab Sosial Perusahaan CSR", "责任", "zérèn", "tanggung jawab mulia", 11], ["全球物流与供应链运作", "Quánqiú wùliú yǔ gōngyìngliàn yùnzuò", "Logistik dan Rantai Pasok Modern", "运输", "yùnshū", "pengiriman barang", 9], ["跨国团队协同与领导力", "Kuàguó tuánduì xiétóng yǔ lǐngdǎolì", "Kepemimpinan Tim Multikultural", "领导", "lǐngdǎo", "memimpin visioner", 11], ["品牌建设与市场推广", "Pǐnpái jiànshè yǔ shìchǎng tuīguǎng", "Branding dan Strategi Pemasaran", "营销", "yíngxiāo", "pemasaran efektif", 12], ["绿色经济与可持续发展", "Lǜsè jīngjì yǔ kěchíxù fāzhǎn", "Ekonomi Hijau dan Keberlanjutan", "低碳", "dītàn", "ramah lingkungan", 7], ["国际会展与贸易洽谈", "Guójì huìzhǎn yǔ màoyì qiàtán", "Pameran Dagang Internasional", "展会", "zhǎnhuì", "pameran ekspo", 10], ["现代金融与风险防范", "Xiàndài jīnróng yǔ fēngxiǎn fángfàn", "Manajemen Risiko Finansial", "投资", "tóuzī", "investasi bijak", 7], ["把握未来商业新机遇", "Bǎwò wèilái shāngyè xīn jīyù", "Menyambut Peluang Bisnis Baru", "机遇", "jīyù", "kesempatan emas", 10] ],
-      11: [ ["全球生态危机与环境保护", "Quánqiú shēngtài wēijī yǔ huánjìng bǎohù", "Krisil Ekologi Global dan Konservasi", "生态", "shēngtài", "ekosistem alam", 5], ["生物多样性与物种保护", "Shēngwù duōyàngxìng yǔ wùzhǒng bǎohù", "Perlindungan Keanekaragaman Hayati", "物种", "wùzhǒng", "spesies flora fauna", 8], ["气候变化与碳中和目标", "Qìhòu biànhuà yǔ tànzhōnghé mùbiāo", "Perubahan Iklim dan Nol Karbon", "减排", "jiǎnpái", "reduksi emisi", 9], ["海洋生态保护与蓝色经济", "Hǎiyáng shēngtài bǎohù yǔ lánsè jīngjì", "Kelestarian Ekosistem Laut", "海洋", "hǎiyáng", "samudra luas", 10], ["森林保护与绿色家园", "Sēnlín bǎohù yǔ lǜsè jiāyuán", "Pelestarian Hutan Paru-Paru Dunia", "植树", "zhíshù", "penghijauan pohon", 12], ["极地探险与科学考察", "Jídì tànxiǎn yǔ kēxué kǎochá", "Ekspedisi Ilmiah Kutub Bumi", "冰川", "bīngchuān", "lapisan gletser", 6], ["荒漠化治理与生态修复", "Huāngmòhuà zhìlǐ yǔ shēngtài xiūfù", "Restorasi Gurun dan Penghijauan", "治理", "zhìlǐ", "penataan kembali", 8], ["城市绿色低碳可持续发展", "Chéngshì lǜsè dītàn kěchíxù fāzhǎn", "Kota Ramah Lingkungan Masa Depan", "宜居", "yíjū", "layak huni nyaman", 8], ["水资源保护与节约利用", "Shuǐ zīyuán bǎohù yǔ jiéyuē lìyòng", "Konservasi Sumber Daya Air Bersih", "节约", "jiéyuē", "hemat bijaksana", 5], ["环保科技创新与应用", "Huánbǎo kējì chuàngxīn yǔ yìngyòng", "Inovasi Teknologi Hijau", "净化", "jìnghuà", "pemurnian udara air", 8], ["青少年环保行动与倡议", "Qīngshàonián huánbǎo xíngdòng yǔ chàngyì", "Aksi Nyata Generasi Hijau", "倡议", "chàngyì", "mengajak peduli", 4], ["人与自然和谐共生之道", "Rén yǔ zìrán héxié gòngshēng zhī dào", "Harmoni Manusia dan Semesta Alam", "和谐", "héxié", "keselarasan damai", 8], ["循环经济与零废弃生活", "Xúnhuán jīngjì yǔ língfèiqì shēnghuó", "Gaya Hidup Bebas Sampah Zero Waste", "回收", "huíshōu", "daur ulang sampah", 6], ["地球日与全球环保合作", "Dìqiúrì yǔ quánqiú huánbǎo hézuò", "Kerjasama Internasional Hari Bumi", "守护", "shǒuhù", "menjaga setia", 6], ["守护我们共同的美丽家园", "Shǒuhù wǒmen gòngtóng de měilì jiāyuán", "Menjaga Bumi Ibu Pertiwi Tercinta", "家园", "jiāyuán", "tanah air bumi", 10] ],
-      12: [ ["世界文明的交流与互鉴", "Shìjiè wénmíng de jiāoliú yǔ hùjiàn", "Dialog Antar Peradaban Dunia", "文明", "wénmíng", "peradaban luhur", 4], ["古代丝绸之路的当代启示", "Gǔdài sīchóu zhī lù de dāngdài qǐshì", "Revitalisasi Jalur Sutra Baru", "辉煌", "huīhuáng", "kejayaan agung", 12], ["现代汉字演变与构字美学", "Xiàndài hànzì yǎnbiàn yǔ gòuzì měixué", "Evolusi dan Estetika Hanzi", "造字", "zàozì", "pembentukan aksara", 7], ["跨文化沟通与全球胜任力", "Kuà wénhuà gōutōng yǔ quánqiú shèngrènlì", "Kompetensi Komunikasi Global", "包容", "bāoróng", "keterbukaan jiwa", 5], ["国际中文教育的发展", "Guójì Zhōngwén jiàoyù de fāzhǎn", "Pengajaran Mandarin di Ranah Global", "传播", "chuánbō", "menyebarkan wawasan", 12], ["文学批评与多维鉴赏", "Wénxué pīpíng yǔ duōwéi jiànshǎng", "Kritik Sastra dan Analisis Makna", "洞察", "dòngchá", "pandangan tajam mendalam", 9], ["跨学科融合与综合视野", "Kuà xuékē rónghé yǔ zōnghé shìyě", "Integrasi Lintas Disiplin Ilmu", "融合", "rónghé", "peleburan disiplin", 12], ["东方哲学与修身养性", "Dōngfāng zhéxué yǔ xiūshēn yǎngxìng", "Harmoni Jiwa dan Olah Batin", "宁静", "níngjìng", "kedamaian kalbu", 5], ["全球治理与多边外交", "Quánqiú zhìlǐ yǔ duōbiān wàijiāo", "Diplomasi dan Perdamaian Dunia", "治理", "zhìlǐ", "tata kelola dunia", 8], ["数字人文与文物数字化", "Shùzì rénwén yǔ wénwù shùzìhuà", "Digital Humanities Merawat Cagar Budaya", "遗产", "yíchǎn", "warisan luhur bangsa", 5], ["现代诗歌的意象探索", "Xiàndài shīgē de yìxiàng tànsuǒ", "Eksplorasi Metafora Puisi Kontemporer", "意象", "yìxiàng", "simbol puisi metafora", 13], ["高级辩论与逻辑闭环", "Gāojí biànlùn yǔ luóji bìhuán", "Retorika Orasi dan Logika Sempurna", "雄辩", "xióngbiàn", "orasi fasih berbobot", 12], ["科学哲学与认知边界", "Kēxué zhéxué yǔ rènzhī biānjiè", "Filsafat Sains Menembus Batas Pengetahuan", "真理", "zhēnlǐ", "kebenaran hakiki ilmiah", 10], ["全球胜任力与青年担当", "Quánqiú shèngrènlì yǔ qīngnián dāndāng", "Kepemimpinan Global Generasi Muda", "卓越", "zhuóyuè", "prestasi gemilang", 12], ["汉语之光连接世界大道", "Hànyǔ zhī guāng liánjiē shìjiè dàdào", "Mandarin Menghubungkan Jantung Dunia", "光明", "guāngmíng", "cahaya masa depan", 6] ]
-    };
-
-    function getUnitStoryData(bookId, unitId, unitTitle, unitPinyin, unitMeaning, vocabList) {
-      if (HAN_YU_STORIES_DATABASE[bookId] && HAN_YU_STORIES_DATABASE[bookId][unitId - 1]) {
-        return HAN_YU_STORIES_DATABASE[bookId][unitId - 1].sentences;
-      }
-      const rawTitle = unitTitle.replace(/第\d+课\s*/, '');
-      const v1 = (vocabList && vocabList[0]) ? vocabList[0] : { hanzi: "学习", pinyin: "xuéxí", meaning: "belajar" };
-      const v2 = (vocabList && vocabList[1]) ? vocabList[1] : { hanzi: "朋友", pinyin: "péngyou", meaning: "sahabat" };
-      return [
-        { hanzi: `今天我们在中文课上学习《${rawTitle}》，内容非常丰富精彩。`, pinyin: `Jīntiān wǒmen zài Zhōngwén kè shàng xuéxí "${rawTitle}", nèiróng fēicháng fēngfù jīngcǎi.`, indonesian: `Hari ini di kelas bahasa Mandarin kita mempelajari topik "${rawTitle}", isinya sangat kaya dan menarik.` },
-        { hanzi: `老师生动地为大家讲解核心生字‘${v1.hanzi}’（${v1.pinyin}），它的含义是‘${v1.meaning}’。`, pinyin: `Lǎoshī shēngdòng de wèi dàjiā jiǎngjiě héxīn shēngzì '${v1.hanzi}' (${v1.pinyin}), tā de hányì shì '${v1.meaning}'.`, indonesian: `Guru dengan jelas menerangkan kosakata utama '${v1.hanzi}' (${v1.pinyin}), artinya adalah '${v1.meaning}'.` },
-        { hanzi: `同学们在田字格里一笔一画练习书写，熟练掌握了‘${v2.hanzi}’（${v2.pinyin}）的笔画顺序和拼音读音。`, pinyin: `Tóngxuémen zài tiánzìgé lǐ yì bǐ yí huà liànxí shūxiě, shúliàn zhǎngwò le '${v2.hanzi}' (${v2.pinyin}) de bǐhuà shùnxù hé pīnyīn dúyīn.`, indonesian: `Para siswa menulis di kotak Mi Zi Ge dengan rapi, menguasai urutan guratan serta pelafalan Pinyin kata '${v2.hanzi}' (${v2.pinyin}).` },
-        { hanzi: `通过趣味生动的课文朗读和对话互动，大家牢牢记住了本课的重点句子。`, pinyin: `Tōngguò qùwèi shēngdòng de kèwén lǎngdú hé duìhuà hùdòng, dàjiā láoláo jìzhù le běn kè de zhòngdiǎn jùzi.`, indonesian: `Melalui membaca teks pelajaran dan percakapan interaktif, kami mengingat kalimat utama materi ini dengan baik.` },
-        { hanzi: `小恐龙们高兴地互相鼓励，大家每天都在快乐地学好中文！`, pinyin: `Xiǎo kǒnglóng men gāoxìng de hùxiāng gǔlì, dàjiā měitiān dōu zài kuàilè de xuéhǎo Zhōngwén!`, indonesian: `Dinosaurus cilik saling memberi semangat, semua murid dengan gembira membuat kemajuan belajar bahasa Mandarin!` }
-      ];
-    }
-
-    /* GENERATOR 10 SOAL KUIS PER UNIT */
-    function generateUnitQuestions(bookId, unitId, unitTitle, unitPinyin, unitMeaning, vocabList) {
-      const v1 = (vocabList && vocabList[0]) ? vocabList[0] : { hanzi: "你好", pinyin: "nǐ hǎo", meaning: "halo", strokes: 7 };
-      const v2 = (vocabList && vocabList[1]) ? vocabList[1] : { hanzi: "学习", pinyin: "xuéxí", meaning: "belajar", strokes: 8 };
-
-      return [
-        { id: `q_${bookId}_${unitId}_1`, type: "meaning", question: `Apa arti dari kosakata '${v1.hanzi}' (${v1.pinyin}) pada materi ${unitTitle}?`, audioText: `${v1.pinyin} shì shénme yìsi?`, options: [ v1.meaning, "Berlari kencang di lapangan", "Membeli baju baru di pasar", "Minum air es dingin" ], correctIndex: 0, explanation: `'${v1.hanzi}' (${v1.pinyin}) bermakna '${v1.meaning}'.` },
-        { id: `q_${bookId}_${unitId}_2`, type: "pinyin", question: `Pilihlah bacaan Pinyin yang benar dan tepat untuk karakter '${v1.hanzi}':`, audioText: `Qǐng xuǎnzhé zhèngquè de pīnyīn.`, options: [ v1.pinyin, "zàijiàn", "xièxie", "nǐ hǎo" ], correctIndex: 0, explanation: `Karakter '${v1.hanzi}' dibaca '${v1.pinyin}'.` },
-        { id: `q_${bookId}_${unitId}_3`, type: "strokes", question: `Berapakah jumlah goresan (bi hua) dari karakter '${v1.hanzi[0]}'?`, audioText: `${v1.hanzi[0]} zì yǒu jǐ huà?`, options: [ `${v1.strokes || 6} goresan`, `${(v1.strokes || 6) + 2} goresan`, `${Math.max(2, (v1.strokes || 6) - 2)} goresan`, `${(v1.strokes || 6) + 4} goresan` ], correctIndex: 0, explanation: `Karakter '${v1.hanzi[0]}' terdiri atas ${v1.strokes || 6} goresan.` },
-        { id: `q_${bookId}_${unitId}_4`, type: "sentence_order", question: `Susunlah kata-kata acak berikut menjadi kalimat yang benar: [${v1.hanzi} / 认真 / 我们]`, audioText: `Qǐng lián cí chéng jù.`, options: [ `我们 认真 ${v1.hanzi}。`, `认真 我们 ${v1.hanzi}。`, `${v1.hanzi} 我们 认真。`, `认真 ${v1.hanzi} 我们。` ], correctIndex: 0, explanation: `Susunan baku: Subjek (我们) + Keterangan (认真) + Predikat (${v1.hanzi}).` },
-        { id: `q_${bookId}_${unitId}_5`, type: "picture_match", question: `Pilihlah ilustrasi gambar yang paling cocok menggambarkan isi cerita '${unitTitle}'!`, audioText: `Nǎge túpiàn shì duì de?`, options: [ `📖 Gambar dinosaurus cilik sedang tekun mempelajari materi ${v1.meaning}`, "🌧️ Gambar hujan lebat di luar jendela rumah yang sepi", "🛒 Keranjang belanja supermarket yang kosong tanpa barang", "🚪 Pintu kayu cokelat yang tertutup rapat" ], correctIndex: 0, explanation: `Ilustrasi buku mencerminkan esensi cerita materi '${unitTitle}'.` },
-        { id: `q_${bookId}_${unitId}_6`, type: "fill_blank", question: `Lengkapilah kalimat rumpang ini: ‘我们大家一起开心地 ____ 中文。’`, audioText: `Wǒmen dàjiā yìqǐ kāixīn de shénme Zhōngwén?`, options: [ `学习 (${v2.pinyin})`, "睡觉 (shuìjiào)", "哭泣 (kūqì)", "离开 (líkāi)" ], correctIndex: 0, explanation: `Jawaban tepat adalah '学习' (belajar).` },
-        { id: `q_${bookId}_${unitId}_7`, type: "radical", question: `Apakah nama radikal (bushou) dari karakter '${v1.hanzi[0]}'?`, audioText: `${v1.hanzi[0]} zì de bùshǒu shì shénme?`, options: [ `Radikal '${v1.radical || '文'}'`, "Radikal '氵' (air)", "Radikal '火' (api)", "Radikal '木' (kayu)" ], correctIndex: 0, explanation: `Radikal pembentuk karakter '${v1.hanzi[0]}' adalah '${v1.radical || '文'}'.` },
-        { id: `q_${bookId}_${unitId}_8`, type: "meaning_2", question: `Apa arti bahasa Indonesia dari kosakata kedua '${v2.hanzi}' (${v2.pinyin})?`, audioText: `${v2.pinyin} shì shénme yìsi?`, options: [ v2.meaning, "Menari di panggung", "Menaiki sepeda motor", "Menyiram tanaman bunga" ], correctIndex: 0, explanation: `'${v2.hanzi}' (${v2.pinyin}) berarti '${v2.meaning}'.` },
-        { id: `q_${bookId}_${unitId}_9`, type: "dialogue", question: `Jika teman menyapa ‘${v1.hanzi} (${v1.pinyin})’, respon balasan yang paling sopan adalah:`, audioText: `Duìfāng shuō ${v1.pinyin}, nǐ yīnggāi zěnme huídá?`, options: [ `${v1.hanzi}！(${v1.pinyin})`, "不客气！(Bú kèqi)", "没关系！(Méi guānxi)", "对不起！(Duìbuqǐ)" ], correctIndex: 0, explanation: `Sapaan dibalas dengan sapaan hangat yang setara.` },
-        { id: `q_${bookId}_${unitId}_10`, type: "comprehension", question: `Berdasarkan teks narasi cerita '${unitTitle}', apa pesan utama yang dipelajari murid?`, audioText: `Běn kè de zhǔyào nèiróng shì shénme?`, options: [ `Semangat dan tekun mempelajari kosakata '${v1.hanzi}' dan '${v2.hanzi}'`, "Hanya bermain game tanpa membaca buku", "Tidur larut malam setiap hari", "Tidak mengerjakan tugas sekolah" ], correctIndex: 0, explanation: `Pesan utama adalah ketekunan belajar bahasa Mandarin.` }
-      ];
-    }
-
-    function buildFullCurriculumDatabase() {
-      const books = [];
-      for (let b = 1; b <= 12; b++) {
-        const bookTheme = BOOK_THEME_INFO[b];
-        let unitsList = [];
-        if (b === 1) {
-          unitsList = HAN_YU_STORIES_DATABASE[1].map(u => ({
-            id: u.unit, unitNumber: u.unit, title: u.title, pinyin: u.pinyin, meaning: u.meaning, lessons: [u.title],
-            story: { title: `Cerita Han Yu 1 Unit ${u.unit}: ${u.title}`, hanzi: u.sentences.map(s => s.hanzi).join(' '), pinyin: u.sentences.map(s => s.pinyin).join(' '), indonesian: u.sentences.map(s => s.indonesian).join(' '), sentences: u.sentences },
-            vocab: u.vocab,
-            matchingPairs: u.vocab.map((v, vIdx) => ({ id: `m_1_${u.unit}_${vIdx}`, hanzi: v.hanzi, pinyin: v.pinyin, meaning: v.meaning, icon: ["🌟", "📚", "🎨", "⚽", "🍎", "🏡", "🦖", "🌿"][vIdx % 8], category: "kosakata" })),
-            quizQuestions: generateUnitQuestions(1, u.unit, u.title, u.pinyin, u.meaning, u.vocab)
-          }));
-        } else {
-          const unitArray = CURRICULUM_UNITS_REGISTRY[b];
-          unitsList = unitArray.map((uItem, idx) => {
-            const uNum = idx + 1;
-            const [uTitleRaw, uPinyin, uMeaning, vHanzi, vPinyin, vMeaning, vStrokes] = uItem;
-            const uTitle = `第${uNum}课 ${uTitleRaw}`;
-            const vocabList = [
-              { hanzi: vHanzi, pinyin: vPinyin, meaning: vMeaning, strokes: vStrokes, strokeOrder: ["横", "竖", "撇", "捺", "点", "提"], radical: "文" },
-              { hanzi: "学习", pinyin: "xuéxí", meaning: "belajar dengan tekun", strokes: 8, strokeOrder: ["点", "点", "提", "撇", "竖钩", "横撇", "横折", "竖钩"], radical: "子" },
-              { hanzi: "朋友", pinyin: "péngyou", meaning: "sahabat teman", strokes: 4, strokeOrder: ["撇", "横折钩", "横", "横"], radical: "月" },
-              { hanzi: "进步", pinyin: "jìnbù", meaning: "kemajuan pesat", strokes: 7, strokeOrder: ["横", "横", "竖", "点", "横折折撇", "捺", "撇"], radical: "辶" },
-              { hanzi: "书本", pinyin: "shūběn", meaning: "buku bacaan", strokes: 4, strokeOrder: ["横折", "横折钩", "竖", "点"], radical: "乙" },
-              { hanzi: "老师", pinyin: "lǎoshī", meaning: "guru pengajar", strokes: 6, strokeOrder: ["横", "竖", "横", "撇", "竖", "横折折折钩"], radical: "耂" },
-              { hanzi: "快乐", pinyin: "kuàilè", meaning: "gembira bahagia", strokes: 7, strokeOrder: ["点", "竖", "点", "横折", "横", "横", "竖"], radical: "忄" },
-              { hanzi: "大家", pinyin: "dàjiā", meaning: "kita semua", strokes: 3, strokeOrder: ["横", "撇", "捺"], radical: "大" }
-            ];
-            const sentences = getUnitStoryData(b, uNum, uTitle, uPinyin, uMeaning, vocabList);
-            return {
-              id: uNum, unitNumber: uNum, title: uTitle, pinyin: uPinyin, meaning: uMeaning, lessons: [uTitle],
-              story: { title: `Cerita Han Yu ${b} Unit ${uNum}: ${uTitleRaw}`, hanzi: sentences.map(s => s.hanzi).join(' '), pinyin: sentences.map(s => s.pinyin).join(' '), indonesian: sentences.map(s => s.indonesian).join(' '), sentences: sentences },
-              vocab: vocabList,
-              matchingPairs: vocabList.map((v, vIdx) => ({ id: `m_${b}_${uNum}_${vIdx}`, hanzi: v.hanzi, pinyin: v.pinyin, meaning: v.meaning, icon: ["🌟", "📚", "🎨", "⚽", "🍎", "🏡", "🦖", "🌿"][vIdx % 8], category: "kosakata" })),
-              quizQuestions: generateUnitQuestions(b, uNum, uTitle, uPinyin, uMeaning, vocabList)
-            };
-          });
-        }
-        books.push({ id: b, bookNumber: b, title: `Han Yu ${b}`, code: `HY-${b}`, level: bookTheme.level, dinoGuide: bookTheme.guide, units: unitsList });
-      }
-      return { books };
-    }
-
-    const HAN_YU_CURRICULUM = buildFullCurriculumDatabase();
-    window.HAN_YU_CURRICULUM = HAN_YU_CURRICULUM;
-
-    function getBookById(bookId) {
-      return HAN_YU_CURRICULUM.books.find(x => x.id === parseInt(bookId)) || HAN_YU_CURRICULUM.books[0];
-    }
-    function getUnitByBookAndUnitId(bookId, unitId) {
-      const b = getBookById(bookId);
-      return b.units.find(x => x.id === parseInt(unitId)) || b.units[0];
-    }
-
-    /* AUDIO ENGINE */
-    class DinoAudioEngine {
-      constructor() { this.ctx = null; this.isMuted = false; this.speechRate = 0.7; }
-      getAudioContext() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if (AudioContext) this.ctx = new AudioContext();
-        }
-        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
-        return this.ctx;
-      }
-      toggleMute() {
-        this.isMuted = !this.isMuted;
-        const btn = document.getElementById('mute-toggle-btn');
-        if (btn) btn.innerHTML = this.isMuted ? '🔇 Bisu' : '🔊 Suara';
-      }
-      playApplauseSound() {
-        if (this.isMuted) return;
-        const ctx = this.getAudioContext(); if (!ctx) return;
-        const dur = 2.4, buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate), d = buf.getChannelData(0);
-        for (let i = 0; i < d.length; i++) {
-          const t = i / ctx.sampleRate;
-          d[i] = (Math.random() * 2 - 1) * (Math.sin(t * 22) > 0.3 ? 1 : 0.2) * (1 - t / dur);
-        }
-        const src = ctx.createBufferSource(); src.buffer = buf;
-        const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1200; f.Q.value = 1.8;
-        const g = ctx.createGain(); g.gain.setValueAtTime(0.5, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + dur);
-        src.connect(f); f.connect(g); g.connect(ctx.destination); src.start();
-      }
-      playDinoRoarSound() {
-        if (this.isMuted) return;
-        const ctx = this.getAudioContext(); if (!ctx) return;
-        const now = ctx.currentTime, dur = 1.8;
-        const osc = ctx.createOscillator(); osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(140, now); osc.frequency.linearRampToValueAtTime(45, now + dur);
-        const g = ctx.createGain(); g.gain.setValueAtTime(0.05, now); g.gain.linearRampToValueAtTime(0.4, now + 0.15); g.gain.exponentialRampToValueAtTime(0.01, now + dur);
-        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now + dur);
-      }
-      playEggCrackSound() {
-        if (this.isMuted) return;
-        const ctx = this.getAudioContext(); if (!ctx) return;
-        const now = ctx.currentTime, osc = ctx.createOscillator(), g = ctx.createGain();
-        osc.type = 'sine'; osc.frequency.setValueAtTime(580, now); osc.frequency.exponentialRampToValueAtTime(220, now + 0.12);
-        g.gain.setValueAtTime(0.3, now); g.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-        osc.connect(g); g.connect(ctx.destination); osc.start(now); osc.stop(now + 0.13);
-      }
-      playCorrectSound() {
-        if (this.isMuted) return;
-        const ctx = this.getAudioContext(); if (!ctx) return;
-        const now = ctx.currentTime;
-        [659.25, 880.00].forEach((freq, idx) => {
-          const osc = ctx.createOscillator(), g = ctx.createGain();
-          osc.type = 'sine'; osc.frequency.value = freq;
-          const start = now + idx * 0.1;
-          g.gain.setValueAtTime(0.25, start); g.gain.exponentialRampToValueAtTime(0.01, start + 0.3);
-          osc.connect(g); g.connect(ctx.destination); osc.start(start); osc.stop(start + 0.32);
-        });
-      }
-      speakMandarin(text, options = {}) {
-        if (!('speechSynthesis' in window)) return;
-        window.speechSynthesis.cancel();
-        const ut = new SpeechSynthesisUtterance(text);
-        ut.lang = 'zh-CN'; ut.rate = options.rate !== undefined ? options.rate : this.speechRate;
-        const voices = window.speechSynthesis.getVoices();
-        const zh = voices.find(v => v.lang && (v.lang.includes('zh') || v.lang.includes('cmn')));
-        if (zh) ut.voice = zh;
-        if (options.onEnd) ut.onend = options.onEnd;
-        window.speechSynthesis.speak(ut);
-      }
-      stopSpeaking() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
-    }
-    const dinoAudio = new DinoAudioEngine();
-    window.dinoAudio = dinoAudio;
-
-    /* STROKE CANVAS WRITER */
-    class DinoStrokeWriter {
-      constructor(canvasId) {
-        this.canvas = document.getElementById(canvasId);
-        this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
-        this.currentVocab = null; this.targetRepeats = 3; this.currentRepeat = 0;
-        this.strokesDrawn = 0; this.isDrawing = false; this.drawnPoints = []; this.allStrokes = []; this.showOutline = true;
-        if (this.canvas) { this.initEvents(); this.resizeCanvas(); }
-      }
-      initEvents() {
-        const getPos = (e) => {
-          const rect = this.canvas.getBoundingClientRect();
-          const cx = e.touches ? e.touches[0].clientX : e.clientX, cy = e.touches ? e.touches[0].clientY : e.clientY;
-          return { x: (cx - rect.left) * (this.displayWidth / rect.width), y: (cy - rect.top) * (this.displayHeight / rect.height) };
-        };
-        const start = (e) => { e.preventDefault(); this.isDrawing = true; this.drawnPoints = [getPos(e)]; dinoAudio.getAudioContext(); };
-        const move = (e) => { if (!this.isDrawing) return; e.preventDefault(); this.drawnPoints.push(getPos(e)); this.redraw(); };
-        const end = (e) => {
-          if (!this.isDrawing) return; e.preventDefault(); this.isDrawing = false;
-          if (this.drawnPoints.length > 1) { this.allStrokes.push([...this.drawnPoints]); this.strokesDrawn++; dinoAudio.playEggCrackSound(); }
-          this.drawnPoints = []; this.redraw();
-        };
-        this.canvas.addEventListener('mousedown', start); this.canvas.addEventListener('mousemove', move); window.addEventListener('mouseup', end);
-        this.canvas.addEventListener('touchstart', start, { passive: false }); this.canvas.addEventListener('touchmove', move, { passive: false }); window.addEventListener('touchend', end, { passive: false });
-      }
-      resizeCanvas() {
-        if (!this.canvas) return;
-        const size = Math.min(330, window.innerWidth - 48);
-        this.canvas.width = size * (window.devicePixelRatio || 1); this.canvas.height = size * (window.devicePixelRatio || 1);
-        this.ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-        this.displayWidth = size; this.displayHeight = size; this.redraw();
-      }
-      loadVocab(vocab) { this.currentVocab = vocab; this.currentRepeat = 0; this.strokesDrawn = 0; this.allStrokes = []; this.renderMetaPanel(); this.redraw(); }
-      setTargetRepeats(n) { this.targetRepeats = n; this.renderMetaPanel(); }
-      drawMiZiGe(w, h) {
-        const ctx = this.ctx; ctx.save(); ctx.fillStyle = '#fffdf7'; ctx.fillRect(0, 0, w, h);
-        ctx.strokeStyle = '#e76f51'; ctx.lineWidth = 3; ctx.strokeRect(2, 2, w - 4, h - 4);
-        ctx.lineWidth = 1; ctx.setLineDash([4, 4]); ctx.beginPath();
-        ctx.moveTo(w / 2, 0); ctx.lineTo(w / 2, h); ctx.moveTo(0, h / 2); ctx.lineTo(w, h / 2);
-        ctx.moveTo(0, 0); ctx.lineTo(w, h); ctx.moveTo(w, 0); ctx.lineTo(0, h);
-        ctx.stroke(); ctx.restore();
-      }
-      drawGuideCharacter(w, h) {
-        if (!this.currentVocab) return;
-        const ctx = this.ctx; ctx.save(); ctx.font = `900 ${Math.floor(w * 0.72)}px "Noto Serif SC", "KaiTi", serif`;
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(231, 111, 81, 0.16)';
-        ctx.fillText(this.currentVocab.hanzi[0], w / 2, h / 2 + 10); ctx.restore();
-      }
-      drawStudentStrokes() {
-        const ctx = this.ctx; ctx.save(); ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1b4332';
-        this.allStrokes.forEach(s => {
-          if (s.length < 2) return;
-          ctx.beginPath(); ctx.moveTo(s[0].x, s[0].y);
-          for (let i = 1; i < s.length; i++) ctx.lineTo(s[i].x, s[i].y);
-          ctx.stroke();
-        });
-        if (this.isDrawing && this.drawnPoints.length > 1) {
-          ctx.strokeStyle = '#e76f51'; ctx.beginPath(); ctx.moveTo(this.drawnPoints[0].x, this.drawnPoints[0].y);
-          for (let i = 1; i < this.drawnPoints.length; i++) ctx.lineTo(this.drawnPoints[i].x, this.drawnPoints[i].y);
-          ctx.stroke();
-        }
-        ctx.restore();
-      }
-      redraw() {
-        if (!this.ctx || !this.canvas) return;
-        const w = this.displayWidth || 320, h = this.displayHeight || 320;
-        this.ctx.clearRect(0, 0, w, h); this.drawMiZiGe(w, h);
-        if (this.showOutline && this.currentVocab) this.drawGuideCharacter(w, h);
-        this.drawStudentStrokes();
-      }
-      clearCanvas() { this.allStrokes = []; this.strokesDrawn = 0; this.redraw(); }
-      undoStroke() { if (this.allStrokes.length > 0) { this.allStrokes.pop(); this.redraw(); } }
-      toggleOutline() { this.showOutline = !this.showOutline; this.redraw(); }
-      playDemoAnimation() { if (this.currentVocab) dinoAudio.speakMandarin(this.currentVocab.hanzi); }
-      checkPractice(isAuto = false) {
-        if (!this.currentVocab) return;
-        if (this.allStrokes.length < 2) {
-          dinoAudio.playDinoRoarSound();
-          this.showModal('wrong', 'Goresan Kurang Lengkap! 🦖', 'Ayo tulis lebih banyak goresan di kotak Mi Zi Ge!');
-          return;
-        }
-        this.currentRepeat++; this.renderMetaPanel();
-        if (this.currentRepeat >= this.targetRepeats) {
-          dinoAudio.playApplauseSound();
-          this.showModal('win', 'Luar Biasa! Target Selesai! 🏆🎉', `Kamu berhasil menyelesaikan latihan menulis karakter '${this.currentVocab.hanzi}' sebanyak ${this.targetRepeats} kali!`);
-        } else {
-          dinoAudio.playCorrectSound();
-          this.clearCanvas();
-        }
-      }
-      renderMetaPanel() {
-        const meta = document.getElementById('stroke-meta-display');
-        if (!meta || !this.currentVocab) return;
-        let eggsHtml = '';
-        for (let i = 0; i < this.targetRepeats; i++) {
-          eggsHtml += i < this.currentRepeat ? '<span class="repeat-egg hatched">🦕</span>' : '<span class="repeat-egg">🥚</span>';
-        }
-        meta.innerHTML = `
-          <div class="vocab-character-hero">
-            <div class="hero-hanzi">${this.currentVocab.hanzi}</div>
-            <div class="hero-details">
-              <div class="hero-pinyin">${this.currentVocab.pinyin} <button class="sentence-audio-btn" style="width:32px;height:32px;font-size:0.9rem;" onclick="dinoAudio.speakMandarin('${this.currentVocab.hanzi}')">🔊</button></div>
-              <div class="hero-meaning">Arti: <strong>${this.currentVocab.meaning}</strong></div>
-              <div class="hero-strokes">Goresan: <strong>${this.currentVocab.strokes || 4} Goresan</strong> | Radikal: <strong>${this.currentVocab.radical || '文'}</strong></div>
-            </div>
-          </div>
-          <div class="stroke-order-roadmap">
-            <div class="roadmap-title">📋 Urutan Guratan (Bi Shun):</div>
-            <div class="roadmap-tags">${(this.currentVocab.strokeOrder || ["横", "竖", "撇", "捺"]).join(' ➔ ')}</div>
-          </div>
-          <div class="target-repeater-box">
-            <div class="target-label">
-              <span>🎯 Target Repetisi Menulis:</span>
-              <div class="target-btn-group">
-                ${[3, 4, 5, 6].map(n => `<button class="target-btn ${this.targetRepeats === n ? 'active' : ''}" onclick="dinoWriter.setTargetRepeats(${n})">${n}x</button>`).join('')}
-              </div>
-            </div>
-            <div class="eggs-row">${eggsHtml}</div>
-            <div class="progress-text">Kemajuan Menulis: <strong>${this.currentRepeat} / ${this.targetRepeats} Kali</strong></div>
-          </div>
-        `;
-      }
-      showModal(type, title, msg) {
-        const modal = document.getElementById('stroke-celebration-modal');
-        if (!modal) return;
-        modal.className = 'win-modal show';
-        modal.innerHTML = `
-          <div class="win-modal-box">
-            <div class="${type === 'win' ? 'trophy-icon' : 'roar-dino-icon'}">${type === 'win' ? '🏆' : '🦖'}</div>
-            <h2 style="color: ${type === 'win' ? '#1b4332' : '#991b1b'}; margin: 12px 0;">${title}</h2>
-            <p style="color: #4b5563;">${msg}</p>
-            <div class="action-buttons">
-              <button class="dino-btn primary" onclick="document.getElementById('stroke-celebration-modal').className='win-modal hidden'; dinoWriter.clearCanvas();">Lanjutkan Belajar 🚀</button>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    /* MATCHING GAME */
-    class DinoMatchingGame {
-      constructor(containerId) { this.container = document.getElementById(containerId); this.currentUnit = null; this.selectedHanzi = null; this.selectedPic = null; this.matchedPairsCount = 0; }
-      loadUnit(unit) { this.currentUnit = unit; this.selectedHanzi = null; this.selectedPic = null; this.matchedPairsCount = 0; this.render(); }
-      render() {
-        if (!this.container || !this.currentUnit) return;
-        const pairs = this.currentUnit.matchingPairs || [];
-        const hanziCards = [...pairs].sort(() => Math.random() - 0.5);
-        const picCards = [...pairs].sort(() => Math.random() - 0.5);
-        this.container.innerHTML = `
-          <div class="matching-header">
-            <div class="matching-stats"><span class="stat-badge">🧩 Pasangan: <strong id="match-score">${this.matchedPairsCount} / ${pairs.length}</strong></span></div>
-            <button class="dino-btn secondary small" onclick="dinoMatchGame.loadUnit(getUnitByBookAndUnitId(currentBookId, currentUnitId))">Acak Ulang 🔄</button>
-          </div>
-          <div class="matching-board">
-            <div class="match-column">
-              <div class="col-title">🀄 Kartu Kosakata (Hanzi & Pinyin)</div>
-              <div class="cards-list" id="match-hanzi-col">
-                ${hanziCards.map(p => `
-                  <div class="match-card" data-id="${p.id}" onclick="dinoMatchGame.selectHanziCard('${p.id}', this)">
-                    <div class="card-hanzi">${p.hanzi}</div>
-                    <div class="card-pinyin">${p.pinyin}</div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-            <div class="match-column">
-              <div class="col-title">🎨 Kartu Gambar / Makna Kosakata</div>
-              <div class="cards-list" id="match-pic-col">
-                ${picCards.map(p => `
-                  <div class="match-card" data-id="${p.id}" onclick="dinoMatchGame.selectPicCard('${p.id}', this)">
-                    <div class="card-icon">${p.icon}</div>
-                    <div class="card-label">${p.meaning}</div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      }
-      selectHanziCard(id, el) {
-        if (el.classList.contains('matched')) return;
-        document.querySelectorAll('#match-hanzi-col .match-card').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected'); this.selectedHanzi = { id, el };
-        const pair = this.currentUnit.matchingPairs.find(p => p.id === id);
-        if (pair) dinoAudio.speakMandarin(pair.hanzi);
-        this.checkMatch();
-      }
-      selectPicCard(id, el) {
-        if (el.classList.contains('matched')) return;
-        document.querySelectorAll('#match-pic-col .match-card').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected'); this.selectedPic = { id, el };
-        dinoAudio.playEggCrackSound();
-        this.checkMatch();
-      }
-      checkMatch() {
-        if (!this.selectedHanzi || !this.selectedPic) return;
-        if (this.selectedHanzi.id === this.selectedPic.id) {
-          dinoAudio.playCorrectSound();
-          this.selectedHanzi.el.classList.remove('selected'); this.selectedPic.el.classList.remove('selected');
-          this.selectedHanzi.el.classList.add('matched'); this.selectedPic.el.classList.add('matched');
-          this.matchedPairsCount++;
-          const scoreEl = document.getElementById('match-score');
-          if (scoreEl) scoreEl.textContent = `${this.matchedPairsCount} / ${this.currentUnit.matchingPairs.length}`;
-          this.selectedHanzi = null; this.selectedPic = null;
-          if (this.matchedPairsCount >= this.currentUnit.matchingPairs.length) {
-            setTimeout(() => { dinoAudio.playApplauseSound(); alert('🎉 Selamat! Semua pasangan kosakata dan gambar berhasil dicocokkan!'); }, 500);
-          }
-        } else {
-          dinoAudio.playDinoRoarSound();
-          this.selectedHanzi.el.classList.add('wrong'); this.selectedPic.el.classList.add('wrong');
-          setTimeout(() => {
-            if (this.selectedHanzi && this.selectedHanzi.el) this.selectedHanzi.el.classList.remove('selected', 'wrong');
-            if (this.selectedPic && this.selectedPic.el) this.selectedPic.el.classList.remove('selected', 'wrong');
-            this.selectedHanzi = null; this.selectedPic = null;
-          }, 600);
-        }
-      }
-    }
-
-    /* QUIZ ENGINE (10 SOAL PER UNIT) */
-    class DinoQuizEngine {
-      constructor(containerId) { this.container = document.getElementById(containerId); this.questions = []; this.currentIndex = 0; this.userAnswers = {}; }
-      loadUnit(unit) { this.questions = unit.quizQuestions || []; this.currentIndex = 0; this.userAnswers = {}; this.render(); }
-      render() {
-        if (!this.container || this.questions.length === 0) return;
-        const q = this.questions[this.currentIndex];
-        const selectedOpt = this.userAnswers[this.currentIndex];
-        this.container.innerHTML = `
-          <div class="quiz-box-card">
-            <div class="quiz-top-bar">
-              <div class="quiz-badge-group">
-                <span class="dino-pill type-pill">Tipe Soal: ${this.getTypeLabel(q.type)}</span>
-                <span class="dino-pill kkm-pill">🎯 Syarat KKM: 70</span>
-              </div>
-              <div class="quiz-counter">Soal <strong>${this.currentIndex + 1}</strong> dari <strong>${this.questions.length}</strong></div>
-            </div>
-            <div class="question-header">
-              <div class="question-title">${this.currentIndex + 1}. ${q.question}</div>
-              <button class="dino-audio-bubble-btn" onclick="dinoAudio.speakMandarin('${(q.audioText || q.question).replace(/'/g, "\\'")}')">
-                🔊 Bantuan Audio Bacaan Soal (Pelan)
-              </button>
-            </div>
-            <div class="quiz-options-list">
-              ${q.options.map((opt, oIdx) => `
-                <div class="quiz-option-item ${selectedOpt === oIdx ? 'selected' : ''}" onclick="dinoQuiz.chooseOption(${oIdx})">
-                  <div class="opt-indicator">${['A', 'B', 'C', 'D'][oIdx]}</div>
-                  <div class="opt-text">${opt}</div>
-                  <button class="opt-sound-btn" onclick="event.stopPropagation(); dinoAudio.speakMandarin('${opt.replace(/'/g, "\\'")}')">🔊</button>
-                </div>
-              `).join('')}
-            </div>
-            <div class="quiz-footer-nav">
-              <button class="dino-btn secondary small" onclick="dinoQuiz.prevQuestion()" ${this.currentIndex === 0 ? 'disabled' : ''}>⬅️ Sebelumnya</button>
-              <div class="quiz-dot-nav">
-                ${this.questions.map((_, idx) => `
-                  <button class="quiz-dot ${idx === this.currentIndex ? 'active' : ''} ${this.userAnswers[idx] !== undefined ? 'answered' : ''}" onclick="dinoQuiz.goToQuestion(${idx})">${idx + 1}</button>
-                `).join('')}
-              </div>
-              ${this.currentIndex < this.questions.length - 1 
-                ? `<button class="dino-btn primary small" onclick="dinoQuiz.nextQuestion()">Selanjutnya ➡️</button>` 
-                : `<button class="dino-btn primary trophy-action-btn" onclick="dinoQuiz.submitQuiz()">Kumpulkan Kuis 🏆</button>`}
-            </div>
-          </div>
-        `;
-      }
-      getTypeLabel(type) {
-        const map = { meaning: '1. Mengartikan', pinyin: '2. Pinyin & Nada', strokes: '3. Hitungan Goresan', sentence_order: '4. Susun Kalimat', picture_match: '5. Gambar Sesuai', fill_blank: '6. Lengkapi Kalimat', radical: '7. Tebak Radikal', meaning_2: '8. Makna Kosakata', dialogue: '9. Percakapan Sopan', comprehension: '10. Pemahaman Cerita' };
-        return map[type] || 'Pilihan Berganda';
-      }
-      chooseOption(optIdx) { this.userAnswers[this.currentIndex] = optIdx; dinoAudio.playEggCrackSound(); this.render(); }
-      prevQuestion() { if (this.currentIndex > 0) { this.currentIndex--; this.render(); } }
-      nextQuestion() { if (this.currentIndex < this.questions.length - 1) { this.currentIndex++; this.render(); } }
-      goToQuestion(idx) { this.currentIndex = idx; this.render(); }
-      submitQuiz() {
-        let correct = 0;
-        this.questions.forEach((q, idx) => { if (this.userAnswers[idx] === q.correctIndex) correct++; });
-        const score = Math.round((correct / this.questions.length) * 100);
-        const passed = score >= 70;
-        if (passed) dinoAudio.playApplauseSound(); else dinoAudio.playDinoRoarSound();
-        this.container.innerHTML = `
-          <div class="quiz-box-card" style="text-align: center; padding: 40px 20px;">
-            <div class="${passed ? 'trophy-icon' : 'roar-dino-icon'}">${passed ? '🏆' : '🦖'}</div>
-            <h2 style="font-size: 1.8rem; margin: 12px 0; color: ${passed ? '#1b4332' : '#991b1b'};">${passed ? 'LULUS UJIAN KUIS! 🎉' : 'BELUM MENCAPAI KKM 70 🦖⚡'}</h2>
-            <div style="font-size: 2.8rem; font-weight: 900; color: ${passed ? '#2d6a4f' : '#e76f51'}; margin: 8px 0;">Nilai: ${score} / 100 (${correct} dari ${this.questions.length} Benar)</div>
-            <div class="${passed ? 'kkm-passed-badge' : 'kkm-failed-badge'}">${passed ? '✅ Memenuhi Syarat KKM (≥ 70) - Piala Emas & Tepuk Tangan!' : '⚠️ Di Bawah KKM (< 70) - Dinosaurus Meraung!'}</div>
-            <div class="action-buttons">
-              <button class="dino-btn primary" onclick="dinoQuiz.loadUnit(getUnitByBookAndUnitId(currentBookId, currentUnitId))">Ulangi Kuis 🔄</button>
-              <button class="dino-btn secondary" onclick="switchTab('story')">Pelajari Cerita Kembali 📖</button>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    /* CONTROLLER */
-    let currentBookId = 1, currentUnitId = 1, currentVocabIndex = 0, currentActiveTab = 'story';
-    let dinoWriter = null, dinoMatchGame = null, dinoQuiz = null;
-
-    function renderBookSelector() {
-      const container = document.getElementById('book-selector-grid');
-      if (!container) return;
-      container.innerHTML = HAN_YU_CURRICULUM.books.map(b => `
-        <button class="book-card-btn ${b.id === currentBookId ? 'active' : ''}" onclick="selectBook(${b.id})">
-          <span class="book-dino-avatar">${b.dinoGuide.avatar}</span>
-          <div class="book-info">
-            <span class="book-title">${b.title}</span>
-            <span class="book-level">${b.dinoGuide.name}</span>
-          </div>
-        </button>
-      `).join('');
-    }
-
-    function selectBook(bookId) {
-      currentBookId = bookId; currentUnitId = 1; currentVocabIndex = 0;
-      dinoAudio.playEggCrackSound();
-      renderBookSelector();
-      loadBookAndUnit(currentBookId, currentUnitId);
-    }
-
-    function renderUnitList(book) {
-      const container = document.getElementById('unit-selector-list');
-      if (!container) return;
-      container.innerHTML = book.units.map(u => `
-        <button class="unit-pill-btn ${u.id === currentUnitId ? 'active' : ''}" onclick="selectUnit(${u.id})">
-          <span class="u-num">Unit ${u.id}</span>
-          <span class="u-title">${u.title.replace(`Unit ${u.id}: `, '')}</span>
-        </button>
-      `).join('');
-    }
-
-    function selectUnit(unitId) {
-      currentUnitId = unitId; currentVocabIndex = 0;
-      dinoAudio.playEggCrackSound();
-      loadBookAndUnit(currentBookId, currentUnitId);
-    }
-
-    function loadBookAndUnit(bookId, unitId) {
-      const book = getBookById(bookId);
-      const unit = getUnitByBookAndUnitId(bookId, unitId);
-
-      const avatar = document.getElementById('guide-avatar');
-      const desc = document.getElementById('guide-desc');
-      const title = document.getElementById('current-unit-title');
-      const pinyin = document.getElementById('current-unit-pinyin');
-      const meaning = document.getElementById('current-unit-meaning');
-
-      if (avatar) avatar.textContent = book.dinoGuide.avatar;
-      if (desc) desc.textContent = book.dinoGuide.desc;
-      if (title) title.textContent = `${book.title} - ${unit.title}`;
-      if (pinyin) pinyin.textContent = unit.pinyin;
-      if (meaning) meaning.textContent = `Arti: ${unit.meaning}`;
-
-      renderUnitList(book);
-      renderStoryTab(unit);
-      renderStrokeTab(unit);
-      if (dinoMatchGame) dinoMatchGame.loadUnit(unit);
-      if (dinoQuiz) dinoQuiz.loadUnit(unit);
-    }
-
-    function renderStoryTab(unit) {
-      const storyContainer = document.getElementById('story-content-container');
-      if (!storyContainer || !unit.story) return;
-      const sentences = unit.story.sentences || [];
-      storyContainer.innerHTML = `
-        <div class="story-hero-card">
-          <div class="story-top-actions">
-            <div class="speed-indicator-badge">
-              🐢 Kecepatan: <strong id="speed-display-label">Pelan (0.7x) - Ramah Anak SD</strong>
-            </div>
-            <div class="story-audio-btn-group">
-              <button class="dino-btn primary pulse" onclick="playFullStorySlow()">
-                🔊 Putar Seluruh Cerita (Audio Pelan)
-              </button>
-              <button class="dino-btn secondary small" onclick="dinoAudio.stopSpeaking()">
-                ⏹️ Berhenti
-              </button>
-            </div>
-          </div>
-          <div class="story-sentences-list">
-            ${sentences.map((s, idx) => `
-              <div class="sentence-row-card" id="sentence-card-${idx}">
-                <div class="sentence-num-badge">${idx + 1}</div>
-                <div class="sentence-text-group">
-                  <div class="sentence-hanzi">${s.hanzi}</div>
-                  <div class="sentence-pinyin">${s.pinyin}</div>
-                  <div class="sentence-indonesian">${s.indonesian}</div>
-                </div>
-                <button class="sentence-audio-btn" onclick="playSentenceByIndex(${idx})" title="Dengarkan kalimat ini">
-                  🔊
-                </button>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    function playFullStorySlow() {
-      const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-      if (!unit || !unit.story) return;
-      dinoAudio.getAudioContext();
-      dinoAudio.speakMandarin(unit.story.sentences.map(s => s.hanzi).join('，'), { rate: dinoAudio.speechRate });
-    }
-
-    function playSentenceByIndex(index) {
-      const unit = getUnitByBookAndUnitId(currentBookId, currentUnitId);
-      if (!unit || !unit.story || !unit.story.sentences[index]) return;
-      const s = unit.story.sentences[index];
-      document.querySelectorAll('.sentence-row-card').forEach(el => el.classList.remove('speaking-highlight'));
-      const row = document.getElementById(`sentence-card-${index}`);
-      if (row) row.classList.add('speaking-highlight');
-      dinoAudio.getAudioContext();
-      dinoAudio.speakMandarin(s.hanzi, {
-        rate: dinoAudio.speechRate,
-        onEnd: () => { if (row) row.classList.remove('speaking-highlight'); }
-      });
-    }
-
-    function renderStrokeTab(unit) {
-      const vocabSelector = document.getElementById('vocab-stroke-selector');
-      if (!vocabSelector || !unit.vocab || unit.vocab.length === 0) return;
-      vocabSelector.innerHTML = unit.vocab.map((v, idx) => `
-        <button class="vocab-tab-btn ${idx === currentVocabIndex ? 'active' : ''}" onclick="selectStrokeVocab(${idx})">
-          <span class="v-hanzi">${v.hanzi}</span>
-          <span class="v-pinyin">${v.pinyin}</span>
-        </button>
-      `).join('');
-      if (dinoWriter) dinoWriter.loadVocab(unit.vocab[currentVocabIndex]);
-    }
-
-    function selectStrokeVocab(idx) {
-      currentVocabIndex = idx;
-      renderStrokeTab(getUnitByBookAndUnitId(currentBookId, currentUnitId));
-    }
-
-    function switchTab(tabId) {
-      currentActiveTab = tabId;
-      document.querySelectorAll('.dino-tab-item').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId));
-      document.querySelectorAll('.activity-panel').forEach(panel => panel.classList.toggle('active', panel.id === `tab-panel-${tabId}`));
-      if (tabId === 'strokes' && dinoWriter) setTimeout(() => dinoWriter.resizeCanvas(), 50);
-    }
-
-    function initTabNavigation() {
-      document.querySelectorAll('.dino-tab-item').forEach(btn => {
-        btn.addEventListener('click', () => {
-          dinoAudio.playEggCrackSound();
-          switchTab(btn.getAttribute('data-tab'));
-        });
-      });
-    }
-
-    function initAudioControls() {
-      const speedSelect = document.getElementById('tts-speed-selector');
-      if (speedSelect) {
-        speedSelect.addEventListener('change', (e) => {
-          dinoAudio.speechRate = parseFloat(e.target.value);
-          const label = document.getElementById('speed-display-label');
-          if (label) label.textContent = e.target.options[e.target.selectedIndex].text;
-        });
-      }
-    }
-
-    function openShareModalForCurrent() {
-      const shareUrl = `student.html?book=${currentBookId}&unit=${currentUnitId}&tab=${currentActiveTab}`;
-      const fullUrl = window.location.origin + window.location.pathname.replace('index.html', '') + shareUrl;
-      const modal = document.createElement('div');
-      modal.id = 'share-modal-dynamic';
-      modal.className = 'win-modal show';
-      modal.innerHTML = `
-        <div class="win-modal-box share-modal-box">
-          <div style="font-size: 3rem; margin-bottom: 8px;">🔗</div>
-          <h2>Bagikan Materi ke Murid</h2>
-          <p style="color: #4b5563; font-size: 0.95rem;">Tautan langsung membuka materi Buku Han Yu ${currentBookId} Unit ${currentUnitId}.</p>
-          <div class="share-link-preview-box">
-            <div class="link-input-group">
-              <input type="text" id="share-link-input" value="${fullUrl}" readonly>
-              <button class="dino-btn primary small" onclick="navigator.clipboard.writeText('${fullUrl}'); alert('Tautan berhasil disalin ke clipboard!');">Salin Link 📋</button>
-            </div>
-          </div>
-          <div class="action-buttons">
-            <a href="${shareUrl}" target="_blank" class="dino-btn primary">Buka Halaman Murid Sekarang 🚀</a>
-            <button class="dino-btn secondary" onclick="document.getElementById('share-modal-dynamic').remove()">Tutup</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    }
-
-    function initializeApp() {
-      dinoWriter = new DinoStrokeWriter('stroke-canvas');
-      dinoMatchGame = new DinoMatchingGame('matching-container');
-      dinoQuiz = new DinoQuizEngine('quiz-container');
-
-      window.dinoWriter = dinoWriter;
-      window.dinoMatchGame = dinoMatchGame;
-      window.dinoQuiz = dinoQuiz;
-
-      renderBookSelector();
-      loadBookAndUnit(1, 1);
-      initTabNavigation();
-      initAudioControls();
-
-      window.addEventListener('resize', () => {
-        if (dinoWriter) dinoWriter.resizeCanvas();
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeApp);
-    } else {
-      initializeApp();
+    // Immediate fallback trigger if DOMContentLoaded has already passed
+    if (typeof initDinoApp === 'function') {
+      initDinoApp();
+    } else if (typeof DinoHanYuApp !== 'undefined' && !window.dinoApp) {
+      window.dinoApp = new DinoHanYuApp();
     }
   </script>
 </body>
